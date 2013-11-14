@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 int menu_principal ();
-void comecar_torneio ();
-void pesquisar_equipa ();
+int comecar_torneio ();
+int pesquisar_equipa ();
 int pesquisar_jogador ();
 //void seleccionar_equipas ();
 void pesquisar_resultados ();
@@ -43,23 +43,23 @@ int main ( ) {
 	printf("Insira o seu nome\n");
 	scanf("%[^\n]s", name);
 
-	/*printf("A criar nome\n");
+	printf("A criar nome\n");
 	sleep(1);
 	printf(".\n");
 	sleep(1);
 	printf(".\n");
 	sleep(1);
-	printf(".\n");*/
+	printf(".\n");
 
-	printf("\nExcelente nome %s\n", name);
+	printf("\nExcelente nome, %s\n", name);
 	
-	/*printf("A carregar\n");
+	printf("A carregar\n");
 	sleep(1);
 	printf(".\n");
 	sleep(1);
 	printf(".\n");
 	sleep(1);
-	printf(".\n\n");*/
+	printf(".\n\n");
 	
 	menu_principal ();
 
@@ -88,12 +88,12 @@ int menu_principal () {
         {
 
 	    case 0:
-		/*printf("Até à próxima jogador!\n");
+		printf("Até à próxima jogador!\n");
 		 sleep(2);
 		 printf("Aguarde enquanto guardamos os seus dados!\n");
 		 sleep(2);
 		 printf("Aguarde enquanto encerramos a aplicação!\n");
-		 sleep(3);*/
+		 sleep(3);
 		return 0;
 		break;
             case 1:
@@ -117,7 +117,7 @@ int menu_principal () {
 
 }
 
-void comecar_torneio () {
+int comecar_torneio () {
 
 int op;
 
@@ -141,7 +141,7 @@ do
  		 break;
 
 	    case 3:
-		 menu_principal();
+		 return 0;
 		 break;
 
             default:
@@ -152,7 +152,7 @@ do
 } while( op != 0);
 }
 
-void pesquisar_equipa() {
+int pesquisar_equipa() {
 
 int op;
 
@@ -177,7 +177,7 @@ do
 		 listar_equipa();
 		 break;
 	    case 4:
-		 comecar_torneio();
+		 return 0;
 		 break;
 	    default:
 		 printf("Tente novamente\n");
@@ -235,9 +235,8 @@ char naturalidade[50];
 char posicao[20];
 int data_nascimento;
 
-};
+} jogador;
 
-    struct jogador jogador;
     FILE*fp; 
    fp = fopen("fichJogadores.txt","a+");
 
@@ -252,22 +251,23 @@ int data_nascimento;
     scanf("%d", &jogador.numero_camisola);
     
     printf("Nome do Jogador: ");
-    scanf("%[^\n]s", jogador.nome_jogador);
+    scanf("\n%[^\n]s", jogador.nome_jogador);
 
     printf("Naturalidade: ");
-    scanf("%[^\n]s", jogador.naturalidade);
+    scanf("\n%[^\n]s", jogador.naturalidade);
     
     printf("Posicao: ");
-    scanf("%[^\n]s", jogador.posicao);
+    scanf("\n%[^\n]s", jogador.posicao);
     
     printf("Data de nascimento: ");
     scanf("%d", &jogador.data_nascimento);
 
-    fprintf(fp,"%d %s %s %s %d",jogador.numero_camisola,jogador.nome_jogador, jogador.naturalidade, jogador.posicao, jogador.data_nascimento);
+    fprintf(fp,"%d %s %s %s %d",jogador.numero_camisola,jogador.nome_jogador,
+ jogador.naturalidade, jogador.posicao, jogador.data_nascimento);
 
     fprintf(fp, "\n");
     fclose(fp);
-    printf("Jogador Adicionado com sucesso!!\n");
+    printf("Jogador Adicionado com sucesso!\n");
     getchar();
 }
 
@@ -286,19 +286,16 @@ while((caracter=fgetc(fp))!=EOF)
 
 int adiciona_equipa () { 
 
-int x;
-
-struct equipa {
+struct {
 
 char nome_treinador[20];
 char nome_equipa[20];
 char nome_jogadores[100];
 
-};
+} equipa;
 
     FILE*fp;
-    struct equipa equipa;
-    
+
       fp=fopen("fichEquipas.txt","a+");
       if (fp==NULL)
       printf ("Impossivel abrir o ficheiro\n");
@@ -306,21 +303,21 @@ char nome_jogadores[100];
       printf("Ficheiro aberto com sucesso\n"); 
     
     fp=fopen("fichEquipas.txt","a+");
-    
-    printf("Nome da Equipa: ");
-    scanf("%[^\n]s", equipa.nome_equipa);
 
-    printf("Nome do treinador: ");
-    scanf("%[^\n]s", equipa.nome_treinador);
+    fflush(stdin);     
+
+    printf("Nome de Treinador: ");
+    scanf("\n%[^\n]s", equipa.nome_treinador);
+
+    printf("Nome da Equipa: ");
+    scanf("\n%[^\n]s", equipa.nome_equipa);
 
     printf("Nome de um Jogador: ");
-    scanf("%[^\n]s", equipa.nome_jogadores);
+    scanf("\n%[^\n]s", equipa.nome_jogadores);
 
-    fprintf(fp,"Equipa - %s\nTreinador - %s\nJogador - %s \n",equipa.nome_equipa,equipa.nome_treinador, equipa.nome_jogadores);
-    fprintf(fp, "\n");
+    fprintf(fp,"%s %s %s\n", equipa.nome_treinador, equipa.nome_equipa, ,equipa.nome_jogadores);
     fclose(fp);
     printf("Equipa adicionada com sucesso!\n");
-    printf("\n");
     getchar();
 }
 
@@ -329,8 +326,6 @@ int eliminar_equipa() {}
 int listar_equipa() {
 int caracter;
 FILE*fp;
-
-printf("\n");
 
 fp=fopen("fichEquipas.txt", "r");
 while((caracter=fgetc(fp))!=EOF)
