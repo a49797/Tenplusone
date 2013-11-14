@@ -41,7 +41,7 @@ int main ( ) {
 
         printf("Bem-Vindo/a ao TenPlusOne\n");
 	printf("Insira o seu nome\n");
-	scanf("%s", name);
+	scanf("%[^\n]s", name);
 
 	/*printf("A criar nome\n");
 	sleep(1);
@@ -252,13 +252,13 @@ int data_nascimento;
     scanf("%d", &jogador.numero_camisola);
     
     printf("Nome do Jogador: ");
-    scanf("%s", jogador.nome_jogador);
+    scanf("%[^\n]s", jogador.nome_jogador);
 
     printf("Naturalidade: ");
-    scanf("%s", jogador.naturalidade);
+    scanf("%[^\n]s", jogador.naturalidade);
     
     printf("Posicao: ");
-    scanf("%s", jogador.posicao);
+    scanf("%[^\n]s", jogador.posicao);
     
     printf("Data de nascimento: ");
     scanf("%d", &jogador.data_nascimento);
@@ -269,7 +269,6 @@ int data_nascimento;
     fclose(fp);
     printf("Jogador Adicionado com sucesso!!\n");
     getchar();
- pesquisar_jogador();
 }
 
 int eliminar_jogador() {}
@@ -283,7 +282,6 @@ printf("\n");
 fp=fopen("fichJogadores.txt", "r");
 while((caracter=fgetc(fp))!=EOF)
     putchar(caracter);
- pesquisar_jogador();
      }
 
 int adiciona_equipa () { 
@@ -310,13 +308,13 @@ char nome_jogadores[100];
     fp=fopen("fichEquipas.txt","a+");
     
     printf("Nome da Equipa: ");
-    scanf("%s", equipa.nome_equipa);
+    scanf("%[^\n]s", equipa.nome_equipa);
 
     printf("Nome do treinador: ");
-    scanf("%s", equipa.nome_treinador);
+    scanf("%[^\n]s", equipa.nome_treinador);
 
     printf("Nome de um Jogador: ");
-    scanf("%s", equipa.nome_jogadores);
+    scanf("%[^\n]s", equipa.nome_jogadores);
 
     fprintf(fp,"Equipa - %s\nTreinador - %s\nJogador - %s \n",equipa.nome_equipa,equipa.nome_treinador, equipa.nome_jogadores);
     fprintf(fp, "\n");
@@ -324,7 +322,6 @@ char nome_jogadores[100];
     printf("Equipa adicionada com sucesso!\n");
     printf("\n");
     getchar();
- pesquisar_equipa();
 }
 
 int eliminar_equipa() {}
@@ -338,6 +335,4 @@ printf("\n");
 fp=fopen("fichEquipas.txt", "r");
 while((caracter=fgetc(fp))!=EOF)
     putchar(caracter);
-    fflush(stdin);
- pesquisar_equipa();
      }
