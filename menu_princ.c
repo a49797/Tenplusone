@@ -11,6 +11,7 @@ int menu_torneio1 ();
 int menu_torneio2 ();
 int menu_torneio3 ();
 int menu_torneio4 ();
+int menu_torneio5 ();
 
 /*!
 *
@@ -497,7 +498,6 @@ int menu_torneio2 () {
     int opcao;
 do
     {
-        system("clear");
         printf("Concluiu um jogo dos quartos de final!\n");
 	printf("E agora?");
         printf("\n");
@@ -529,7 +529,6 @@ int menu_torneio3 () {
     int opcao;
 do
     {
-        system("clear");
         printf("Concluiu um jogo das meias-finais!\n");
 	printf("E agora?");
         printf("\n");
@@ -559,14 +558,25 @@ do
 
 }
 
-
 int menu_torneio4 () {
+
+        printf("Concluiu o jogo do terceiro e quarto lugar!\n");
+	printf("Vai ser redireccionado para a final");
+        printf("\n");
+	sleep(3);
+
+        jogar_final();
+
+}
+
+
+
+int menu_torneio5 () {
 
     int opcao;
 do
     {
-        system("clear");
-        printf("Concluiu o torneio! Parabénsvoid menu_torneio!\n");
+        printf("Concluiu o torneio! Parabéns!\n");
 	printf("E agora?");
         printf("\n");
         printf("1 - Fazer o jogo novamente\n");
@@ -621,7 +631,8 @@ do
         switch (op)
         {
             case 0:
-                   return 0;
+                 return 0;
+                 break;
             case 1:
                  iniciar_torneio();
                  break;
@@ -663,8 +674,10 @@ do
           
             case 1:
                  sorteio_jogos();
+                 break;
             case 2:
                  return 0;
+                 break;
             default:
                  printf("Operação Não Implementada\n");
             break;
@@ -712,156 +725,12 @@ do
           
             case 1:
                  arvore_torneio();
+                 break;
             case 2:
                  jogar();
+                 break;
             default:
                  printf("Operação Não Implementada\n");
-            break;
-        }
-
-
-} while( op != 0);
-}
-
-/**
-*
-*funcao torneio_quartos do tipo int que mostra a pagina dos quartos de final
-*\param op : int
-*
-*/
-
-int torneio_quartos() {
-//system("cls");
-system("clear");
-
-int op;
-
-
-do
-    {   
-        printf("\n");
-        printf("Chegámos aos Quartos de Final\n");
-        printf("1 - Ver a árvore do torneio!\n");
-        printf("2 - Comece o torneio\n");
-        scanf("%d", &op);
-                
-        switch (op)
-        {
-          
-            case 1:
-                 arvore_torneio_2();
-            case 2:
-                 jogar_quartos();
-            default:
-		 printf("Operação Não Implementada");
-            break;
-        }
-
-} while( op != 0);
-}
-
-/**
-*
-*funcao torneio_meias do tipo int que mostra a pagina das meias finais
-*\param op : int
-*
-*/
-
-int torneio_meias() {
-system("cls");
-
-int op;
-
-
-do
-    {   
-        printf("\n");
-        printf("Chegámos às Meias Finais\n");
-        printf("1 - Ver a árvore do torneio!\n");
-        printf("2 - Comece o torneio\n");
-        scanf("%d", &op);
-                
-        switch (op)
-        {
-          
-            case 1:
-                 arvore_torneio_3();
-            case 2:
-                 jogar_meias();
-            default:
-		 printf("Operação Não Implementada");
-            break;
-        }
-
-
-} while( op != 0);
-}
-
-/**
-*
-*funcao torneio_3e4 do tipo int que mostra a pagina do jogo do terceiro e quarto lugar
-*\param op : int
-*
-*/
-
-int torneio_3e4() {
-
-
-int op;
-
-
-do
-    {   
-        printf("\n");
-        printf("Este jogo vai decidir o terceiro e quarto lugar\n");
-        printf("1 - Ver a árvore do torneio!\n");
-        printf("2 - Comece o torneio\n");
-        scanf("%d", &op);
-                
-        switch (op)
-        {
-          
-            case 1:
-                 arvore_torneio_3e4();
-            case 2:
-                 jogar_3e4();
-            default:
-		 printf("Operação Não Implementada");
-            break;
-        }
-}while( op != 0);
-}
-
-/**
-*
-*funcao torneio_final do tipo int que mostra a pagina da final
-*\param op : int
-*
-*/
-
-int torneio_final() {
-system("cls");
-
-int op;
-
-
-do
-    {   
-        printf("\n");
-        printf("Chegámos à Final!\n");
-        printf("1 - Ver a árvore do torneio!\n");
-        printf("2 - Comece o torneio\n");
-        scanf("%d", &op);
-                
-        switch (op)
-        {
-          
-            case 1:
-                 arvore_torneio_4();
-            case 2:
-                 jogar_final();
-            default:
-		 printf("Operação Não Implementada");
             break;
         }
 
@@ -880,7 +749,7 @@ do
 *
 */
 
-belenenses_porto() {
+void belenenses_porto() {
 
 struct jogo;
 struct idades;
@@ -897,7 +766,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Belenenses X Porto\n");
 sleep(1);
 printf("\n");
@@ -907,18 +775,10 @@ printf("\n");
 fp=fopen("belenenses.txt", "w+");
 fp=fopen("belenenses.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Belenenses: \n"); 
-       
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-
-       printf("Adicione a idade do primeiro jogador: ");
-
-       scanf("%d", &idades.idadeJogadorBelenenses[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Belenenses: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorBelenenses[n]);
@@ -932,20 +792,13 @@ fp=fopen("belenenses.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("porto.txt", "w+");
         fp2 = fopen("porto.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Porto: \n"); 
-       
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-
-       printf("Adicione a idade do primeiro jogador: ");
-
-       scanf("%d", &idades.idadeJogadorPorto[0]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Porto: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
         scanf("%d", &idades.idadeJogadorPorto[n]);
@@ -1037,10 +890,10 @@ fp=fopen("belenenses.txt", "a+");
  sleep(3);
        printf("64'	Remate fraco de %s.. Que frango!! \n", jogo.jogadores_equipaA[6]);
        
-       golosEquipaB++;
+       golosEquipaA++;
        jogo.numero_golos++;
-       golos.golosPorto++;
-       golosJogador.golosJogadorPorto[6]++;
+       golos.golosBelenenses++;
+       golosJogador.golosJogadorBelenenses[6]++;
 
 printf("\nA bola passa por baixo das perna de %s ! Ja levam peru para o Natal deste ano e do proximo.\n", jogo.jogadores_equipaB[0]);
 
@@ -1054,15 +907,19 @@ sleep(3);
 
 printf("\nBola posicionada entre o poste e a barra do lado direto\n");
 
-printf("90' Final do Jogo\n");
+printf("\n90' Final do Jogo\n");
    sleep(3);
-  printf("\nAssim acaba esta partida %d-%d para o Porto!\n", golosEquipaA, golosEquipaB );
+  printf("\nAssim acaba esta partida %d-%d para o Porto!\n", golosEquipaB, golosEquipaA );
        
        sleep(3);
 
 printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
-printf("Os melhores marcadores foram %s e %s com %d golos\n", jogo.jogadores_equipaB[9], jogo.jogadores_equipaB[6], golosJogador.golosJogadorPorto[9]);
+printf("Os melhores marcadores foi %s e %s com %d golos\n", jogo.jogadores_equipaB[9], golosJogador.golosJogadorPorto[9]);
+
+printf("\n");
+
+menu_torneio1();
 
 }
 
@@ -1094,7 +951,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar SL Benfica X Nacional\n");
 sleep(1);
 printf("\n");
@@ -1104,18 +960,10 @@ printf("\n");
 fp=fopen("benfica.txt", "w+");
 fp=fopen("benfica.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Benfica: \n"); 
-       
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-
-       printf("Adicione a idade do primeiro jogador: ");
-
-       scanf("%d", &idades.idadeJogadorBenfica[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Benfica: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a a sua idade: ");
 	scanf("%d", &idades.idadeJogadorBenfica[n]);
@@ -1129,16 +977,13 @@ fp=fopen("benfica.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("nacional.txt", "w+");
         fp2 = fopen("nacional.txt", "a+");
 
-        printf("Adicione o primeiro jogador para a equipa do Nacional: \n");
-        scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-        scanf("%d", &idades.idadeJogadorNacional[0]);
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Nacional: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
         scanf("%d", &idades.idadeJogadorNacional[n]);
@@ -1164,27 +1009,27 @@ fp=fopen("benfica.txt", "a+");
        sleep(3);
 
       
-printf("0'	Pontapé de saída ");
+printf("\n0'	Pontapé de saída \n");
    sleep(3);
-printf("1'	%s envia uma bola alta para a marca de grande penalidade.\n",jogo.jogadores_equipaB[5]);
+printf("\n1'	%s envia uma bola alta para a marca de grande penalidade.\n",jogo.jogadores_equipaB[5]);
    sleep(3);
-printf("%s ganha uns metros ao seu marcador e cabeceia em direção ao ângulo mais distante.\n",jogo.jogadores_equipaB[9]);
+printf("\n%s ganha uns metros ao seu marcador e cabeceia em direção ao ângulo mais distante.\n",jogo.jogadores_equipaB[9]);
    sleep(3);
-printf("%s põe a bola em segurança com a ponta dos dedos.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s põe a bola em segurança com a ponta dos dedos.\n",jogo.jogadores_equipaA[1]);
    sleep(3);
-printf("3'	%s recebe a bola à entrada da área.\n",jogo.jogadores_equipaA[6]);
+printf("\n3'	%s recebe a bola à entrada da área.\n",jogo.jogadores_equipaA[6]);
    sleep(3);
-printf("Ele pica a bola para %s.\n",jogo.jogadores_equipaA[10]);
+printf("\nEle pica a bola para %s.\n",jogo.jogadores_equipaA[10]);
    sleep(3);
-printf("%s tenta fazer um chapéu ao guarda-redes.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s tenta fazer um chapéu ao guarda-redes.\n",jogo.jogadores_equipaA[10]);
    sleep(3);
-printf("%s defende\n.",jogo.jogadores_equipaB[1]);
+printf("\n%s defende\n.",jogo.jogadores_equipaB[1]);
    sleep(3);
 printf("5'	%s consegue encontrar %s com algum espaço.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[9]);
    sleep(3);
-printf("%s aguenta o defesa e consegue fazer o remate.\n",jogo.jogadores_equipaA[9]);
+printf("\n%s aguenta o defesa e consegue fazer o remate.\n",jogo.jogadores_equipaA[9]);
    sleep(3);
-printf("GOLO!! - A bola é bem colocada e entra junto ao poste.\n");
+printf("\nGOLO!! - A bola é bem colocada e entra junto ao poste.\n");
  
  sleep(6);
        golosEquipaA++;
@@ -1192,74 +1037,74 @@ printf("GOLO!! - A bola é bem colocada e entra junto ao poste.\n");
        golos.golosBenfica++;
        golosJogador.golosJogadorBenfica[9]++;
 
-printf("20'	 %s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[9]);
+printf("\n20'	 %s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[9]);
    sleep(3);
-printf("%s afasta a bola da baliza.\n",jogo.jogadores_equipaA[9]);
+printf("\n%s afasta a bola da baliza.\n",jogo.jogadores_equipaA[9]);
    sleep(3);
-printf("%s faz a defesa.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s faz a defesa.\n",jogo.jogadores_equipaB[1]);
    sleep(3);
-printf("26'	%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[10]);
+printf("\n26'	%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[10]);
    sleep(3);
-printf("%s empurra a bola para a baliza de curta distância.\n", jogo.jogadores_equipaB[10]);
+printf("\n%s empurra a bola para a baliza de curta distância.\n", jogo.jogadores_equipaB[10]);
    sleep(3);
-printf("%s defende, a bola embate no poste e é agarrada à segunda tentativa.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s defende, a bola embate no poste e é agarrada à segunda tentativa.\n",jogo.jogadores_equipaA[1]);
    sleep(3);
-printf("28'	%s serpenteia pelo meio-campo antes de passar para o %s.\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaA[10]);
+printf("\n28'	%s serpenteia pelo meio-campo antes de passar para o %s.\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaA[10]);
    sleep(3);
-printf("%s tem uma oportunidade clara de golo e tenta colocá-la por baixo do guarda-redes.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s tem uma oportunidade clara de golo e tenta colocá-la por baixo do guarda-redes.\n",jogo.jogadores_equipaA[10]);
    sleep(3);
-printf("E a bola falha o alvo.\n");
+printf("\nE a bola falha o alvo.\n");
    sleep(3);
-printf("31'	%s faz um passe para %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[7]);
+printf("\n31'	%s faz um passe para %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[7]);
    sleep(3);
-printf("%s afasta um defesa e consegue fezer um remate.\n",jogo.jogadores_equipaA[7]);
+printf("\n%s afasta um defesa e consegue fezer um remate.\n",jogo.jogadores_equipaA[7]);
    sleep(3);
-printf("A bola vai pingar ao lado do poste.\n");
+printf("\nA bola vai pingar ao lado do poste.\n");
    sleep(3);
-printf("41'	%s luta pela bola no meio campo e joga-a para %s.\n",jogo.jogadores_equipaA[7] ,jogo.jogadores_equipaA[5]);
+printf("\n41'	%s luta pela bola no meio campo e joga-a para %s.\n",jogo.jogadores_equipaA[7] ,jogo.jogadores_equipaA[5]);
    sleep(3);
-printf("%s aguenta as cargas e fica desmarcado.\n",jogo.jogadores_equipaA[5]);
+printf("\n%s aguenta as cargas e fica desmarcado.\n",jogo.jogadores_equipaA[5]);
    sleep(3);
-printf("Ele bate a bola com um arco fantástico que parece dirigir-se ao canto superior.\n");
+printf("\nEle bate a bola com um arco fantástico que parece dirigir-se ao canto superior.\n");
    sleep(3);
-printf("A bola está fora do alcance de %s mas vai para fora.\n",jogo.jogadores_equipaB[1]);
+printf("\nA bola está fora do alcance de %s mas vai para fora.\n",jogo.jogadores_equipaB[1]);
    sleep(3);
-printf("45'	Intervalo\n");
+printf("\n45'	Intervalo\n");
    sleep(3);
-printf("46'	%s entra duro sobre %s.\n",jogo.jogadores_equipaB[11] ,jogo.jogadores_equipaA[5]);
+printf("\n46'	%s entra duro sobre %s.\n",jogo.jogadores_equipaB[11] ,jogo.jogadores_equipaA[5]);
    sleep(3);
-printf("Cartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaB[11]);
+printf("\nCartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaB[11]);
     
    sleep(3);
    jogo.cartao_amarelo++;
 
-printf("48'	%s vê um buraco na defesa e faz um passe pelo meio.\n",jogo.jogadores_equipaA[6]);
+printf("\n48'	%s vê um buraco na defesa e faz um passe pelo meio.\n",jogo.jogadores_equipaA[6]);
    sleep(3);
-printf("Um remate de perto do %s.\n",jogo.jogadores_equipaA[10]);
+printf("\nUm remate de perto do %s.\n",jogo.jogadores_equipaA[10]);
    sleep(3);
-printf("%s salta alto e afasta a bola.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s salta alto e afasta a bola.\n",jogo.jogadores_equipaB[1]);
    sleep(3);
-printf("51'	%s faz um cruzamento traiçoeiro para a área.\n",jogo.jogadores_equipaB[8]);
+printf("\n51'	%s faz um cruzamento traiçoeiro para a área.\n",jogo.jogadores_equipaB[8]);
    sleep(3);
-printf("%s leva a bola para baixo e remata para a baliza.\n",jogo.jogadores_equipaB[5]);
+printf("\n%s leva a bola para baixo e remata para a baliza.\n",jogo.jogadores_equipaB[5]);
    sleep(3);
-printf("%s atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaB[1]);
    sleep(3);
-printf("52'	%s efetua um belo passe cruzado para %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[7]);
+printf("\n52'	%s efetua um belo passe cruzado para %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[7]);
    sleep(3);
-printf("%s controla a bola e passa por entre dois defesas.\n",jogo.jogadores_equipaB[7]);
+printf("\n%s controla a bola e passa por entre dois defesas.\n",jogo.jogadores_equipaB[7]);
    sleep(3);
-printf("Ele remata em direção ao canto inferior.\n");
+printf("\nEle remata em direção ao canto inferior.\n");
    sleep(3);
-printf("%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaB[1]);
    sleep(3);
-printf("57'	%s derruba %s com um desarme duro\n",jogo.jogadores_equipaB[2],jogo.jogadores_equipaA[11]);
+printf("\n57'	%s derruba %s com um desarme duro\n",jogo.jogadores_equipaB[2],jogo.jogadores_equipaA[11]);
    sleep(3);
-printf("Pontapé-livre para SL Benfica diretamente em frente à baliza.\n");
+printf("\nPontapé-livre para SL Benfica diretamente em frente à baliza.\n");
    sleep(3);
-printf("%s tenta levantá-la por cima da barreira.\n",jogo.jogadores_equipaA[8]);
+printf("\n%s tenta levantá-la por cima da barreira.\n",jogo.jogadores_equipaA[8]);
    sleep(3);
-printf("GOLO!! - E entra mesmo ao pé do poste.\n");
+printf("\nGOLO!! - E entra mesmo ao pé do poste.\n");
    sleep(3);
     golosEquipaA++;
     jogo.numero_golos++;
@@ -1269,72 +1114,76 @@ printf("GOLO!! - E entra mesmo ao pé do poste.\n");
 printf("\nEstá %d-%d para o SL Benfica!\n", golosEquipaA, golosEquipaB );
        sleep(3);
        
-printf("62'	%s faz um entrada fora de tempo ao %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaB[10]);
+printf("\n62'	%s faz um entrada fora de tempo ao %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaB[10]);
    sleep(3);
-printf("É pontapé-livre para o Nacional.\n");
+printf("\nÉ pontapé-livre para o Nacional.\n");
    sleep(3);
-printf("Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[11]);
+printf("\nCartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[11]);
    sleep(3);
       jogo.cartao_amarelo++;
    
-printf("%s tenta cobrar o pontapé-livre por cima do guarda-redes.\n",jogo.jogadores_equipaB[8]);
+printf("\n%s tenta cobrar o pontapé-livre por cima do guarda-redes.\n",jogo.jogadores_equipaB[8]);
    sleep(3);
-printf("Passa sobre a barra.\n");
+printf("\nPassa sobre a barra.\n");
    sleep(3);
-printf("69'	%s leva a bola para o ataque antes de a chutar para a grande área.\n",jogo.jogadores_equipaA[8]);
+printf("\n69'	%s leva a bola para o ataque antes de a chutar para a grande área.\n",jogo.jogadores_equipaA[8]);
    sleep(3);
-printf("%s ganha uns metros ao seu marcador e cabeceia em direção ao ângulo mais distante.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s ganha uns metros ao seu marcador e cabeceia em direção ao ângulo mais distante.\n",jogo.jogadores_equipaA[10]);
    sleep(3);
-printf("%s mergulha rapidamente para dar uma palmada na bola para longe.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s mergulha rapidamente para dar uma palmada na bola para longe.\n",jogo.jogadores_equipaB[1]);
    sleep(3);
-printf("71'	Um livre é marcado para a área e o %s cabeceia-a para o %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaB[4]);
+printf("\n71'	Um livre é marcado para a área e o %s cabeceia-a para o %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaB[4]);
    sleep(3);
-printf("%s cabeceia a bola para golo.\n",jogo.jogadores_equipaB[4]);
+printf("\n%s cabeceia a bola para golo.\n",jogo.jogadores_equipaB[4]);
    sleep(3);
-printf("GOLO!! - %s mergulha mas não consegue chegar à bola.\n",jogo.jogadores_equipaA[1]);
+printf("\nGOLO!! - %s mergulha mas não consegue chegar à bola.\n",jogo.jogadores_equipaA[1]);
    sleep(3);
       golosEquipaB++;
       jogo.numero_golos++;
       golos.golosNacional++;
       golosJogador.golosJogadorNacional[4]++;
     
-printf("76'	%s envia uma bola alta para a marca de grande penalidade.\n",jogo.jogadores_equipaA[5]);
+printf("\n76'	%s envia uma bola alta para a marca de grande penalidade.\n",jogo.jogadores_equipaA[5]);
    sleep(3);
-printf("%s cabeceia para a baliza adversária.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s cabeceia para a baliza adversária.\n",jogo.jogadores_equipaA[10]);
    sleep(3);
-printf("A bola passa alta e muito ao lado da baliza.\n");
+printf("\nA bola passa alta e muito ao lado da baliza.\n");
    sleep(3);
-printf("87'	%s tentou tirar a bola ao %s mas acaba por acertar no %s em vez de na bola.\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[10]);
+printf("\n87'	%s tentou tirar a bola ao %s mas acaba por acertar no %s em vez de na bola.\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[10]);
    sleep(3);
-printf("Pontapé-livre para SL Benfica junto da linha.\n");
+printf("\nPontapé livre para SL Benfica junto da linha.\n");
    sleep(3);
-printf("%s cruza a bola para uma zona perigosa.\n",jogo.jogadores_equipaA[8]);
+printf("\n%s cruza a bola para uma zona perigosa.\n",jogo.jogadores_equipaA[8]);
    sleep(3);
-printf("%s ganha o cabeceamento.\n",jogo.jogadores_equipaA[9]);
+printf("\n%s ganha o cabeceamento.\n",jogo.jogadores_equipaA[9]);
    sleep(3);
-printf("GOLO!! - A bola está fora do alcance do %s e bate no fundo da rede.\n",jogo.jogadores_equipaB[1]);
+printf("\nGOLO!! - A bola está fora do alcance do %s e bate no fundo da rede.\n",jogo.jogadores_equipaB[1]);
    sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosBenfica++;
        golosJogador.golosJogadorBenfica[9]++;
    
-printf("88'	%s avança até à linha de fundo e faz um cruzamento.\n",jogo.jogadores_equipaA[7]);
+printf("\n88'	%s avança até à linha de fundo e faz um cruzamento.\n",jogo.jogadores_equipaA[7]);
    sleep(3);
-printf("%s cabeceia para a baliza adversária.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s cabeceia para a baliza adversária.\n",jogo.jogadores_equipaA[10]);
    sleep(3);
 printf("%s faz uma grande defesa.\n",jogo.jogadores_equipaB[1]);
    sleep(3);
-printf("90' Final do Jogo\n");
+printf("\n90' Final do Jogo\n");
    sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o SL Benfica!\n", golosEquipaA, golosEquipaB );
 printf("\n");
        
        sleep(3);
        
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("Foram mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golos\n", jogo.jogadores_equipaA[9], golosJogador.golosJogadorBenfica[9]);
+
+printf("\n");
+
+menu_torneio1();
 
 }
 
@@ -1367,7 +1216,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Arouca X Maritimo\n");
 sleep(1);
 printf("\n");
@@ -1377,15 +1225,10 @@ printf("\n");
 fp=fopen("arouca.txt", "w+");
 fp=fopen("arouca.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Arouca: \n");
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorArouca[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Arouca: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorArouca[n]);
@@ -1399,17 +1242,13 @@ fp=fopen("arouca.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("maritimo.txt", "w+");
         fp2 = fopen("maritimo.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Maritimo: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorMaritimo[0]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Maritimo: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorMaritimo[n]);
@@ -1436,141 +1275,144 @@ fp=fopen("arouca.txt", "a+");
        sleep(3);
        
            
-    printf("0'	Pontapé de saída\n");
+    printf("\n0'	Pontapé de saída\n");
     sleep(3);
-    printf("11'	%s serpenteia pelo meio-campo antes de passar para o %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
+    printf("\n11'	%s serpenteia pelo meio-campo antes de passar para o %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
     sleep(3);
-    printf("%s tenta arranjar uma oportunidade de remate e consegue rematar.\n",jogo.jogadores_equipaB[10]);
+    printf("\n%s tenta arranjar uma oportunidade de remate e consegue rematar.\n",jogo.jogadores_equipaB[10]);
     sleep(3);  
-    printf("Houve falta de pontaria neste lance e é pontapé de baliza.\n");
+    printf("\nHouve falta de pontaria neste lance e é pontapé de baliza.\n");
     sleep(3);
-    printf("18'	%s vê %s numa posição avançada e passa-lhe a bola.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[7]);
+    printf("\n18'	%s vê %s numa posição avançada e passa-lhe a bola.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[7]);
     sleep(3);
-    printf("%s finta o defesa por fora e faz o remate.\n",jogo.jogadores_equipaB[7]);
+    printf("\n%s finta o defesa por fora e faz o remate.\n",jogo.jogadores_equipaB[7]);
     sleep(3);
-    printf("O guarda-redes está atento e consegue afastar a bola.\n");
+    printf("\nO guarda-redes está atento e consegue afastar a bola.\n");
     sleep(3);
-    printf("20'	%s põe a bola nos pés do %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[9]);
+    printf("\n20'	%s põe a bola nos pés do %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[9]);
     sleep(3);
-    printf("Bons reflexos de %s, que empurra de perto a bola para a baliza.\n",jogo.jogadores_equipaB[9]);
+    printf("\nBons reflexos de %s, que empurra de perto a bola para a baliza.\n",jogo.jogadores_equipaB[9]);
     sleep(3);
-    printf("A bola não leva muita força e é fácil para o %s.\n",jogo.jogadores_equipaA[1]);
+    printf("\nA bola não leva muita força e é fácil para o %s.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-    printf("23'	%s vê %s numa posição avançada e passa-lhe a bola.\n",jogo.jogadores_equipaB[10],jogo.jogadores_equipaB[11]);
+    printf("\n23'	%s vê %s numa posição avançada e passa-lhe a bola.\n",jogo.jogadores_equipaB[10],jogo.jogadores_equipaB[11]);
     sleep(3);
-    printf("%s contorna a defesa e entra na grande área.\n",jogo.jogadores_equipaB[11]);
+    printf("\n%s contorna a defesa e entra na grande área.\n",jogo.jogadores_equipaB[11]);
     sleep(3);
-    printf("Ele tenta colocar um remate por baixo do guarda-redes.\n");
+    printf("\nEle tenta colocar um remate por baixo do guarda-redes.\n");
     sleep(3);
-    printf("GOLO!! - Passa por baixo da mão esticada do %s.\n",jogo.jogadores_equipaA[1]);
+    printf("\nGOLO!! - Passa por baixo da mão esticada do %s.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
        golosEquipaB++;
        jogo.numero_golos++;
        golos.golosMaritimo++;
        golosJogador.golosJogadorMaritimo[11]++;
 
-    printf("24'	Uma entrada desesperada do %s para evitar que %s consiga rematar. Parece que está dentro da área.\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaB[8]);
+    printf("\n24'	Uma entrada desesperada do %s para evitar que %s consiga rematar. Parece que está dentro da área.\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaB[8]);
     sleep(3);
-    printf("O árbitro concede o penálti ao CS Maritimo.\n");
+    printf("\nO árbitro concede o penálti ao CS Maritimo.\n");
     sleep(3);
-    printf("%s coloca-a em direção ao canto superior.\n",jogo.jogadores_equipaB[11]);
+    printf("\n%s coloca-a em direção ao canto superior.\n",jogo.jogadores_equipaB[11]);
     sleep(3);
-    printf("GOLO!! - Bate na barra e entra!");
+    printf("\nGOLO!! - Bate na barra e entra!");
     sleep(3);
           golosEquipaB++;
           jogo.numero_golos++;
 	  golos.golosMaritimo++;
           golosJogador.golosJogadorMaritimo[11]++;
     
-    printf("36'	%s tentou tirar a bola ao %s mas acaba por acertar no %s em vez de na bola.\n",jogo.jogadores_equipaA[3],jogo.jogadores_equipaB[10],jogo.jogadores_equipaB[10]);
+    printf("\n36'	%s tentou tirar a bola ao %s mas acaba por acertar no %s em vez de na bola.\n",jogo.jogadores_equipaA[3],jogo.jogadores_equipaB[10],jogo.jogadores_equipaB[10]);
     sleep(3);
-    printf("Pontapé-livre para CS Maritimo. Mas parece muito longe para o remate.\n");
+    printf("\nPontapé livre para CS Maritimo. Mas parece muito longe para o remate.\n");
     sleep(3);
-    printf("%s cruza a bola para uma zona perigosa.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s cruza a bola para uma zona perigosa.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-    printf("A bola está no caminho do %s que cabeceia em força para a baliza.\n",jogo.jogadores_equipaB[9]);
+    printf("\nA bola está no caminho do %s que cabeceia em força para a baliza.\n",jogo.jogadores_equipaB[9]);
     sleep(3);
-    printf("Ela queima os dedos do %s quando ele faz a defesa.\n",jogo.jogadores_equipaA[1]);
+    printf("\nEla queima os dedos do %s quando ele faz a defesa.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-    printf("45'	Intervalo\n");
+    printf("\n45'	Intervalo\n");
     sleep(3);
     
     
-    printf("47'	%s faz um passe em profundidade para %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
+    printf("\n47'	%s faz um passe em profundidade para %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
     sleep(3);
-    printf("Grande trabalho de pés do %s para obter espaço para o remate.\n",jogo.jogadores_equipaB[10]);
+    printf("\nGrande trabalho de pés do %s para obter espaço para o remate.\n",jogo.jogadores_equipaB[10]);
     sleep(3);
-    printf("%s atira-se bem e defende-a com ambas as mãos.\n",jogo.jogadores_equipaA[1]);
+    printf("\n%s atira-se bem e defende-a com ambas as mãos.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-    printf("57'	%s é forçado a afastar-se mas consegue cruzar a bola para a área.\n",jogo.jogadores_equipaB[9]);
+    printf("\n57'	%s é forçado a afastar-se mas consegue cruzar a bola para a área.\n",jogo.jogadores_equipaB[9]);
     sleep(3);
-    printf("%s remata a bola pela primeira vez.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s remata a bola pela primeira vez.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-    printf(" GOLO!! - Ela passa pelo guarda-redes e entra.\n");
+    printf("\nGOLO!! - Ela passa pelo guarda-redes e entra.\n");
     sleep(3);
        golosEquipaB++;
        jogo.numero_golos++;
        golos.golosMaritimo++;
        golosJogador.golosJogadorMaritimo[8]++;
     
-    printf("66' %s ganha a bola mas entretanto acaba por derrubar %s.\n",jogo.jogadores_equipaA[2],jogo.jogadores_equipaB[6]);
+    printf("\n66' %s ganha a bola mas entretanto acaba por derrubar %s.\n",jogo.jogadores_equipaA[2],jogo.jogadores_equipaB[6]);
     sleep(3);
-    printf("Pontapé-livre para CS Maritimo do lado direito da grande área.\n");
+    printf("\nPontapé livre para CS Maritimo do lado direito da grande área.\n");
     sleep(3);
-    printf("%s marca o pontapé livre em força.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s marca o pontapé livre em força.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-    printf("GOLO!! - %s ainda lhe toca mas não consegue evitar que ela entre.\n",jogo.jogadores_equipaA[1]);
+    printf("\nGOLO!! - %s ainda lhe toca mas não consegue evitar que ela entre.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
        golosEquipaB++;
        jogo.numero_golos++;
        golos.golosMaritimo++;
        golosJogador.golosJogadorMaritimo[8]++;
 
-    printf("72'	%s executa um desarme duro e faz um passe curvo longo.\n",jogo.jogadores_equipaB[2]);
+    printf("\n72'	%s executa um desarme duro e faz um passe curvo longo.\n",jogo.jogadores_equipaB[2]);
     sleep(3);
-    printf("%s controla a bola com o peito e consegue espaço para o remate\n",jogo.jogadores_equipaB[9]);
+    printf("\n%s controla a bola com o peito e consegue espaço para o remate\n",jogo.jogadores_equipaB[9]);
     sleep(3);
-    printf("Ele dispara para a baliza.\n");
+    printf("\nEle dispara para a baliza.\n");
     sleep(3);
-    printf("A bola atravessa o relvado e passa mesmo ao lado da baliza.\n");
+    printf("\nA bola atravessa o relvado e passa mesmo ao lado da baliza.\n");
     sleep(3);
-    printf("76'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaA[3],jogo.jogadores_equipaA[7]);
+    printf("\n76'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaA[3],jogo.jogadores_equipaA[7]);
     sleep(3);
-    printf("%s tenta a sua sorte de longe.\n",jogo.jogadores_equipaA[7]);
+    printf("\n%s tenta a sua sorte de longe.\n",jogo.jogadores_equipaA[7]);
     sleep(3);
-    printf("%s conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
+    printf("\n%s conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-    printf("81'	%s recebe a bola no espaço aberto.\n",jogo.jogadores_equipaA[11]);
+    printf("\n81'	%s recebe a bola no espaço aberto.\n",jogo.jogadores_equipaA[11]);
     sleep(3);
-    printf("Ele consegue espaço para o cruzamento e envia a bola para a área.\n");
+    printf("\nEle consegue espaço para o cruzamento e envia a bola para a área.\n");
     sleep(3);
-    printf("%s cabeceia em direção à baliza.\n",jogo.jogadores_equipaA[10]);
+    printf("\n%s cabeceia em direção à baliza.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-    printf("%s mostra mãos fortes para afastar a bola.\n",jogo.jogadores_equipaB[1]);
+    printf("\n%s mostra mãos fortes para afastar a bola.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-    printf("85'	%s recebe a bola de longe e faz um cruzamento para a área.\n",jogo.jogadores_equipaB[5]);
+    printf("\n85'	%s recebe a bola de longe e faz um cruzamento para a área.\n",jogo.jogadores_equipaB[5]);
     sleep(3);
-    printf("%s tenta um cabeceamento em arco.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s tenta um cabeceamento em arco.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-    printf("%s faz uma defesa com confiança.\n",jogo.jogadores_equipaA[1]);
+    printf("\n%s faz uma defesa com confiança.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-    printf("89'	%s aguenta vários desarmes e passa a bola para %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[3]);
+    printf("\n89'	%s aguenta vários desarmes e passa a bola para %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[3]);
     sleep(3);
-    printf("%s corre pela linha e depois corta para o limite da área\n",jogo.jogadores_equipaA[3]);
+    printf("\n%s corre pela linha e depois corta para o limite da área\n",jogo.jogadores_equipaA[3]);
     sleep(3);
-    printf("Ele envia um remate rasteiro para a baliza.");
+    printf("\nEle envia um remate rasteiro para a baliza.");
     sleep(3);
-    printf("%s põe a bola em segurança com a ponta dos dedos.\n",jogo.jogadores_equipaB[1]);
+    printf("\n%s põe a bola em segurança com a ponta dos dedos.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-    printf("90'	Final do Jogo Final do Jogo\n");
+    printf("\n90'	Final do Jogo Final do Jogo\n");
        sleep(3);
     printf("\nAssim acaba esta partida %d-%d para o Maritimo!\n", golosEquipaA, golosEquipaB );
        sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("Foram mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foram %s e %s com %d golos\n", jogo.jogadores_equipaA[11], jogo.jogadores_equipaA[8], golosJogador.golosJogadorMaritimo[8]);
+
+printf("\n");
+
+menu_torneio1();
 
 }
 
@@ -1602,7 +1444,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Olhanense X Paços\n");
 sleep(1);
 printf("\n");
@@ -1612,15 +1453,10 @@ printf("\n");
 fp=fopen("olhanense.txt", "w+");
 fp=fopen("olhanense.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Olhanense: \n");
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorOlhanense[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Olhanense: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorOlhanense[n]);
@@ -1634,16 +1470,13 @@ fp=fopen("olhanense.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("paços.txt", "w+");
         fp2 = fopen("paços.txt", "a+");
 
-	printf("Adicione o primeiro jogador para a equipa do Paços: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorPacos[0]);
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Paços: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorPacos[n]);
@@ -1670,182 +1503,185 @@ fp=fopen("olhanense.txt", "a+");
        
        
     
-    printf("0'	Pontapé de saída\n");
+    printf("\n0'	Pontapé de saída\n");
        sleep(3);
-    printf("2'	%s serpenteia pelo meio-campo antes de passar para o %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[9]);
+    printf("\n2'	%s serpenteia pelo meio-campo antes de passar para o %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[9]);
        sleep(3);
-    printf("%s consegue fazer um remate.\n",jogo.jogadores_equipaA[9]);
+    printf("\n%s consegue fazer um remate.\n",jogo.jogadores_equipaA[9]);
        sleep(3);
-    printf("%s faz uma grande defesa.\n",jogo.jogadores_equipaB[1]);
+    printf("\n%s faz uma grande defesa.\n",jogo.jogadores_equipaB[1]);
        sleep(3);
-    printf("5'	%s cabeceia a bola para %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[8]);
+    printf("\n5'	%s cabeceia a bola para %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[8]);
        sleep(3);
-    printf("Remate de longe de %s.\n",jogo.jogadores_equipaB[8]);
+    printf("\nRemate de longe de %s.\n",jogo.jogadores_equipaB[8]);
        sleep(3);
-    printf("É uma boa tentativa mas o %s iguala com uma boa defesa.\n",jogo.jogadores_equipaA[1]);
+    printf("\nÉ uma boa tentativa mas o %s iguala com uma boa defesa.\n",jogo.jogadores_equipaA[1]);
        sleep(3);
-    printf("9'	%s troca passes com %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[8]);
+    printf("\n9'	%s troca passes com %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[8]);
        sleep(3);
-    printf("%s faz uma grande corrida pelo meio-campo.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s faz uma grande corrida pelo meio-campo.\n",jogo.jogadores_equipaA[8]);
        sleep(3);
-    printf("Ele entra na área e dispara-a para a baliza.\n");
+    printf("\nEle entra na área e dispara-a para a baliza.\n");
        sleep(3);
-    printf("A bola escapa-se da desesperada saída do guarda-redes passando ao lado do poste.\n");
+    printf("\nA bola escapa-se da desesperada saída do guarda-redes passando ao lado do poste.\n");
        sleep(3);
-    printf("11'	%s derruba %s com um desarme duro\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaB[7]);
+    printf("\n11'	%s derruba %s com um desarme duro\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaB[7]);
        sleep(3);
-    printf("Pontapé livre do Paços junto da bandeira de canto.\n");
+    printf("\nPontapé livre do Paços junto da bandeira de canto.\n");
        sleep(3);
-    printf("%s tira um cruzamento para a grande área.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s tira um cruzamento para a grande área.\n",jogo.jogadores_equipaB[8]);
        sleep(3);
-    printf("%s encontra espaço e faz um cabeceamento poderoso.\n",jogo.jogadores_equipaB[11]);
+    printf("\n%s encontra espaço e faz um cabeceamento poderoso.\n",jogo.jogadores_equipaB[11]);
        sleep(3);
-    printf("A bola passou bastante por cima da barra.\n");
+    printf("\nA bola passou bastante por cima da barra.\n");
        sleep(3);
-    printf("13'	%s entra duro sobre %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[6]);
+    printf("\n13'	%s entra duro sobre %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[6]);
        sleep(3);
-    printf(" Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[11]);
+    printf("\nCartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[11]);
        sleep(3);
       jogo.cartao_amarelo++;
   
-    printf("15'	%s derruba %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaB[10]);
+    printf("\n15'	%s derruba %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaB[10]);
        sleep(3);
-    printf(" Cartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[6]);
+    printf("\nCartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[6]);
        sleep(3);
      jogo.cartao_amarelo++;
   
-    printf("21'	%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[9]);
+    printf("\n21'	%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[9]);
        sleep(3);
-    printf(" Cartão Vermelho - O árbitro exibe o segundo amarelo ao %s e expulsa-o.\n",jogo.jogadores_equipaB[11]);
+    printf("\nCartão Vermelho - O árbitro exibe o segundo amarelo ao %s e expulsa-o.\n",jogo.jogadores_equipaB[11]);
        sleep(3);
      jogo.cartao_vermelho++;
   
-    printf("22'	%s vê %s com muito espaço em redor e faz o passe.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[7]);
+    printf("\n22'	%s vê %s com muito espaço em redor e faz o passe.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[7]);
        sleep(3);
-    printf("%s passa por um defesa e remata para a baliza.\n",jogo.jogadores_equipaA[7]);
+    printf("\n%s passa por um defesa e remata para a baliza.\n",jogo.jogadores_equipaA[7]);
        sleep(3);
-    printf("GOLO!! - Escapa de alguma maneira ao guarda-redes e entra.\n");
+    printf("\nGOLO!! - Escapa de alguma maneira ao guarda-redes e entra.\n");
        sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosOlhanense++;
        golosJogador.golosJogadorOlhanense[7]++;
   
-    printf("24'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaB[2],jogo.jogadores_equipaB[7]);
+    printf("\n24'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaB[2],jogo.jogadores_equipaB[7]);
      sleep(3);  
-    printf("%s remata de longe.\n",jogo.jogadores_equipaB[7]);
+    printf("\n%s remata de longe.\n",jogo.jogadores_equipaB[7]);
      sleep(3);
-    printf("A bola vai com imensa força contra o guarda-redes e este mantém-na longe da baliza com uma grande defesa.\n");
+    printf("\nA bola vai com imensa força contra o guarda-redes e este mantém-na longe da baliza com uma grande defesa.\n");
      sleep(3);
-    printf("26'	%s recebe a bola do %s e tabela para a sua corrida.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[10]);
+    printf("\n26'	%s recebe a bola do %s e tabela para a sua corrida.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[10]);
      sleep(3);
-    printf("%s remata de primeira.\n",jogo.jogadores_equipaA[10]);
+    printf("\n%s remata de primeira.\n",jogo.jogadores_equipaA[10]);
      sleep(3);
-    printf("A bola voa ultrapassando o guarda-redes mas passa longe da baliza.\n");
+    printf("\nA bola voa ultrapassando o guarda-redes mas passa longe da baliza.\n");
      sleep(3);  
-    printf("30'	%s vê a corrida de %s e envia a bola pelo meio dos defesas.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[11]);
+    printf("\n30'	%s vê a corrida de %s e envia a bola pelo meio dos defesas.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[11]);
   
-    printf("%s finta para dentro e desfere um remate com efeito para o poste mais distante.\n",jogo.jogadores_equipaA[11]);
+    printf("\n%s finta para dentro e desfere um remate com efeito para o poste mais distante.\n",jogo.jogadores_equipaA[11]);
      sleep(3);    
-    printf("GOLO!! - O guarda-redes não lhe consegue chegar à medida que ela entra para dentro.\n");
+    printf("\nGOLO!! - O guarda-redes não lhe consegue chegar à medida que ela entra para dentro.\n");
      sleep(3);
       golosEquipaA++;
       jogo.numero_golos++;
       golos.golosOlhanense++;
       golosJogador.golosJogadorOlhanense[11]++;
 
-    printf("41'	%s puxa a camisola de %s para o impedir de fugir com a bola.\n",jogo.jogadores_equipaA[5], jogo.jogadores_equipaB[3]);
+    printf("\n41'	%s puxa a camisola de %s para o impedir de fugir com a bola.\n",jogo.jogadores_equipaA[5], jogo.jogadores_equipaB[3]);
     sleep(3);
-    printf("Pontapé livre para Paços do lado direito da grande área.\n");
+    printf("\nPontapé livre para Paços do lado direito da grande área.\n");
     sleep(3);
-    printf(" Cartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[5]);
+    printf("\nCartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[5]);
 sleep(3);
     jogo.cartao_amarelo++;
    
-    printf("%s conduz a bola para a pequena área.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s conduz a bola para a pequena área.\n",jogo.jogadores_equipaB[8]);
 sleep(3);
-    printf("%s chega à bola primeiro e tenta cabecear sobre o guarda-redes.\n",jogo.jogadores_equipaB[6]);
+    printf("\n%s chega à bola primeiro e tenta cabecear sobre o guarda-redes.\n",jogo.jogadores_equipaB[6]);
 sleep(3);
-    printf("É defendida pelo %s.\n",jogo.jogadores_equipaA[1]);
+    printf("\nÉ defendida pelo %s.\n",jogo.jogadores_equipaA[1]);
 sleep(3);
-    printf("45'	Intervalo");
+    printf("\n45'	Intervalo");
 sleep(3);
 
-    printf("52'	%s recebe a bola na lateral e faz um passe longo através do meio campo.\n",jogo.jogadores_equipaA[3]);
+    printf("\n52'	%s recebe a bola na lateral e faz um passe longo através do meio campo.\n",jogo.jogadores_equipaA[3]);
 sleep(3);
-    printf("%s cabeceia para trás da defesa.\n",jogo.jogadores_equipaA[10]);
+    printf("\n%s cabeceia para trás da defesa.\n",jogo.jogadores_equipaA[10]);
 sleep(3);
-    printf("Ele corre e tenta colocá-la no canto inferior.\n");
+    printf("\nEle corre e tenta colocá-la no canto inferior.\n");
 sleep(3);
-    printf("GOLO!! - Ela passa pelo guarda-redes e entra.\n");
+    printf("\nGOLO!! - Ela passa pelo guarda-redes e entra.\n");
 sleep(3);
     golosEquipaA++;
     jogo.numero_golos++;
     golos.golosOlhanense++;
     golosJogador.golosJogadorOlhanense[10]++;
 
-    printf("61'	%s vê a desmarcação de %s para a área e envia a bola para a sua frente.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[6]);
+    printf("\n61'	%s vê a desmarcação de %s para a área e envia a bola para a sua frente.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[6]);
 sleep(3);
-    printf("%s cabeceia para a baliza.\n",jogo.jogadores_equipaA[6]);
+    printf("\n%s cabeceia para a baliza.\n",jogo.jogadores_equipaA[6]);
 sleep(3);
-    printf("%s conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
+    printf("\n%s conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
 sleep(3);
-    printf("68'	%s derruba %s.\n",jogo.jogadores_equipaA[2],jogo.jogadores_equipaB[10]);
+    printf("\n68'	%s derruba %s.\n",jogo.jogadores_equipaA[2],jogo.jogadores_equipaB[10]);
 sleep(3);
-    printf("Pontapé livre do Paços junto da bandeira de canto.\n");
+    printf("\nPontapé livre do Paços junto da bandeira de canto.\n");
 sleep(3);
-    printf("Cartão Amarelo Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[5]);
+    printf("\nCartão Amarelo Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[5]);
 sleep(3);
     jogo.cartao_amarelo++;
 
-    printf("%s cruza a bola para a marca de penálti.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s cruza a bola para a marca de penálti.\n",jogo.jogadores_equipaB[8]);
 sleep(3);
-    printf("%s faz um cabeceamento firme para a baliza.\n",jogo.jogadores_equipaB[10]);
+    printf("\n%s faz um cabeceamento firme para a baliza.\n",jogo.jogadores_equipaB[10]);
 sleep(3);
-    printf("A bola passa por cima.\n");
+    printf("\nA bola passa por cima.\n");
 sleep(3);
-    printf("76'	%s é forçado a afastar-se mas consegue cruzar a bola para a área.\n",jogo.jogadores_equipaA[10]);
+    printf("\n76'	%s é forçado a afastar-se mas consegue cruzar a bola para a área.\n",jogo.jogadores_equipaA[10]);
 sleep(3);
-    printf("%s chuta de primeira ao canto inferior.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s chuta de primeira ao canto inferior.\n",jogo.jogadores_equipaA[8]);
 sleep(3);
-    printf("GOLO!! - %s mergulha bem, mas não consegue chegar-lhe.\n",jogo.jogadores_equipaB[1]);
+    printf("\nGOLO!! - %s mergulha bem, mas não consegue chegar-lhe.\n",jogo.jogadores_equipaB[1]);
 sleep(3);
     golosEquipaA++;
     jogo.numero_golos++;
     golos.golosOlhanense++;
     golosJogador.golosJogadorOlhanense[8]++;
    
-    printf("77'	%s faz um passe para %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[7]);
+    printf("\n77'	%s faz um passe para %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[7]);
 sleep(3);
-    printf("%s remata a bola pela primeira vez.\n",jogo.jogadores_equipaB[7]);
+    printf("\n%s remata a bola pela primeira vez.\n",jogo.jogadores_equipaB[7]);
 sleep(3);
-    printf("A bola sai ao lado do poste.\n");
+    printf("\nA bola sai ao lado do poste.\n");
 sleep(3);
-    printf("83'	%s faz um entrada fora de tempo ao %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[7]);
+    printf("\n83'	%s faz um entrada fora de tempo ao %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[7]);
 sleep(3);
-    printf("Pontapé-livre para Paços do lado esquerdo da área.\n");
+    printf("\nPontapé-livre para Paços do lado esquerdo da área.\n");
 sleep(3);
-    printf("Cartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
+    printf("\nCartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
 sleep(3);
     jogo.cartao_amarelo++;
 
-    printf("%s tira um cruzamento para o poste mais próximo.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s tira um cruzamento para o poste mais próximo.\n",jogo.jogadores_equipaB[8]);
 sleep(3);
-    printf("A bola passa por cima de toda a gente e acaba nos pés do %s.\n",jogo.jogadores_equipaB[10]);
+    printf("\nA bola passa por cima de toda a gente e acaba nos pés do %s.\n",jogo.jogadores_equipaB[10]);
 sleep(3);
-    printf("Ele remata rasteiro à baliza.\n");
+    printf("\nEle remata rasteiro à baliza.\n");
 sleep(3);
-    printf("%s defendeu a bola com uma defesa de enormes reflexos.\n",jogo.jogadores_equipaA[1]);
+    printf("\n%s defendeu a bola com uma defesa de enormes reflexos.\n",jogo.jogadores_equipaA[1]);
 sleep(3);
-    printf("90'	Final do Jogo Final do Jogo\n");
+    printf("\n90'	Final do Jogo Final do Jogo\n");
        sleep(3);
          printf("\nAssim acaba esta partida %d-%d para o Olhanense!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foram %s, %s, %s e %s com %d golo\n", jogo.jogadores_equipaA[7], jogo.jogadores_equipaA[11], jogo.jogadores_equipaA[10], jogo.jogadores_equipaA[8], golosJogador.golosJogadorOlhanense[7]);
+
+printf("\n");
+
+menu_torneio1();
 
 }
 
@@ -1876,7 +1712,6 @@ int golosEquipaA = 0;
 int golosEquipaB = 0;
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Braga X Academica\n");
 sleep(1);
 printf("\n");
@@ -1886,15 +1721,10 @@ printf("\n");
 fp=fopen("braga.txt", "w+");
 fp=fopen("braga.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Braga: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorBraga[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Braga: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorBraga[n]);
@@ -1908,16 +1738,14 @@ fp=fopen("braga.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("academica.txt", "w+");
         fp2 = fopen("academica.txt", "a+");
 
-	printf("Adicione o primeiro jogador para a equipa do Académica: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorAcademica[0]);
+
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa da Academica: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorAcademica[n]);
@@ -1943,117 +1771,119 @@ fp=fopen("braga.txt", "a+");
        sleep(3);
        
        
-    printf("0' Pontapé de saída");
+    printf("\n0' Pontapé de saída\n");
     sleep(3);
-    printf("4' %s desvia-se de uma entrada e faz um passe curto para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[10]);
+    printf("\n4' %s desvia-se de uma entrada e faz um passe curto para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[10]);
     sleep(3);
-    printf("%s remata pela primeira vez.\n",jogo.jogadores_equipaB[10]);
+    printf("\n%s remata pela primeira vez.\n",jogo.jogadores_equipaB[10]);
     sleep(3);
-    printf("Vai direta ao guarda-redes e ele faz a defesa.\n");
+    printf("\nVai direta ao guarda-redes e ele faz a defesa.\n");
     sleep(3);
-    printf(" 7'	%s faz um passe demasiado largo.\n",jogo.jogadores_equipaA[9]);
+    printf("\n7'	%s faz um passe demasiado largo.\n",jogo.jogadores_equipaA[9]);
     sleep(3);
-    printf("%s remata a bola pela primeira vez.\n",jogo.jogadores_equipaA[11]);
+    printf("\n%s remata a bola pela primeira vez.\n",jogo.jogadores_equipaA[11]);
     sleep(3);
-    printf("O guarda-redes está atento e consegue afastar a bola.\n");
+    printf("\nO guarda-redes está atento e consegue afastar a bola.\n");
     sleep(3);
-    printf("10'	%s faz uma grande interceção e envia a bola para a ala.\n",jogo.jogadores_equipaA[5]);
+    printf("\n10'	%s faz uma grande interceção e envia a bola para a ala.\n",jogo.jogadores_equipaA[5]);
     sleep(3);
-    printf("%s toca a bola para a frente e corre.\n",jogo.jogadores_equipaA[7]);
+    printf("\n%s toca a bola para a frente e corre.\n",jogo.jogadores_equipaA[7]);
     sleep(3);
-    printf("Ele tenta um remate que contorne o guarda-redes.\n");
+    printf("\nEle tenta um remate que contorne o guarda-redes.\n");
     sleep(3);
-    printf("%s atira-se bem e defende-a com ambas as mãos.\n",jogo.jogadores_equipaB[1]);
+    printf("\n%s atira-se bem e defende-a com ambas as mãos.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-    printf("12'	%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaA[11]);
+    printf("\n12'	%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaA[11]);
     sleep(3);
-    printf("Cartão Amarelo Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[8]);
+    printf("\nCartão Amarelo Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
        jogo.cartao_amarelo++;
 
-    printf("19'	%s faz o cruzamento para a grande área.\n",jogo.jogadores_equipaB[11]);
+    printf("\n19'	%s faz o cruzamento para a grande área.\n",jogo.jogadores_equipaB[11]);
     sleep(3);
-    printf("%s tenta cabecear para o poste mais distante.\n",jogo.jogadores_equipaB[9]);
+    printf("\n%s tenta cabecear para o poste mais distante.\n",jogo.jogadores_equipaB[9]);
     sleep(3);
-    printf("A bola não leva muita força e é fácil para o %s.\n",jogo.jogadores_equipaA[1]);
+    printf("\nA bola não leva muita força e é fácil para o %s.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-    printf("25'	Bom trabalho de pés de %s no meio-campo.\n",jogo.jogadores_equipaA[6]);
+    printf("\n25'	Bom trabalho de pés de %s no meio-campo.\n",jogo.jogadores_equipaA[6]);
     sleep(3);
-    printf("Ele vê a desmarcação de %s  e faz o passe.\n",jogo.jogadores_equipaA[10]);
+    printf("\nEle vê a desmarcação de %s  e faz o passe.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-    printf("%s tenta passar uma por baixo do guarda-redes.\n",jogo.jogadores_equipaA[10]);
+    printf("\n%s tenta passar uma por baixo do guarda-redes.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-    printf("%s defende com o pé.\n",jogo.jogadores_equipaB[1]);
+    printf("\n%s defende com o pé.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-    printf("33'	%s faz um passe para o limite da área.\n",jogo.jogadores_equipaB[10]);
+    printf("\n33'	%s faz um passe para o limite da área.\n",jogo.jogadores_equipaB[10]);
     sleep(3);
-    printf("%s ultrapassa um defesa e tenta a sua sorte.\n",jogo.jogadores_equipaB[11]);
+    printf("\n%s ultrapassa um defesa e tenta a sua sorte.\n",jogo.jogadores_equipaB[11]);
     sleep(3);
-    printf("O guarda-redes baixa-se rapidamente para defender o remate.\n");
+    printf("\nO guarda-redes baixa-se rapidamente para defender o remate.\n");
     sleep(3);
-    printf("38'	%s é enganado por %s\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[4]);
+    printf("\n38'	%s é enganado por %s\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[4]);
     sleep(3);
-    printf("É pontapé-livre para o Sporting de Braga.\n");
+    printf("\nÉ pontapé-livre para o Sporting de Braga.\n");
     sleep(3);
-    printf("%s descobre um buraco na barreira e chuta em força.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s descobre um buraco na barreira e chuta em força.\n",jogo.jogadores_equipaA[8]);
     sleep(3);
-    printf("GOLO!! - A bola entra junto à base do poste.\n");
+    printf("\nGOLO!! - A bola entra junto à base do poste.\n");
       sleep(3);
       golosEquipaA++;
       jogo.numero_golos++;
       golos.golosBraga++;
       golosJogador.golosJogadorBraga[8]++;
   
-    printf("45'	Intervalo\n");
+    printf("\n45'	Intervalo\n");
     sleep(3);
-    printf("46'	%s dribla a bola através da área.\n",jogo.jogadores_equipaA[7]);
+    printf("\n46'	%s dribla a bola através da área.\n",jogo.jogadores_equipaA[7]);
     sleep(3);
-    printf(" %s foge ao desarme e tenta passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s foge ao desarme e tenta passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaA[8]);
     sleep(3);
-    printf("%s põe a bola em segurança com a ponta dos dedos.\n", jogo.jogadores_equipaB[1]);
+    printf("\n%s põe a bola em segurança com a ponta dos dedos.\n", jogo.jogadores_equipaB[1]);
     sleep(3);
-    printf("55'	%s finta por fora o seu marcador e faz um passe.\n",jogo.jogadores_equipaB[5]);
+    printf("\n55'	%s finta por fora o seu marcador e faz um passe.\n",jogo.jogadores_equipaB[5]);
     sleep(3);
-    printf("%s coloca o pé na bola e ela voa em direção ao ângulo superior.\n",jogo.jogadores_equipaB[7]);
+    printf("\n%s coloca o pé na bola e ela voa em direção ao ângulo superior.\n",jogo.jogadores_equipaB[7]);
     sleep(3);
-    printf("Mergulho cedo de %s e ele consegue defendê-la.\n",jogo.jogadores_equipaA[1]);
+    printf("\nMergulho cedo de %s e ele consegue defendê-la.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-    printf("65'	%s faz um entrada fora de tempo ao %s.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[8]);
+    printf("\n65'	%s faz um entrada fora de tempo ao %s.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[8]);
     sleep(3);
-    printf("Pontapé livre para o Sporting de Braga longe da área de grande penalidade.\n");
+    printf("\nPontapé livre para o Sporting de Braga longe da área de grande penalidade.\n");
     sleep(3);
-    printf("Cartão Amarelo Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaB[5]);
+    printf("\nCartão Amarelo Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaB[5]);
     sleep(3);
        jogo.cartao_amarelo++;
     
-    printf("%s tira um cruzamento para o poste mais próximo.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s tira um cruzamento para o poste mais próximo.\n",jogo.jogadores_equipaA[8]);
     sleep(3);
-    printf("A bola é milimetricamente colocada para a cabeça do %s.\n",jogo.jogadores_equipaA[6]);
+    printf("\nA bola é milimetricamente colocada para a cabeça do %s.\n",jogo.jogadores_equipaA[6]);
     sleep(3);
-    printf("Ele cabeceou mesmo ao ângulo superior da baliza.\n");
+    printf("\nEle cabeceou mesmo ao ângulo superior da baliza.\n");
     sleep(3);
-    printf("A bola passa a razar o poste.\n");
+    printf("\nA bola passa a razar o poste.\n");
     sleep(3);
-    printf("77'	%s ganha a bola. Ele leva-a para a frente e faz um passe a rasgar a defesa.\n",jogo.jogadores_equipaA[4]);
+    printf("\n77'	%s ganha a bola. Ele leva-a para a frente e faz um passe a rasgar a defesa.\n",jogo.jogadores_equipaA[4]);
     sleep(3);
-    printf("Um remate à baliza por %s.\n",jogo.jogadores_equipaA[10]);
+    printf("\nUm remate à baliza por %s.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-    printf("GOLO!! - Bate no poste e resalta.\n");
+    printf("\nGOLO!! - Bate no poste e resalta.\n");
     sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosBraga++;
        golosJogador.golosJogadorBraga[10]++;
      
-    printf("90'	Final do Jogo Final do Jogo\n");
+    printf("\n90'	Final do Jogo Final do Jogo\n");
   printf("\nAssim acaba esta partida %d-%d para o SC Braga!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foram %s, %s com %d golo\n", jogo.jogadores_equipaA[10], jogo.jogadores_equipaA[8], golosJogador.golosJogadorBraga[8]);
 
+printf("\n");
+
+menu_torneio1();
 
 }
 
@@ -2085,7 +1915,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Sporting X Beira-Mar \n");
 sleep(1);
 printf("\n");
@@ -2095,17 +1924,12 @@ printf("\n");
 fp=fopen("sporting.txt", "w+");
 fp=fopen("sporting.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Sporting: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorSporting[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Sporting: ");
         scanf("\n%[^\n]s", aux);
-	printf("Adicione a sua idade");
+	printf("Adicione a sua idade: ");
         scanf("%d", &idades.idadeJogadorSporting[n]);
         strcpy(jogo.jogadores_equipaA[n],aux);
 
@@ -2116,17 +1940,14 @@ fp=fopen("sporting.txt", "a+");
        }
         fprintf(fp, "\n");
         fclose(fp);
-
+	
+	fp2 = fopen("beira_mar.txt", "w+");
         fp2 = fopen("beira_mar.txt", "a+");
 
-	printf("Adicione o primeiro jogador para a equipa do Beira-Mar: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-        printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorBeiraMar[0]);
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Beira-Mar: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorBeiraMar[n]);
@@ -2152,102 +1973,105 @@ fp=fopen("sporting.txt", "a+");
        sleep(3);
        
        
-  printf("0' Ponta-pé de saída");
+  printf("\n0' Ponta-pé de saída");
     sleep(3);
-  printf("13' %s derruba %s com um desarme duro\n",jogo.jogadores_equipaA[4],jogo.jogadores_equipaB[9]);
+  printf("\n13' %s derruba %s com um desarme duro\n",jogo.jogadores_equipaA[4],jogo.jogadores_equipaB[9]);
   sleep(3);
-  printf(" Pontapé-livre para o Beira-Mar a cerca de 25 metros.\n");
+  printf("\nPontapé-livre para o Beira-Mar a cerca de 25 metros.\n");
   sleep(3);
-  printf(" %s faz o cruzamento para a frente da baliza.\n",jogo.jogadores_equipaB[8]);
+  printf("\n%s faz o cruzamento para a frente da baliza.\n",jogo.jogadores_equipaB[8]);
   sleep(3);
-  printf(" %s redireciona o cabeceamento em direção à baliza.\n",jogo.jogadores_equipaB[11]);
+  printf("\n%s redireciona o cabeceamento em direção à baliza.\n",jogo.jogadores_equipaB[11]);
   sleep(3);
-  printf(" %s lê bem e faz uma defesa fácil.\n",jogo.jogadores_equipaA[1]);
+  printf("\n%s lê bem e faz uma defesa fácil.\n",jogo.jogadores_equipaA[1]);
   sleep(3);
-  printf(" 21' %s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[10]);
+  printf("\n21' %s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[10]);
   sleep(3);
-  printf(" %s empurra a bola para a baliza.\n",jogo.jogadores_equipaA[10]);
+  printf("\n%s empurra a bola para a baliza.\n",jogo.jogadores_equipaA[10]);
   sleep(3);
-  printf(" %s faz a defesa.\n",jogo.jogadores_equipaB[1]);
+  printf("\n%s faz a defesa.\n",jogo.jogadores_equipaB[1]);
   sleep(3);
-  printf(" 23' %s ganha a bola mas entretanto acaba por derrubar %s.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[7]);
+  printf("\n23' %s ganha a bola mas entretanto acaba por derrubar %s.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[7]);
   sleep(3);
-  printf(" Pontapé-livre para o Sporting CP.\n");
+  printf("\nPontapé-livre para o Sporting CP.\n");
   sleep(3);
-  printf("%s contornar a barreira com uma bola curva rasteira.\n",jogo.jogadores_equipaA[8]);
+  printf("\n%s contornar a barreira com uma bola curva rasteira.\n",jogo.jogadores_equipaA[8]);
   sleep(3);
-  printf("GOLO!! - O livre voa por cima da barreira!\n");
+  printf("\nGOLO!! - O livre voa por cima da barreira!\n");
   sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosSporting++;
        golosJogador.golosJogadorSporting[8]++;
 
-  printf(" 26'	%s faz um cruzamento do canto da grande área.\n",jogo.jogadores_equipaB[6]);
+  printf("\n26'	%s faz um cruzamento do canto da grande área.\n",jogo.jogadores_equipaB[6]);
   sleep(3);
-  printf("  %s coloca a bola no relvado e dispara um remate para o canto inferior.\n",jogo.jogadores_equipaB[7]);
+  printf("\n%s coloca a bola no relvado e dispara um remate para o canto inferior.\n",jogo.jogadores_equipaB[7]);
   sleep(3);
-  printf(" %s atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaA[1]);
+  printf("\n%s atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaA[1]);
   sleep(3);
-  printf("27' %s puxa a camisola de %s para o impedir de fugir com a bola.\n",jogo.jogadores_equipaB[2], jogo.jogadores_equipaA[9]);
+  printf("\n27' %s puxa a camisola de %s para o impedir de fugir com a bola.\n",jogo.jogadores_equipaB[2], jogo.jogadores_equipaA[9]);
   sleep(3);
-  printf("  Cartão Amarelo Cartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaB[2]);
+  printf("\nCartão Amarelo Cartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaB[2]);
   sleep(3);
   jogo.cartao_amarelo++;
  
-  printf(" 30'	%s corre para a defesa antes de a entregar a %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[8]);
+  printf("\n30'	%s corre para a defesa antes de a entregar a %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[8]);
  sleep(3);
-  printf("%s remata com efeito à baliza.\n",jogo.jogadores_equipaB[8]);
+  printf("\n%s remata com efeito à baliza.\n",jogo.jogadores_equipaB[8]);
  sleep(3);
-  printf("É uma defesa fácil para %s.\n",jogo.jogadores_equipaA[1]);
+  printf("\nÉ uma defesa fácil para %s.\n",jogo.jogadores_equipaA[1]);
  sleep(3);
-  printf("43'	O %s passa em trivela uma bola baixa para o segundo poste desde o canto da grande área.\n",jogo.jogadores_equipaA[11]);
+  printf("\n43'	O %s passa em trivela uma bola baixa para o segundo poste desde o canto da grande área.\n",jogo.jogadores_equipaA[11]);
  sleep(3);
-  printf(" %s tenta aproximar-se para marcar golo.\n",jogo.jogadores_equipaA[10]);
+  printf("\n%s tenta aproximar-se para marcar golo.\n",jogo.jogadores_equipaA[10]);
  sleep(3);
-  printf("  O guarda-redes atirou a mão em direção à bola.\n");
+  printf("\nO guarda-redes atirou a mão em direção à bola.\n");
  sleep(3);
-  printf("Bons reflexos do guarda-redes ao fazer a defesa.\n");
+  printf("\nBons reflexos do guarda-redes ao fazer a defesa.\n");
  sleep(3);
-  printf(" 45'	Intervalo\n");
+  printf("\n45'	Intervalo\n");
  sleep(3);
  
  
-  printf("62' %s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaA[2], jogo.jogadores_equipaA[8]);
+  printf("\n62' %s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaA[2], jogo.jogadores_equipaA[8]);
  sleep(3);
-  printf("%s tenta a sua sorte de longe.\n",jogo.jogadores_equipaA[7]);
+  printf("\n%s tenta a sua sorte de longe.\n",jogo.jogadores_equipaA[7]);
  sleep(3);
-  printf("%s conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
+  printf("\n%s conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
  sleep(3);
-  printf("68' %s vê o %s a correr nas costas da defesa e faz o passe profundo.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[10]);
+  printf("\n68' %s vê o %s a correr nas costas da defesa e faz o passe profundo.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[10]);
  sleep(3);
-  printf("%s remata de primeira.\n",jogo.jogadores_equipaA[10]);
+  printf("\n%s remata de primeira.\n",jogo.jogadores_equipaA[10]);
  sleep(3);
-  printf("%s baixa-se e desvia a bola para longe.\n",jogo.jogadores_equipaB[1]);
+  printf("\n%s baixa-se e desvia a bola para longe.\n",jogo.jogadores_equipaB[1]);
  sleep(3);
-  printf("78' %s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaB[3], jogo.jogadores_equipaB[7]);
+  printf("\n78' %s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaB[3], jogo.jogadores_equipaB[7]);
  sleep(3);
-  printf("%s desfere um tiro de longa distância.\n",jogo.jogadores_equipaB[11]);
+  printf("\n%s desfere um tiro de longa distância.\n",jogo.jogadores_equipaB[11]);
  sleep(3);
-  printf("O guarda-redes chega-lhe com uma mão e afasta a bola da baliza.\n");
+  printf("\nO guarda-redes chega-lhe com uma mão e afasta a bola da baliza.\n");
  sleep(3);
-  printf("86'	%s aguenta vários desarmes e passa a bola para %s.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[3]);
+  printf("\n86'	%s aguenta vários desarmes e passa a bola para %s.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[3]);
   sleep(3);
-  printf("%s contorna um defesa e continua a correr.\n",jogo.jogadores_equipaB[3]);
+  printf("\n%s contorna um defesa e continua a correr.\n",jogo.jogadores_equipaB[3]);
  sleep(3);
-  printf("Ele tenta bater o guarda-redes.\n");
+  printf("\nEle tenta bater o guarda-redes.\n");
  sleep(3);
-  printf("%s salta alto e afasta a bola.\n",jogo.jogadores_equipaA[1]);
+  printf("\n%s salta alto e afasta a bola.\n",jogo.jogadores_equipaA[1]);
  sleep(3);
-  printf("90'	Final do Jogo\n");
+  printf("\n90'	Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Sporting!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("\n");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[8], golosJogador.golosJogadorSporting[8]);
+
+printf("\n");
+
+menu_torneio1();
 
 }
 
@@ -2279,7 +2103,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Rio Ave x Setubal\n");
 sleep(1);
 printf("\n");
@@ -2289,15 +2112,10 @@ printf("\n");
 fp=fopen("setubal.txt", "w+");
 fp=fopen("setubal.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Setubal: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorVitoriaSetubal[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Setubal: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorVitoriaSetubal[n]);
@@ -2311,17 +2129,13 @@ fp=fopen("setubal.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("rio_ave.txt", "w+");
         fp2 = fopen("rio_ave.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Rio Ave: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);	
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorRioAve[0]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Rio Ave: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorRioAve[n]);
@@ -2347,88 +2161,91 @@ fp=fopen("setubal.txt", "a+");
        sleep(3);
        
        
-  printf("0' Pontapé de saída\n");
+    printf("\n0' Pontapé de saída\n");
     sleep(3);
-    printf("15'	%s e %s entendem-se bem na área.\n",jogo.jogadores_equipaB[10],jogo.jogadores_equipaB[9]);
+    printf("\n15'	%s e %s entendem-se bem na área.\n",jogo.jogadores_equipaB[10],jogo.jogadores_equipaB[9]);
       sleep(3);
-    printf("%s dispara um remate fortíssimo.\n",jogo.jogadores_equipaB[9]);
+    printf("\n%s dispara um remate fortíssimo.\n",jogo.jogadores_equipaB[9]);
       sleep(3);
-    printf("%s desvia-a para longe com uma defesa acrobática.\n",jogo.jogadores_equipaA[1]);
+    printf("\n%s desvia-a para longe com uma defesa acrobática.\n",jogo.jogadores_equipaA[1]);
        sleep(3);
-    printf("19'	%s atinge %s por trás com uma entrada feia.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[9]);
+    printf("\n19'	%s atinge %s por trás com uma entrada feia.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[9]);
        sleep(3);
-    printf("Cartão Vermelho - %s vai tomar banho mais cedo.\n",jogo.jogadores_equipaB[5]);
+    printf("\nCartão Vermelho - %s vai tomar banho mais cedo.\n",jogo.jogadores_equipaB[5]);
          sleep(3);
       jogo.cartao_vermelho++;
     
-    printf("30'	%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[2],jogo.jogadores_equipaA[8]);
+    printf("\n30'	%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[2],jogo.jogadores_equipaA[8]);
        sleep(3);
-    printf("Cartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
-       sleep(3);
-         jogo.cartao_amarelo++;
-       
-    printf("31'	%s faz um passe em profundidade para %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
-       sleep(3);
-    printf("%s remata pela primeira vez e parece que vai entrar.\n",jogo.jogadores_equipaB[10]);
-      sleep(3);
-    printf("%s desvia-a para longe com uma defesa acrobática.\n",jogo.jogadores_equipaA[1]);
-       sleep(3);
-    printf("42'	%s entra duro sobre %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaB[9]);
-      sleep(3);
-    printf("Cartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[11]);
+    printf("\nCartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
        sleep(3);
          jogo.cartao_amarelo++;
        
-    printf("45'	Intervalo\n");
-      sleep(3);
-    printf("47'	Rio Ave consegue ganhar o canto.\n");
+    printf("\n31'	%s faz um passe em profundidade para %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
        sleep(3);
-    printf("%s cruza a bola para o poste mais afastado.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s remata pela primeira vez e parece que vai entrar.\n",jogo.jogadores_equipaB[10]);
+      sleep(3);
+    printf("\n%s desvia-a para longe com uma defesa acrobática.\n",jogo.jogadores_equipaA[1]);
+       sleep(3);
+    printf("\n42'	%s entra duro sobre %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaB[9]);
+      sleep(3);
+    printf("\nCartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[11]);
+       sleep(3);
+         jogo.cartao_amarelo++;
+       
+    printf("\n45'	Intervalo\n");
+      sleep(3);
+    printf("\n47'	Rio Ave consegue ganhar o canto.\n");
+       sleep(3);
+    printf("\n%s cruza a bola para o poste mais afastado.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-    printf("O %s faz uma corrida inteligente e remata a bola sem a deixar cair.\n",jogo.jogadores_equipaB[9]);
+    printf("\nO %s faz uma corrida inteligente e remata a bola sem a deixar cair.\n",jogo.jogadores_equipaB[9]);
      sleep(3);
-    printf("Uma defesa incrível do guarda redes à queima-roupa.\n");
+    printf("\nUma defesa incrível do guarda redes à queima-roupa.\n");
      sleep(3);
-    printf("55'	%s coloca no relvado uma bola alta e joga-a para a frente do %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[11]);
+    printf("\n55'	%s coloca no relvado uma bola alta e joga-a para a frente do %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[11]);
      sleep(3);
-    printf("%s descobre um caminho para a baliza e tenta passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaA[11]);
+    printf("\n%s descobre um caminho para a baliza e tenta passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaA[11]);
      sleep(3);
-    printf("%s controla o ângulo que a bola faz e consegue defender.\n",jogo.jogadores_equipaB[1]);
+    printf("\n%s controla o ângulo que a bola faz e consegue defender.\n",jogo.jogadores_equipaB[1]);
      sleep(3);
-    printf("63'	%s faz um passe para o limite da área.\n",jogo.jogadores_equipaA[9]);
+    printf("\n63'	%s faz um passe para o limite da área.\n",jogo.jogadores_equipaA[9]);
      sleep(3);
-    printf("%s dá um toque e dispara um remate para o canto inferior.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s dá um toque e dispara um remate para o canto inferior.\n",jogo.jogadores_equipaA[8]);
      sleep(3);
-    printf("O guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
+    printf("\nO guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
   sleep(3);
-    printf("76'	%s controla uma bola passada por alto e deixa-a para %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[8]);
+    printf("\n76'	%s controla uma bola passada por alto e deixa-a para %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[8]);
      sleep(3);
-    printf("%s leva a bola para a frente e dispara um remate rasteiro.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s leva a bola para a frente e dispara um remate rasteiro.\n",jogo.jogadores_equipaA[8]);
      sleep(3);
-    printf(" GOLO!! - %s olha desesperadamente enquanto a bola bate no fundo da rede.\n",jogo.jogadores_equipaB[1]);
+    printf("\nGOLO!! - %s olha desesperadamente enquanto a bola bate no fundo da rede.\n",jogo.jogadores_equipaB[1]);
      sleep(3);
      golosEquipaA++;
      jogo.numero_golos++;
      golos.golosVitoriaSetubal++;
      golosJogador.golosJogadorVitoriaSetubal[8]++;
 
-    printf("81'	%s envia uma bola alta para o centro do campo.\n",jogo.jogadores_equipaA[10]);
+    printf("\n81'	%s envia uma bola alta para o centro do campo.\n",jogo.jogadores_equipaA[10]);
      sleep(3);
-    printf("%s controla a bola e dirige-se para o canto inferior.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s controla a bola e dirige-se para o canto inferior.\n",jogo.jogadores_equipaA[8]);
      sleep(3);
-    printf("O guarda-redes atirou a mão em direção à bola.\n");
+    printf("\nO guarda-redes atirou a mão em direção à bola.\n");
      sleep(3);
-    printf("Bons reflexos do guarda-redes ao fazer a defesa.\n");
+    printf("\nBons reflexos do guarda-redes ao fazer a defesa.\n");
     sleep(3);
-  printf("90'Final do Jogo\n");
+  printf("\n90'Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Setubal!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[8], golosJogador.golosJogadorVitoriaSetubal[8]);
+
+printf("\n");
+
+menu_torneio1();
 
 }
 
@@ -2460,7 +2277,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Estoril x Guimaraes \n");
 sleep(1);
 printf("\n");
@@ -2469,11 +2285,6 @@ printf("\n");
 
 fp=fopen("guimaraes.txt", "w+");
 fp=fopen("guimaraes.txt", "a+");
-
-       printf("Adicione o primeiro jogador para a equipa do Guimaraes: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorVitoriaGuimaraes[0]);
 
         for (n = 0; n < 11; n++)
         {
@@ -2492,18 +2303,14 @@ fp=fopen("guimaraes.txt", "a+");
        }
         fprintf(fp, "\n");
         fclose(fp);
-
+	
+	fp2 = fopen("estoril.txt", "w+");
         fp2 = fopen("estoril.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Estoril: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorEstoril[0]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Estoril: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorEstoril[n]);
@@ -2529,94 +2336,96 @@ fp=fopen("guimaraes.txt", "a+");
        sleep(3);
        
        
-  printf("0' Ponta-pé de saída\n");
+  printf("\n0' Ponta-pé de saída\n");
     sleep(3);
-    printf("4'	%s faz um passe do canto para a grande área.\n",jogo.jogadores_equipaB[10]);
+    printf("\n4'	%s faz um passe do canto para a grande área.\n",jogo.jogadores_equipaB[10]);
           sleep(3);
-    printf("%s transporta a bola para a grande área e remata com força.\n",jogo.jogadores_equipaB[11]);
+    printf("\n%s transporta a bola para a grande área e remata com força.\n",jogo.jogadores_equipaB[11]);
           sleep(3);
-    printf("%s mergulha para o lado e defende-a.",jogo.jogadores_equipaA[1]);
+    printf("\n%s mergulha para o lado e defende-a.",jogo.jogadores_equipaA[1]);
         sleep(3);  
-    printf("20'	%s vê a corrida de %s e faz um passe que rasga a defesa.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[10]);
+    printf("\n20'	%s vê a corrida de %s e faz um passe que rasga a defesa.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[10]);
           sleep(3);
-    printf("%s dá um toque e tenta desviar a bola do guarda-redes.\n",jogo.jogadores_equipaA[10]);
+    printf("\n%s dá um toque e tenta desviar a bola do guarda-redes.\n",jogo.jogadores_equipaA[10]);
           sleep(3);
-    printf("A bola não leva muita força e é fácil para o %s.\n",jogo.jogadores_equipaB[1]);
+    printf("\nA bola não leva muita força e é fácil para o %s.\n",jogo.jogadores_equipaB[1]);
           sleep(3);
-    printf("40'	%s faz um passe simples para %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaB[8]);
+    printf("\n40'	%s faz um passe simples para %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaB[8]);
           sleep(3);
-    printf("%s coloca o pé na bola e ela voa em direção ao ângulo superior.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s coloca o pé na bola e ela voa em direção ao ângulo superior.\n",jogo.jogadores_equipaA[8]);
           sleep(3);
-    printf("Bons reflexos do %s que faz a defesa parecer fácil.\n",jogo.jogadores_equipaA[1]);
+    printf("\nBons reflexos do %s que faz a defesa parecer fácil.\n",jogo.jogadores_equipaA[1]);
           sleep(3);
-    printf("42'	%s cabeceia a bola para %s.\n",jogo.jogadores_equipaB[10],jogo.jogadores_equipaB[8]);
+    printf("\n42'	%s cabeceia a bola para %s.\n",jogo.jogadores_equipaB[10],jogo.jogadores_equipaB[8]);
           sleep(3);
-    printf("%s tem um remate ambicioso.\n",jogo.jogadores_equipaB[8]);
+    printf("\n%s tem um remate ambicioso.\n",jogo.jogadores_equipaB[8]);
           sleep(3);
-    printf("GOLO!! - É boa de mais para %s e acaba no fundo da baliza.\n",jogo.jogadores_equipaA[1]);
+    printf("\nGOLO!! - É boa de mais para %s e acaba no fundo da baliza.\n",jogo.jogadores_equipaA[1]);
           sleep(3);
        golosEquipaB++;
        jogo.numero_golos++;
        golos.golosEstoril++;
        golosJogador.golosJogadorEstoril[8]++;
    
-    printf("45'	Intervalo\n");
+    printf("\n45'	Intervalo\n");
            sleep(3);
-    printf("46'	Vitória de Guimarães consegue ganhar o canto.\n");
+    printf("\n46'	Vitória de Guimarães consegue ganhar o canto.\n");
           sleep(3);
-    printf("%s bate o canto em balanço.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s bate o canto em balanço.\n",jogo.jogadores_equipaA[8]);
            sleep(3);
-    printf("%s cabeceia a bola para golo.\n",jogo.jogadores_equipaA[3]);
+    printf("\n%s cabeceia a bola para golo.\n",jogo.jogadores_equipaA[3]);
            sleep(3);
-    printf("GOLO!! - A bola desliza para trás do guarda-redes e cai sobre a linha.\n");
+    printf("\nGOLO!! - A bola desliza para trás do guarda-redes e cai sobre a linha.\n");
             sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosVitoriaGuimaraes++;
        golosJogador.golosJogadorVitoriaGuimaraes[8]++;
     
-    printf("52'	Uma tentativa de cruzamento é desviada para fora para canto a favor do Vitória de Guimarães.\n",jogo.jogadores_equipaA[1]);
+    printf("\n52'	Uma tentativa de cruzamento é desviada para fora para canto a favor do Vitória de Guimarães.\n",jogo.jogadores_equipaA[1]);
            sleep(3);
-    printf("%s bate o canto em balanço.\n",jogo.jogadores_equipaA[8]);
+    printf("\n%s bate o canto em balanço.\n",jogo.jogadores_equipaA[8]);
            sleep(3);
-    printf("%s ganha o cabeceamento.\n",jogo.jogadores_equipaA[11]);
+    printf("\n%s ganha o cabeceamento.\n",jogo.jogadores_equipaA[11]);
            sleep(3);
-    printf("GOLO!! - A bola desliza para trás do guarda-redes e cai sobre a linha.\n");
+    printf("\nGOLO!! - A bola desliza para trás do guarda-redes e cai sobre a linha.\n");
            sleep(3);
      golosEquipaA++;
      jogo.numero_golos++;
      golos.golosVitoriaGuimaraes++;
      golosJogador.golosJogadorVitoriaGuimaraes[11]++;
    
-    printf("59' Um brilhante passe aéreo para %s.\n",jogo.jogadores_equipaA[6]);
+    printf("\n59' Um brilhante passe aéreo para %s.\n",jogo.jogadores_equipaA[6]);
            sleep(3);
-    printf("Ele faz um passe em volley para a frente de %s.\n",jogo.jogadores_equipaA[10]);
+    printf("\nEle faz um passe em volley para a frente de %s.\n",jogo.jogadores_equipaA[10]);
            sleep(3);
-    printf("%s salta alto e redireciona a bola en direção à baliza.\n",jogo.jogadores_equipaA[10]);
+    printf("\n%s salta alto e redireciona a bola en direção à baliza.\n",jogo.jogadores_equipaA[10]);
            sleep(3);
-    printf("O guarda-redes baixa-se rapidamente para defender o remate.\n");
+    printf("\nO guarda-redes baixa-se rapidamente para defender o remate.\n");
          sleep(3);
-    printf("69'	%s pica a bola para a frente para o %s.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[11]);
+    printf("\n69'	%s pica a bola para a frente para o %s.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[11]);
            sleep(3);
-    printf("%s envia a bola para o relvado com o peito e dispara um remate rasteiro.\n",jogo.jogadores_equipaA[11]);
+    printf("\n%s envia a bola para o relvado com o peito e dispara um remate rasteiro.\n",jogo.jogadores_equipaA[11]);
            sleep(3);
-    printf("%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaA[1]);
+    printf("\n%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaA[1]);
            sleep(3);
-    printf("75'	%s põe a bola nos pés do %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[9]);
+    printf("\n75'	%s põe a bola nos pés do %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[9]);
            sleep(3);
-    printf("%s tenta aproximar-se para marcar golo.\n",jogo.jogadores_equipaB[9]);
+    printf("\n%s tenta aproximar-se para marcar golo.\n",jogo.jogadores_equipaB[9]);
            sleep(3);
-    printf("%s põe a bola em segurança com a ponta dos dedos.\n",jogo.jogadores_equipaA[1]);
+    printf("\n%s põe a bola em segurança com a ponta dos dedos.\n",jogo.jogadores_equipaA[1]);
          sleep(3);
-  printf("90'Final do Jogo\n");
+  printf("\n90'Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Guimaraes!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
-
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foram %s, %s e %s com %d golo\n", jogo.jogadores_equipaA[8], jogo.jogadores_equipaB[8], jogo.jogadores_equipaA[11], golosJogador.golosJogadorVitoriaGuimaraes[8]);
+
+printf("\n");
+
+menu_torneio1();
 
 }
 
@@ -2649,7 +2458,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Porto X Benfica \n");
 sleep(1);
 printf("\n");
@@ -2659,15 +2467,10 @@ printf("\n");
 fp=fopen("benfica.txt", "w+");
 fp=fopen("benfica.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Benfica: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorBenfica[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Benfica: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorBenfica[n]);
@@ -2681,17 +2484,14 @@ fp=fopen("benfica.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("porto.txt", "a+");
         fp2 = fopen("porto.txt", "a+");
 
-	printf("Adicione o primeiro jogador para a equipa do FC Porto: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-        scanf("%d", &idades.idadeJogadorPorto[0]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Porto: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorPorto[n]);
@@ -2717,160 +2517,163 @@ fp=fopen("benfica.txt", "a+");
        sleep(3);
        
        
-  printf("0' Pontapé de saída");
+  printf("\n0' Pontapé de saída");
     sleep(3);
-printf("3'	%s vê a desmarcação de %s e faz um passe em profundidade para ele.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[3]);
+printf("\n3'	%s vê a desmarcação de %s e faz um passe em profundidade para ele.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[3]);
        sleep(3);
-printf("%s dispara um remate de longa distância.\n",jogo.jogadores_equipaB[3]);
+printf("\n%s dispara um remate de longa distância.\n",jogo.jogadores_equipaB[3]);
        sleep(3);
-printf("%s chega ao outro lado da baliza e defende o remate.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s chega ao outro lado da baliza e defende o remate.\n",jogo.jogadores_equipaA[1]);
        sleep(3);
-printf("8'	%s vê um espaço na defesa e é por lá que passa a bola.\n",jogo.jogadores_equipaA[8]);
+printf("\n8'	%s vê um espaço na defesa e é por lá que passa a bola.\n",jogo.jogadores_equipaA[8]);
        sleep(3);
-printf("%s afasta a bola da baliza.\n",jogo.jogadores_equipaB[10]);
+printf("\n%s afasta a bola da baliza.\n",jogo.jogadores_equipaB[10]);
        sleep(3);
-printf("GOLO!! - Passa por baixo do guarda-redes e entra.\n");
+printf("\nGOLO!! - Passa por baixo do guarda-redes e entra.\n");
        sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosBenfica++;
        golosJogador.golosJogadorBenfica[10]++;
  
-printf("18' %s envia uma bola alta para a marca de grande penalidade.\n",jogo.jogadores_equipaA[6]);
+printf("\n18' %s envia uma bola alta para a marca de grande penalidade.\n",jogo.jogadores_equipaA[6]);
        sleep(3);
-printf("%s cabeceia em direção à baliza.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s cabeceia em direção à baliza.\n",jogo.jogadores_equipaA[10]);
        sleep(3);
-printf("Passa sobre a barra.\n");
+printf("\nPassa sobre a barra.\n");
        sleep(3);
-printf("23'	 %s executa o passe em direção a %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[9]);
+printf("\n23'	 %s executa o passe em direção a %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[9]);
        sleep(3);
-printf("Grande trabalho de pés do %s para obter espaço para o remate.\n",jogo.jogadores_equipaA[9]);
+printf("\nGrande trabalho de pés do %s para obter espaço para o remate.\n",jogo.jogadores_equipaA[9]);
        sleep(3);
-printf(" GOLO!! - Ela passa pelo guarda-redes e entra.\n");
+printf("\nGOLO!! - Ela passa pelo guarda-redes e entra.\n");
        sleep(3);
-printf(" Golo anulado por fora de jogo. FORA DE JOGO! A bandeirola está levantada para fora de jogo, não contou.");
+printf("\nGolo anulado por fora de jogo. FORA DE JOGO! A bandeirola está levantada para fora de jogo, não contou.");
        sleep(3);
-printf("27'	%s insulta o árbitro após uma decisão duvidosa.\n",jogo.jogadores_equipaA[8]);
+printf("\n27'	%s insulta o árbitro após uma decisão duvidosa.\n",jogo.jogadores_equipaA[8]);
        sleep(3);
-printf("Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[8]);
-       sleep(3);
-         jogo.cartao_amarelo++;
-
-printf("31'	%s tenta desarmar %s mas chega muito tarde.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[7]);
-       sleep(3);
-printf("Pontapé livre para o FC Porto do lado direito da grande área.\n");
-       sleep(3);
-printf("Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaA[10]);
+printf("\nCartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[8]);
        sleep(3);
          jogo.cartao_amarelo++;
 
-    printf("%s cruza a bola para a área.\n",jogo.jogadores_equipaB[8]);
+printf("\n31'	%s tenta desarmar %s mas chega muito tarde.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[7]);
        sleep(3);
-    printf("%s livra-se do seu marcador e cabeceia para a baliza.\n",jogo.jogadores_equipaB[10]);
+printf("\nPontapé livre para o FC Porto do lado direito da grande área.\n");
        sleep(3);
-printf("Passa sobre a barra.\n");
+printf("\nCartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaA[10]);
        sleep(3);
-printf("37'	%s vê um espaço na defesa e é por lá que passa a bola.\n",jogo.jogadores_equipaB[6]);
+         jogo.cartao_amarelo++;
+
+    printf("\n%s cruza a bola para a área.\n",jogo.jogadores_equipaB[8]);
        sleep(3);
-printf("%s encontrar uma brecha para passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaB[10]);
+    printf("\n%s livra-se do seu marcador e cabeceia para a baliza.\n",jogo.jogadores_equipaB[10]);
        sleep(3);
-printf(" GOLO!! - Passa por baixo do guarda-redes e entra.\n");
+printf("\nPassa sobre a barra.\n");
+       sleep(3);
+printf("\n37'	%s vê um espaço na defesa e é por lá que passa a bola.\n",jogo.jogadores_equipaB[6]);
+       sleep(3);
+printf("\n%s encontrar uma brecha para passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaB[10]);
+       sleep(3);
+printf("\nGOLO!! - Passa por baixo do guarda-redes e entra.\n");
        sleep(3);
         golosEquipaB++;
         jogo.numero_golos++;
         golos.golosPorto++;
         golosJogador.golosJogadorPorto[10]++;
 
-printf("40'	%s faz o cruzamento para a grande área.\n",jogo.jogadores_equipaA[6]);
+printf("\n40'	%s faz o cruzamento para a grande área.\n",jogo.jogadores_equipaA[6]);
        sleep(3);
-printf("%s coloca a sua cabeça na bola e ela parece estar a cair.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s coloca a sua cabeça na bola e ela parece estar a cair.\n",jogo.jogadores_equipaA[10]);
        sleep(3);
-printf("A bola passa um pouco ao lado do poste.\n");
+printf("\nA bola passa um pouco ao lado do poste.\n");
        sleep(3);
-printf("42'	%s recebe a bola no limite da grande área.\n",jogo.jogadores_equipaA[11]);
+printf("\n42'	%s recebe a bola no limite da grande área.\n",jogo.jogadores_equipaA[11]);
        sleep(3);
-printf("Ele passa pelo seu marcador e chuta a bola para uma área perigosa.\n");
+printf("\nEle passa pelo seu marcador e chuta a bola para uma área perigosa.\n");
        sleep(3);
-printf("%s remata rasteiro para a baliza.\n",jogo.jogadores_equipaA[9]);
+printf("\n%s remata rasteiro para a baliza.\n",jogo.jogadores_equipaA[9]);
        sleep(3);
-printf("O guarda redes sai bem da sua baliza e consegue defender.\n");
+printf("\nO guarda redes sai bem da sua baliza e consegue defender.\n");
        sleep(3);
-printf("45'	Intervalo\n");
+printf("\n45'	Intervalo\n");
        sleep(3);
-printf("51'	%s faz um passe rasteiro para os pés de %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[10]);
+printf("\n51'	%s faz um passe rasteiro para os pés de %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[10]);
        sleep(3);
-printf("%s controla a bola, arrasta-o para trás passa o seu marcador e remata para golo.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s controla a bola, arrasta-o para trás passa o seu marcador e remata para golo.\n",jogo.jogadores_equipaA[10]);
        sleep(3);
-printf(" GOLO!! - Está fora do alcance do %s ao atravessar a linha de baliza.\n",jogo.jogadores_equipaB[1]);
+printf("\nGOLO!! - Está fora do alcance do %s ao atravessar a linha de baliza.\n",jogo.jogadores_equipaB[1]);
        sleep(3);
         golosEquipaA++;
         jogo.numero_golos++;
         golos.golosBenfica++;
         golosJogador.golosJogadorBenfica[10]++;
 
-printf("55'	%s serpenteia pelo meio-campo antes de passar para o %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[9]);
+printf("\n55'	%s serpenteia pelo meio-campo antes de passar para o %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[9]);
        sleep(3);
-printf("%s consegue fazer um remate.\n",jogo.jogadores_equipaA[6]);
+printf("\n%s consegue fazer um remate.\n",jogo.jogadores_equipaA[6]);
        sleep(3);
-printf("Ele tem o %s a movimentar-se à frente da baliza.\n",jogo.jogadores_equipaB[1]);
+printf("\nEle tem o %s a movimentar-se à frente da baliza.\n",jogo.jogadores_equipaB[1]);
        sleep(3);
-printf("A bola cai junto ao poste.\n");
+printf("\nA bola cai junto ao poste.\n");
        sleep(3);
-printf("57'	%s interceta um passe fraco.\n",jogo.jogadores_equipaB[4]);
+printf("\n57'	%s interceta um passe fraco.\n",jogo.jogadores_equipaB[4]);
        sleep(3);
-printf("Ele faz imediatamente um passe rasteiro para %s.\n",jogo.jogadores_equipaB[7]);
+printf("\nEle faz imediatamente um passe rasteiro para %s.\n",jogo.jogadores_equipaB[7]);
        sleep(3);
-printf("%s finta em direção à área e tenta colocar a balo no poste mais próximo.\n",jogo.jogadores_equipaB[7]);
+printf("\n%s finta em direção à área e tenta colocar a balo no poste mais próximo.\n",jogo.jogadores_equipaB[7]);
        sleep(3);
-printf("A bola passa ao lado do poste.\n");
+printf("\nA bola passa ao lado do poste.\n");
        sleep(3);
-printf("77'	%s derruba %s com um desarme duro\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaA[6]);
+printf("\n77'	%s derruba %s com um desFC Porto X arme duro\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaA[6]);
        sleep(3);
-printf("Pontapé livre para o Benfica no limite da área.\n");
+printf("\nPontapé livre para o Benfica no limite da área.\n");
        sleep(3);
-printf("%s marca o pontapé-livre com a parte de dentro do pé.\n",jogo.jogadores_equipaA[8]);
+printf("\n%s marca o pontapé-livre com a parte de dentro do pé.\n",jogo.jogadores_equipaA[8]);
        sleep(3);
-printf(" GOLO!! - E entra mesmo ao pé do poste.\n");
+printf("\nGOLO!! - E entra mesmo ao pé do poste.\n");
        sleep(3);
         golosEquipaA++;
         jogo.numero_golos++;
         golos.golosBenfica++;
         golosJogador.golosJogadorBenfica[8]++;
 
-printf("80'	%s envia um passe alto para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[7]);
+printf("\n80'	%s envia um passe alto para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[7]);
        sleep(3);
-printf("%s domina com o peito e tenta colocá-la no canto.\n",jogo.jogadores_equipaB[7]);
+printf("\n%s domina com o peito e tenta colocá-la no canto.\n",jogo.jogadores_equipaB[7]);
        sleep(3);
-printf("O guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
+printf("\nO guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
        sleep(3);
-printf("81'	%s põe a bola nos pés do %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[9]);
+printf("\n81'	%s põe a bola nos pés do %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[9]);
        sleep(3);
-printf("%s remata bem a bola.\n",jogo.jogadores_equipaA[9]);
+printf("\n%s remata bem a bola.\n",jogo.jogadores_equipaA[9]);
        sleep(3);
-printf("A bola passa pelo guarda-redes mas vai ao lado do poste.\n");
+printf("\nA bola passa pelo guarda-redes mas vai ao lado do poste.\n");
        sleep(3);
-printf("82'	%s tentou tirar a bola ao %s mas acaba por acertar no %s em vez de na bola.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[7],jogo.jogadores_equipaA[7]);
+printf("\n82'	%s tentou tirar a bola ao %s mas acaba por acertar no %s em vez de na bola.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[7],jogo.jogadores_equipaA[7]);
        sleep(3);
-printf("Pontapé-livre para Benfica do lado esquerdo da área.\n");
+printf("\nPontapé livre para Benfica do lado esquerdo da área.\n");
 
-printf("%s marca o pontapé livre rasteiro e forte.\n",jogo.jogadores_equipaA[8]);
+printf("\n%s marca o pontapé livre rasteiro e forte.\n",jogo.jogadores_equipaA[8]);
        sleep(3);
-printf("GOLO!! - %s ainda lhe toca mas não consegue evitar que ela entre.\n",jogo.jogadores_equipaB[1]);
+printf("\nGOLO!! - %s ainda lhe toca mas não consegue evitar que ela entre.\n",jogo.jogadores_equipaB[1]);
  sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosBenfica++;
        golosJogador.golosJogadorBenfica[8]++;
  
-  printf("90'Final do Jogo Final do Jogo\n");
+  printf("\n90'Final do Jogo Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Benfica!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foram %s e %s com %d golos\n", jogo.jogadores_equipaA[8], jogo.jogadores_equipaB[10], golosJogador.golosJogadorBenfica[8]);
+
+printf("\n");
+
+menu_torneio2();
 
 }
 
@@ -2902,7 +2705,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Olhanense X Maritimo \n");
 sleep(1);
 printf("\n");
@@ -2912,14 +2714,10 @@ printf("\n");
 fp=fopen("olhanense.txt", "w+");
 fp=fopen("olhanense.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Olhanense: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorOlhanense[0]);
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Olhanense: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorOlhanense[n]);
@@ -2933,16 +2731,13 @@ fp=fopen("olhanense.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("maritimo.txt", "w+");
         fp2 = fopen("maritimo.txt", "a+");
 
-	printf("Adicione o primeiro jogador para a equipa do Maritimo: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorMaritimo[0]);
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Maritimo: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorMaritimo[n]);
@@ -2967,132 +2762,135 @@ fp=fopen("olhanense.txt", "a+");
        printf("\nO jogo vai começar,  Olhanense X Maritimo !\n");
        sleep(3);
        
-  printf("0' Pontapé de saída\n");
+  printf("\n0' Pontapé de saída\n");
     sleep(3);
-printf("7'	Canto para Maritimo.\n");
+printf("\n7'	Canto para Maritimo.\n");
     sleep(3);
-printf("%s bate uma bola rasteira para a área.\n",jogo.jogadores_equipaB[8]);
+printf("\n%s bate uma bola rasteira para a área.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-printf("%s remata à baliza.\n",jogo.jogadores_equipaB[6]);
+printf("\n%s remata à baliza.\n",jogo.jogadores_equipaB[6]);
     sleep(3);
-printf("É uma defesa fácil para %s.\n",jogo.jogadores_equipaA[1]);
+printf("\nÉ uma defesa fácil para %s.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("15'	%s entrega a bola ao %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[6]);
+printf("\n15'	%s entrega a bola ao %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[6]);
     sleep(3);
-printf("%s dispara um remate de longa distância.\n",jogo.jogadores_equipaB[6]);
+printf("\n%s dispara um remate de longa distância.\n",jogo.jogadores_equipaB[6]);
     sleep(3);
-printf("%s mergulha para o lado e defende-a.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s mergulha para o lado e defende-a.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
 printf("\n20'	 %s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
     sleep(3);
-printf("%s controla a bola, arrasta-o para trás passa o seu marcador e remata para golo.\n",jogo.jogadores_equipaB[10]);
+printf("\n%s controla a bola, arrasta-o para trás passa o seu marcador e remata para golo.\n",jogo.jogadores_equipaB[10]);
     sleep(3);
-printf("O guarda-redes chega-lhe com uma mão e afasta a bola da baliza.\n");
+printf("\nO guarda-redes chega-lhe com uma mão e afasta a bola da baliza.\n");
     sleep(3);
-printf("26'	%s segura a bola e passa-a ao %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[6]);
+printf("\n26'	%s segura a bola e passa-a ao %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[6]);
     sleep(3);
-printf("%s tenta tenta a sorte de longa distância.\n",jogo.jogadores_equipaA[6]);
+printf("\n%s tenta tenta a sorte de longa distância.\n",jogo.jogadores_equipaA[6]);
     sleep(3);
-printf("%s atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("44'	%s entra duro de carrinho para tentar recuperar a bola.\n",jogo.jogadores_equipaA[4]);
+printf("\n44'	%s entra duro de carrinho para tentar recuperar a bola.\n",jogo.jogadores_equipaA[4]);
     sleep(3);
-printf("É pontapé livre para o Maritimo.\n");
+printf("\nÉ pontapé livre para o Maritimo.\n");
 
-printf("%s marca o pontapé livre rasteiro e forte.\n",jogo.jogadores_equipaB[8]);
+printf("\n%s marca o pontapé livre rasteiro e forte.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-printf(" GOLO!! - A bola vai entrar junto ao poste.\n");
+printf("\nGOLO!! - A bola vai entrar junto ao poste.\n");
     sleep(3);
        golosEquipaB++;
        jogo.numero_golos++;
        golos.golosMaritimo++;
        golosJogador.golosJogadorMaritimo[8]++;
 
-printf("45'	Intervalo\n");
+printf("\n45'	Intervalo\n");
     sleep(3);
-printf("46'	%s faz um passe simples para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[8]);
+printf("\n46'	%s faz um passe simples para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[8]);
     sleep(3);
-printf("%s tem um remate abicioso.\n",jogo.jogadores_equipaB[8]);
+printf("\n%s tem um remate abicioso.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-printf("%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("47'	%s recebe a bola de um médio e passa em profundidade para %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[7]);
+printf("\n47'	%s recebe a bola de um médio e passa em profundidade para %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[7]);
     sleep(3);
-printf("%s finta em direção à área e tenta colocar a balo no poste mais próximo.\n",jogo.jogadores_equipaA[7]);
+printf("\n%s finta em direção à área e tenta colocar a balo no poste mais próximo.\n",jogo.jogadores_equipaA[7]);
     sleep(3);
-printf("A bola vai direta para %s e este defende-a facilmente.\n",jogo.jogadores_equipaB[1]);
+printf("\nA bola vai direta para %s e este defende-a facilmente.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("51'	%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaA[9]);
+printf("\n51'	%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaA[9]);
     sleep(3);
-printf("%s encontrar uma brecha para passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaA[9]);
+printf("\n%s encontrar uma brecha para passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaA[9]);
     sleep(3);
-printf("A bola não perturba o guarda-redes e sai para pontapé de baliza.\n");
+printf("\nA bola não perturba o guarda-redes e sai para pontapé de baliza.\n");
     sleep(3);
-printf("52'	%s vê %s desmarcado.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[9]);
+printf("\n52'	%s vê %s desmarcado.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[9]);
     sleep(3);
-printf("Ele aguenta as cargas e envia uma grande bola.\n");
+printf("\nEle aguenta as cargas e envia uma grande bola.\n");
     sleep(3);
-printf("%s executa um potente remate à baliza.\n",jogo.jogadores_equipaA[9]);
+printf("\n%s executa um potente remate à baliza.\n",jogo.jogadores_equipaA[9]);
     sleep(3);
-printf(" GOLO!! - %s mergulha bem, mas não consegue chegar-lhe.\n",jogo.jogadores_equipaB[1]);
+printf("\nGOLO!! - %s mergulha bem, mas não consegue chegar-lhe.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosOlhanense++;
        golosJogador.golosJogadorOlhanense[9]++;
 
-printf("53'	%s cabeceia a bola para a ala.\n",jogo.jogadores_equipaA[4]);
+printf("\n53'	%s cabeceia a bola para a ala.\n",jogo.jogadores_equipaA[4]);
     sleep(3);
-printf("%s coloca a bola no relvado e deixa o defesa para trás.\n",jogo.jogadores_equipaA[7]);
+printf("\n%s coloca a bola no relvado e deixa o defesa para trás.\n",jogo.jogadores_equipaA[7]);
     sleep(3);
-printf("Ele faz um remate rasteiro a partir de um ângulo apertado.\n");
+printf("\nEle faz um remate rasteiro a partir de um ângulo apertado.\n");
     sleep(3);
-printf("Uma defesa incrível do guarda redes à queima-roupa.\n");
+printf("\nUma defesa incrível do guarda redes à queima-roupa.\n");
     sleep(3);
-printf("62'	Grande troca de passes entre %s and %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[10]);
+printf("\n62'	Grande troca de passes entre %s and %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[10]);
     sleep(3);
-printf("%s controla a bola e executa um bonito remate.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s controla a bola e executa um bonito remate.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-printf(" GOLO!! - Esgueira-se por baixo da barra e bate no fundo das redes.\n");
+printf("\nGOLO!! - Esgueira-se por baixo da barra e bate no fundo das redes.\n");
     sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosOlhanense++;
        golosJogador.golosJogadorOlhanense[10]++;
 
-printf("63' %s joga uma grande bola para %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaB[2]);
+printf("\n63' %s joga uma grande bola para %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaB[2]);
     sleep(3);
-printf("%s tenta a sorte de longa distância.\n",jogo.jogadores_equipaA[2]);
+printf("\n%s tenta a sorte de longa distância.\n",jogo.jogadores_equipaA[2]);
     sleep(3);
-printf("%s mostra umas mãos fortes e faz a defesa.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s mostra umas mãos fortes e faz a defesa.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("66'	%s vê um buraco na defesa e faz um passe pelo meio.\n",jogo.jogadores_equipaA[6]);
+printf("\n66'	%s vê um buraco na defesa e faz um passe pelo meio.\n",jogo.jogadores_equipaA[6]);
     sleep(3);
-printf("%s finta por dentro o defesa e dispara um remate rasteiro.\n",jogo.jogadores_equipaA[11]);
+printf("\n%s finta por dentro o defesa e dispara um remate rasteiro.\n",jogo.jogadores_equipaA[11]);
     sleep(3);
-printf("%s defende com o pé.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s defende com o pé.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("80'	 %s faz um passe na direção de %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[4]);
+printf("\n80'	 %s faz um passe na direção de %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[4]);
     sleep(3);
-printf("%s leva a bola para a frente e dispara um remate rasteiro.\n",jogo.jogadores_equipaA[4]);
+printf("\n%s leva a bola para a frente e dispara um remate rasteiro.\n",jogo.jogadores_equipaA[4]);
     sleep(3);
-printf("%s mergulha e faz uma grande defesa.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s mergulha e faz uma grande defesa.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("81'	%s insulta o árbitro após uma decisão duvidosa.\n",jogo.jogadores_equipaA[11]);
+printf("\n81'	%s insulta o árbitro após uma decisão duvidosa.\n",jogo.jogadores_equipaA[11]);
     sleep(3);
-printf(" Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[11]);
+printf("\nCartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[11]);
  sleep(3);
   jogo.cartao_amarelo++;
 
-  printf("90'Final do Jogo Final do Jogo\n");
+  printf("\n90'Final do Jogo Final do Jogo\n");
    sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Olhanense!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foram %s, %s e %s com %d golo\n", jogo.jogadores_equipaA[8], jogo.jogadores_equipaA[10], jogo.jogadores_equipaA[11], golosJogador.golosJogadorOlhanense[8]);
+
+printf("\n");
+
+menu_torneio2();
 
 }
 
@@ -3124,7 +2922,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Braga X Sporting   \n");
 sleep(1);
 printf("\n");
@@ -3134,15 +2931,10 @@ printf("\n");
 fp=fopen("sporting.txt", "w+");
 fp=fopen("sporting.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Sporting: \n");
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do pirimeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorSporting[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Sporting: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorSporting[n]);
@@ -3156,12 +2948,8 @@ fp=fopen("sporting.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("braga.txt", "w+");
         fp2 = fopen("braga.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Braga: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorBraga[0]);
 
         for (n = 0; n < 11; n++)
         {
@@ -3192,100 +2980,103 @@ fp=fopen("sporting.txt", "a+");
        sleep(3);
        
        
-  printf("0' Pontapé de saída");
+    printf("\n0' Pontapé de saída");
     sleep(3);
-printf("13'	%s derruba %s com um desarme duro\n",jogo.jogadores_equipaA[4],jogo.jogadores_equipaB[9]);
+printf("\n13'	%s derruba %s com um desarme duro\n",jogo.jogadores_equipaA[4],jogo.jogadores_equipaB[9]);
     sleep(3);
-printf("Pontapé-livre para o Braga a cerca de 25 metros.\n");
+printf("\nPontapé livre para o Braga a cerca de 25 metros.\n");
     sleep(3);
-printf("%s faz o cruzamento para a frente da baliza.\n",jogo.jogadores_equipaB[8]);
+printf("\n%s faz o cruzamento para a frente da baliza.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-printf("%s redireciona o cabeceamento em direção à baliza.\n",jogo.jogadores_equipaB[11]);
+printf("\n%s redireciona o cabeceamento em direção à baliza.\n",jogo.jogadores_equipaB[11]);
     sleep(3);
-printf("%s  lê bem e faz uma defesa fácil.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s  lê bem e faz uma defesa fácil.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("21'	 %s  leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[11]);
+printf("\n21'	 %s  leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[11]);
     sleep(3);
-printf("%s  empurra a bola para a baliza.\n",jogo.jogadores_equipaA[11]);
+printf("\n%s  empurra a bola para a baliza.\n",jogo.jogadores_equipaA[11]);
     sleep(3);
-printf("%s  faz a defesa.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s  faz a defesa.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("23'	%s  ganha a bola mas entretanto acaba por derrubar %s.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[7]);
+printf("\n23'	%s  ganha a bola mas entretanto acaba por derrubar %s.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaA[7]);
     sleep(3);
-printf("Pontapé-livre para o Sporting CP.\n");
+printf("\nPontapé livre para o Sporting CP.\n");
     sleep(3);
-printf("%s  contornar a barreira com uma bola curva rasteira.\n",jogo.jogadores_equipaA[8]);
+printf("\n%s  contornar a barreira com uma bola curva rasteira.\n",jogo.jogadores_equipaA[8]);
     sleep(3);
-printf(" GOLO!! - O livre voa por cima da barreira!\n");
+printf("\nGOLO!! - O livre voa por cima da barreira!\n");
     sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosSporting++;
        golosJogador.golosJogadorSporting[8]++;
 
-printf("26'	%s  faz um cruzamento do canto da grande área.\n",jogo.jogadores_equipaB[6]);
+printf("\n26'	%s  faz um cruzamento do canto da grande área.\n",jogo.jogadores_equipaB[6]);
     sleep(3);
-printf("%s  coloca a bola no relvado e dispara um remate para o canto inferior.\n",jogo.jogadores_equipaB[7]);
+printf("\n%s  coloca a bola no relvado e dispara um remate para o canto inferior.\n",jogo.jogadores_equipaB[7]);
     sleep(3);
-printf("%s  atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s  atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("27'	%s  puxa a camisola de %s  para o impedir de fugir com a bola.\n",jogo.jogadores_equipaB[2],jogo.jogadores_equipaA[10]);
+printf("\n27'	%s  puxa a camisola de %s  para o impedir de fugir com a bola.\n",jogo.jogadores_equipaB[2],jogo.jogadores_equipaA[10]);
     sleep(3);
-printf(" Cartão Amarelo - %s  entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaB[2]);
+printf("\nCartão Amarelo - %s  entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaB[2]);
     sleep(3);
       jogo.cartao_amarelo++;
 
-printf("30'	%s  corre para a defesa antes de a entregar a %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[8]);
+printf("\n30'	%s  corre para a defesa antes de a entregar a %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[8]);
     sleep(3);
-printf("%s  remata com efeito à baliza.\n",jogo.jogadores_equipaB[8]);
+printf("\n%s  remata com efeito à baliza.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-printf("É uma defesa fácil para %s.\n",jogo.jogadores_equipaA[1]);
+printf("\nÉ uma defesa fácil para %s.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("43'	O %s  passa em trivela uma bola baixa para o segundo poste desde o canto da grande área.\n",jogo.jogadores_equipaA[11]);
+printf("\n43'	O %s  passa em trivela uma bola baixa para o segundo poste desde o canto da grande área.\n",jogo.jogadores_equipaA[11]);
     sleep(3);
-printf("%s  tenta aproximar-se para marcar golo.\n",jogo.jogadores_equipaA[2]);
+printf("\n%s  tenta aproximar-se para marcar golo.\n",jogo.jogadores_equipaA[2]);
     sleep(3);
-printf("O guarda-redes atirou a mão em direção à bola.\n");
+printf("\nO guarda-redes atirou a mão em direção à bola.\n");
     sleep(3);
-printf("Bons reflexos do guarda-redes ao fazer a defesa.\n");
+printf("\nBons reflexos do guarda-redes ao fazer a defesa.\n");
     sleep(3);
-printf("45'	Intervalo\n");
+printf("\n45'	Intervalo\n");
     sleep(3);
-printf("62'	%s  faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[2]);
+printf("\n62'	%s  faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[2]);
     sleep(3);
-printf("%s  tenta a sua sorte de longe.\n",jogo.jogadores_equipaA[2]);
+printf("\n%s  tenta a sua sorte de longe.\n",jogo.jogadores_equipaA[2]);
     sleep(3);
-printf("%s  conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s  conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("68'	%s  vê o %s  a correr nas costas da defesa e faz o passe profundo.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[10]);
+printf("\n68'	%s  vê o %s  a correr nas costas da defesa e faz o passe profundo.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[10]);
     sleep(3);
-printf("%s  remata de primeira.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s  remata de primeira.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-printf("%s  baixa-se e desvia a bola para longe.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s  baixa-se e desvia a bola para longe.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("78'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaB[11]);
+printf("\n78'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaB[11]);
     sleep(3);
-printf("%s  desfere um tiro de longa distância.\n",jogo.jogadores_equipaB[11]);
+printf("\n%s  desfere um tiro de longa distância.\n",jogo.jogadores_equipaB[11]);
     sleep(3);
-printf("O guarda-redes chega-lhe com uma mão e afasta a bola da baliza.\n");
+printf("\nO guarda-redes chega-lhe com uma mão e afasta a bola da baliza.\n");
     sleep(3);
-printf("86'	%s  aguenta vários desarmes e passa a bola para %s.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[3]);
+printf("\n86'	%s  aguenta vários desarmes e passa a bola para %s.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[3]);
     sleep(3);
-printf("%s  contorna um defesa e continua a correr.\n",jogo.jogadores_equipaB[3]);
+printf("\n%s  contorna um defesa e continua a correr.\n",jogo.jogadores_equipaB[3]);
     sleep(3);
-printf("Ele tenta bater o guarda-redes.\n");
+printf("\nEle tenta bater o guarda-redes.\n");
     sleep(3);
-printf("%s  salta alto e afasta a bola.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s  salta alto e afasta a bola.\n",jogo.jogadores_equipaA[1]);
  sleep(3);
-  printf("90'Final do Jogo\n");
+  printf("\n90'Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Sporting!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhores marcador foi %s com %d golo\n", jogo.jogadores_equipaA[8], golosJogador.golosJogadorSporting[8]);
+
+printf("\n");
+
+menu_torneio2();
 
 }
 
@@ -3317,7 +3108,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Setúbal x Guimarães  \n");
 sleep(1);
 printf("\n");
@@ -3327,15 +3117,10 @@ printf("\n");
 fp=fopen("setubal.txt", "w+");
 fp=fopen("setubal.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Setubal: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorVitoriaSetubal[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Setubal: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorVitoriaSetubal[n]);
@@ -3350,17 +3135,13 @@ fp=fopen("setubal.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("guimaraes.txt", "w+");
         fp2 = fopen("guimaraes.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Guimarães : \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorVitoriaGuimaraes[0]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Guimaraes: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorVitoriaGuimaraes[n]);
@@ -3386,122 +3167,125 @@ fp=fopen("setubal.txt", "a+");
        sleep(3);
        
        
-  printf("0' Pontapé de saída\n");
+    printf("\n0' Pontapé de saída\n");
     sleep(3);
-printf("13'	%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[9]);
+printf("\n13'	%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[9]);
     sleep(3);
-printf("Bons reflexos de %s, que empurra de perto a bola para a baliza.\n",jogo.jogadores_equipaA[9]);
+printf("\nBons reflexos de %s, que empurra de perto a bola para a baliza.\n",jogo.jogadores_equipaA[9]);
     sleep(3);
-printf("O guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
+printf("\nO guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
     sleep(3);
-printf("22'	 %s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaA[1],jogo.jogadores_equipaA[9]);
+printf("\n22'	 %s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaA[1],jogo.jogadores_equipaA[9]);
     sleep(3);
-printf("%s ataca a bola e impede o golo.\n",jogo.jogadores_equipaA[9]);
+printf("\n%s ataca a bola e impede o golo.\n",jogo.jogadores_equipaA[9]);
     sleep(3);
-printf("%s defendeu a bola com uma defesa de enormes reflexos.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s defendeu a bola com uma defesa de enormes reflexos.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("23'	%s vê a desmarcação de %s para a área e envia a bola para a sua frente.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[8]);
+printf("\n23'	%s vê a desmarcação de %s para a área e envia a bola para a sua frente.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[8]);
     sleep(3);
-printf("%s cabeceia para a baliza.\n",jogo.jogadores_equipaA[8]);
+printf("\n%s cabeceia para a baliza.\n",jogo.jogadores_equipaA[8]);
     sleep(3);
-printf("O guarda-redes chega-lhe com uma mão e afasta a bola da baliza.\n");
+printf("\nO guarda-redes chega-lhe com uma mão e afasta a bola da baliza.\n");
     sleep(3);
-printf("33'	Uma entrada desesperada do %s para evitar que %s consiga rematar. Parece que está dentro da área.\n",jogo.jogadores_equipaA[2],jogo.jogadores_equipaB[6]);
+printf("\n33'	Uma entrada desesperada do %s para evitar que %s consiga rematar. Parece que está dentro da área.\n",jogo.jogadores_equipaA[2],jogo.jogadores_equipaB[6]);
     sleep(3);
-printf("O penálti é atribuido a Vitória de Guimarães.\n");
+printf("\nO penálti é atribuido a Vitória de Guimarães.\n");
     sleep(3);
-printf("%s faz um arranque e tenta colocar a bola no ângulo.\n",jogo.jogadores_equipaB[11]);
+printf("\n%s faz um arranque e tenta colocar a bola no ângulo.\n",jogo.jogadores_equipaB[11]);
     sleep(3);
-printf("GOLO!! - A bola entra junto ao poste.\n");
+printf("\nGOLO!! - A bola entra junto ao poste.\n");
     sleep(3);
       golosEquipaB++;
       jogo.numero_golos++;
       golos.golosVitoriaGuimaraes++;
       golosJogador.golosJogadorVitoriaGuimaraes[11]++;
 
-printf("34'	A bola rola para fora para canto a favor do Vitória de Guimarães.\n");
+printf("\n34'	A bola rola para fora para canto a favor do Vitória de Guimarães.\n");
     sleep(3);
-printf("%s cruza a bola para o poste mais afastado.\n",jogo.jogadores_equipaB[8]);
+printf("\n%s cruza a bola para o poste mais afastado.\n",jogo.jogadores_equipaB[8]);
     sleep(3);
-printf("%s faz um cabeceamento firme para a baliza.\n",jogo.jogadores_equipaB[9]);
+printf("\n%s faz um cabeceamento firme para a baliza.\n",jogo.jogadores_equipaB[9]);
     sleep(3);
-printf("É defendida pelo %s.\n",jogo.jogadores_equipaA[1]);
+printf("\nÉ defendida pelo %s.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("37'	%s faz um passe para %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[3]);
+printf("\n37'	%s faz um passe para %s.\n",jogo.jogadores_equipaB[9],jogo.jogadores_equipaB[3]);
     sleep(3);
-printf("%s vê o guarda-redes adiantado e tenta o chapéu.\n",jogo.jogadores_equipaB[3]);
+printf("\n%s vê o guarda-redes adiantado e tenta o chapéu.\n",jogo.jogadores_equipaB[3]);
     sleep(3);
-printf("%s defende.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s defende.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("42'	%s recebe a bola no espaço aberto.\n",jogo.jogadores_equipaA[11]);
+printf("\n42'	%s recebe a bola no espaço aberto.\n",jogo.jogadores_equipaA[11]);
     sleep(3);
-printf("Ele consegue espaço para o cruzamento e envia a bola para a área.\n");
+printf("\nEle consegue espaço para o cruzamento e envia a bola para a área.\n");
     sleep(3);
-printf("%s cabeceia em direção ao canto superior.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s cabeceia em direção ao canto superior.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-printf("GOLO!! - A potência faz-a passar pelo %s.\n",jogo.jogadores_equipaB[1]);
+printf("\nGOLO!! - A potência fa-la passar pelo %s.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosVitoriaSetubal++;
        golosJogador.golosJogadorVitoriaSetubal[10]++;
 
-printf("45' Intervalo");
+printf("\n45' Intervalo");
     sleep(3);
-printf("50'	%s faz um passe em profundidade para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[10]);
+printf("\n50'	%s faz um passe em profundidade para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[10]);
     sleep(3);
-printf("%s tem uma oportunidade clara de golo e tenta colocá-la por baixo do guarda-redes.\n",jogo.jogadores_equipaB[10]);
+printf("\n%s tem uma oportunidade clara de golo e tenta colocá-la por baixo do guarda-redes.\n",jogo.jogadores_equipaB[10]);
     sleep(3);
-printf("O guarda redes estica-se muito bem e consegue parar o remate.\n");
+printf("\nO guarda redes estica-se muito bem e consegue parar o remate.\n");
     sleep(3);
-printf("66'	%s descobre %s com espaço e envia o passe.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaB[3]);
+printf("\n66'	%s descobre %s com espaço e envia o passe.\n",jogo.jogadores_equipaB[5],jogo.jogadores_equipaB[3]);
     sleep(3);
-printf("%s controla a bola e remata com alguma esperança.\n",jogo.jogadores_equipaB[3]);
+printf("\n%s controla a bola e remata com alguma esperança.\n",jogo.jogadores_equipaB[3]);
     sleep(3);
-printf("%s atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s atira-se bem e consegue afastar a bola.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("67'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaB[11]);
+printf("\n67'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaB[11]);
     sleep(3);
-printf("%s tem um golaço à distância.\n",jogo.jogadores_equipaB[11]);
+printf("\n%s tem um golaço à distância.\n",jogo.jogadores_equipaB[11]);
     sleep(3);
-printf("%s faz a defesa.\n",jogo.jogadores_equipaA[1]);
+printf("\n%s faz a defesa.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
-printf("74'	%s cai depois de uma falta de %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[7]);
+printf("\n74'	%s cai depois de uma falta de %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[7]);
     sleep(3);
-printf(" Cartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
+printf("\nCartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
     sleep(3);
       jogo.cartao_amarelo++;
 
-printf("75'	Bom trabalho de pés de %s no meio-campo.\n",jogo.jogadores_equipaA[8]);
+printf("\n75'	Bom trabalho de pés de %s no meio-campo.\n",jogo.jogadores_equipaA[8]);
     sleep(3);
-printf("Ele vê a desmarcação de %s e faz o passe.\n",jogo.jogadores_equipaA[10]);
+printf("\nEle vê a desmarcação de %s e faz o passe.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-printf("Um remate à baliza por %s.\n",jogo.jogadores_equipaA[10]);
+printf("\nUm remate à baliza por %s.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-printf("A bola não leva muita força e é fácil para o %s.\n",jogo.jogadores_equipaB[1]);
+printf("\nA bola não leva muita força e é fácil para o %s.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("88'	%s é enganado por %s\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaB[5]);
+printf("\n88'	%s é enganado por %s\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaB[5]);
     sleep(3);
-printf("Pontapé-livre para Guimarães diretamente em frente à baliza.\n");
+printf("\nPontapé livre para Guimarães diretamente em frente à baliza.\n");
     sleep(3);
-printf("%s tenta o canto superior com o pontapé-livre.\n",jogo.jogadores_equipaA[8]);
+printf("\n%s tenta o canto superior com o pontapé-livre.\n",jogo.jogadores_equipaA[8]);
     sleep(3);
-printf(" GOLO!! - E entra mesmo ao pé do poste.\n");
+printf("\nGOLO!! - E entra mesmo ao pé do poste.\n");
  sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosVitoriaSetubal++;
        golosJogador.golosJogadorVitoriaSetubal[8]++;
 
-  printf("90'	Final do Jogo\n");
+  printf("\n90'	Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Setubal!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foram %s, %s e %s com %d golo\n", jogo.jogadores_equipaA[8], jogo.jogadores_equipaA[10], jogo.jogadores_equipaA[11], golosJogador.golosJogadorVitoriaSetubal[8]);
+
+printf("\n");
+
+menu_torneio2();
 
 }
 
@@ -3533,7 +3317,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Benfica X Olhanense \n");
 sleep(1);
 printf("\n");
@@ -3543,15 +3326,10 @@ printf("\n");
 fp=fopen("benfica.txt", "w+");
 fp=fopen("benfica.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Benfica: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorBenfica[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Benfica: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorBenfica[n]);
@@ -3565,17 +3343,13 @@ fp=fopen("benfica.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("olhanense.txt", "w+");
         fp2 = fopen("olhanense.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Olhanense: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorOlhanense[0]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Olhanense: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorOlhanense[n]);
@@ -3601,94 +3375,97 @@ fp=fopen("benfica.txt", "a+");
        sleep(3);
        
        
-  printf("0' Ponta-pé de saída\n");
+  printf("\n0' Ponta-pé de saída\n");
     sleep(3); 
-printf("GOLO!! - A bola voa passando pelo guarda-redes, golo de %s.\n", jogo.jogadores_equipaA[11]);
+printf("\nGOLO!! - A bola voa passando pelo guarda-redes, golo de %s.\n", jogo.jogadores_equipaA[11]);
     sleep(3); 
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosBenfica++;
        golosJogador.golosJogadorBenfica[11]++;
 
- printf("14'Canto para SL Benfica.\n");
+ printf("\n14'Canto para SL Benfica.\n");
    sleep(3); 
- printf("%s bate um canto.\n",jogo.jogadores_equipaA[11]);
+ printf("\n%s bate um canto.\n",jogo.jogadores_equipaA[11]);
    sleep(3); 
- printf("A bola passa por cima do guarda-redes e passa ao lado do poste mais distante.\n");
+ printf("\nA bola passa por cima do guarda-redes e passa ao lado do poste mais distante.\n");
    sleep(3); 
- printf("32'%s recebe a bola à entrada da área.\n",jogo.jogadores_equipaB[10]);
+ printf("\n32'%s recebe a bola à entrada da área.\n",jogo.jogadores_equipaB[10]);
    sleep(3); 
- printf("Ele pica a bola para %s.\n",jogo.jogadores_equipaB[9]);
+ printf("\nEle pica a bola para %s.\n",jogo.jogadores_equipaB[9]);
    sleep(3); 
- printf("Um remate à baliza por %s.\n",jogo.jogadores_equipaB[9]);
+ printf("\nUm remate à baliza por %s.\n",jogo.jogadores_equipaB[9]);
    sleep(3); 
- printf("%s mergulha cedo e faz uma defesa confortável.\n",jogo.jogadores_equipaA[1]);
+ printf("\n%s mergulha cedo e faz uma defesa confortável.\n",jogo.jogadores_equipaA[1]);
    sleep(3); 
- printf("45'	Intervalo\n");
+ printf("\n45'	Intervalo\n");
    sleep(3); 
- printf("46'%s puxa a camisola de %s para o impedir de fugir com a bola.\n",jogo.jogadores_equipaB[4],jogo.jogadores_equipaA[11]);
+ printf("\n46'%s puxa a camisola de %s para o impedir de fugir com a bola.\n",jogo.jogadores_equipaB[4],jogo.jogadores_equipaA[11]);
    sleep(3); 
- printf("Cartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
+ printf("\nCartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
    sleep(3); 
    jogo.cartao_amarelo++;
  
- printf("48'%s derruba %s.\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaB[6]);
+ printf("\n48'%s derruba %s.\n",jogo.jogadores_equipaA[5],jogo.jogadores_equipaB[6]);
    sleep(3); 
- printf("Cartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[5]);
+ printf("\nCartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[5]);
    sleep(3);
       jogo.cartao_amarelo++;
    
- printf("50'%s recebe a bola do %s e tabela para a sua corrida.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[9]);
+ printf("\n50'%s recebe a bola do %s e tabela para a sua corrida.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[9]);
    sleep(3); 
- printf("%s treina o remate.\n",jogo.jogadores_equipaB[9]);
+ printf("\n%s treina o remate.\n",jogo.jogadores_equipaB[9]);
    sleep(3); 
- printf("%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaA[1]);
+ printf("\n%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaA[1]);
    sleep(3); 
- printf("58'%s vê a desmarcação de %s para a área e envia a bola para a sua frente.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
+ printf("\n58'%s vê a desmarcação de %s para a área e envia a bola para a sua frente.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[10]);
    sleep(3); 
- printf("%s leva a bola para baixo e remata para a baliza.\n",jogo.jogadores_equipaB[10]);
+ printf("\n%s leva a bola para baixo e remata para a baliza.\n",jogo.jogadores_equipaB[10]);
    sleep(3); 
- printf("%s mergulha e faz uma grande defesa.\n",jogo.jogadores_equipaA[1]);
+ printf("\n%s mergulha e faz uma grande defesa.\n",jogo.jogadores_equipaA[1]);
    sleep(3); 
- printf("70'%s leva a bola pelo campo e joga-a para %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[7]);
+ printf("\n70'%s leva a bola pelo campo e joga-a para %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[7]);
    sleep(3); 
- printf("%s leva-a para a área e tenta colocá-la no ângulo.\n",jogo.jogadores_equipaA[7]);
+ printf("\n%s leva-a para a área e tenta colocá-la no ângulo.\n",jogo.jogadores_equipaA[7]);
    sleep(3); 
- printf("Houve falta de pontaria neste lance e é pontapé de baliza.\n");
+ printf("\nHouve falta de pontaria neste lance e é pontapé de baliza.\n");
    sleep(3); 
- printf("81'%s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[9]);
+ printf("\n81'%s leva a bola para a grande área e faz um passe curto na direção do %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[9]);
    sleep(3); 
- printf("%s tenta a sua sorte com um toque em jeito.\n",jogo.jogadores_equipaB[9]);
+ printf("\n%s tenta a sua sorte com um toque em jeito.\n",jogo.jogadores_equipaB[9]);
    sleep(3); 
- printf("%s defende a bola com as duas mãos.\n",jogo.jogadores_equipaA[1]);
+ printf("\n%s defende a bola com as duas mãos.\n",jogo.jogadores_equipaA[1]);
    sleep(3); 
- printf("83'%s encontra algum espaço na área e o %s faz-lhe uma assistência.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[7]);
+ printf("\n83'%s encontra algum espaço na área e o %s faz-lhe uma assistência.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaA[7]);
    sleep(3); 
- printf("%s direciona o remate à baliza a uma curta distância.\n",jogo.jogadores_equipaA[10]);
+ printf("\n%s direciona o remate à baliza a uma curta distância.\n",jogo.jogadores_equipaA[10]);
    sleep(3); 
- printf("Parecia golo mas a bola passa um pouco ao lado da baliza.\n");
+ printf("\nParecia golo mas a bola passa um pouco ao lado da baliza.\n");
    sleep(3); 
- printf("87'	%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaB[10], jogo.jogadores_equipaB[11]);
+ printf("\n87'	%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaB[10], jogo.jogadores_equipaB[11]);
    sleep(3); 
- printf("Bons reflexos de %s, que empurra de perto a bola para a baliza.\n",jogo.jogadores_equipaB[9]);
+ printf("\nBons reflexos de %s, que empurra de perto a bola para a baliza.\n",jogo.jogadores_equipaB[9]);
    sleep(3); 
- printf("%s põe a bola em segurança com a ponta dos dedos.\n",jogo.jogadores_equipaB[9]);
+ printf("\n%s põe a bola em segurança com a ponta dos dedos.\n",jogo.jogadores_equipaB[9]);
    sleep(3); 
- printf("88'%s revela um trabalho de pés inteligente para manter a posse de bola.\n",jogo.jogadores_equipaA[8]);
+ printf("\n88'%s revela um trabalho de pés inteligente para manter a posse de bola.\n",jogo.jogadores_equipaA[8]);
    sleep(3); 
- printf("Ele faz um passe preciso para %s.\n",jogo.jogadores_equipaA[11]);
+ printf("\nEle faz um passe preciso para %s.\n",jogo.jogadores_equipaA[11]);
    sleep(3); 
- printf("%s remata de primeira.\n",jogo.jogadores_equipaA[11]);
+ printf("\n%s remata de primeira.\n",jogo.jogadores_equipaA[11]);
   sleep(3);
-  printf("90' Final do Jogo\n");
+  printf("\n90' Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Benfica!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[11], golosJogador.golosJogadorBenfica[11]);
+
+printf("\n");
+
+menu_torneio3();
 
 }
 
@@ -3720,7 +3497,6 @@ int golosEquipaB = 0;
 
 //system("cls");
 system("clear");
-printf("\n");
 printf("Escolheu para jogar Sporting X Setubal \n");
 sleep(1);
 printf("\n");
@@ -3730,15 +3506,10 @@ printf("\n");
 fp=fopen("sporting.txt", "w+");
 fp=fopen("sporting.txt", "a+");
 
-	printf("Adicione o primeiro jogador para a equipa do Sporting: \n"); 
-	scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorSporting[n]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Sporting: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorSporting[n]);
@@ -3752,17 +3523,13 @@ fp=fopen("sporting.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
-        fp2 = fopen("beira_mar.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Setubal: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorVitoriaSetubal[n]);
+	fp2 = fopen("setubal.txt", "w+");
+        fp2 = fopen("setubal.txt", "a+");
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Setubal: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorVitoriaSetubal[n]);
@@ -3788,98 +3555,101 @@ fp=fopen("sporting.txt", "a+");
        sleep(3);
        
        
-  printf("0' Pontapé de saída\n");
+  printf("\n0' Pontapé de saída\n");
     sleep(3); 
- printf("9'	%s entra duro sobre %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[6]);
+ printf("\n9'	%s entra duro sobre %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[6]);
      sleep(3); 
- printf(" Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[10]);
+ printf("\nCartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaA[10]);
     sleep(3); 
     jogo.cartao_amarelo++;
- printf("11'%s coloca a bola no caminho do %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[6]);
+ printf("\n11'%s coloca a bola no caminho do %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[6]);
      sleep(3); 
- printf("%s foge ao desarme e tenta fazer passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaA[6]);
+ printf("\n%s foge ao desarme e tenta fazer passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaA[6]);
     sleep(3); 
- printf("O guarda-redes atirou a mão em direção à bola.\n");
+ printf("\nO guarda-redes atirou a mão em direção à bola.\n");
     sleep(3); 
- printf("Bons reflexos do guarda-redes ao fazer a defesa.\n");
+ printf("\nBons reflexos do guarda-redes ao fazer a defesa.\n");
     sleep(3); 
- printf("18'%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaA[6]);
+ printf("\n18'%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[3],jogo.jogadores_equipaA[6]);
     sleep(3); 
- printf("Cartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaB[3]);
-    sleep(3); 
-     jogo.cartao_amarelo++;
-
- printf("27'%s deixa um defesa para trás e passa-a para %s.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[10]);
-    sleep(3); 
- printf("%s empurra a bola para a baliza de curta distância.\n",jogo.jogadores_equipaB[10]);
-    sleep(3); 
- printf("O guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
-    sleep(3); 
- printf("39'%s cai com a entrada de %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[9]);
-    sleep(3); 
- printf("Cartão Amarelo Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[9]);
+ printf("\nCartão Amarelo - O árbitro demora o seu tempo antes de mostrar o cartão ao %s.\n",jogo.jogadores_equipaB[3]);
     sleep(3); 
      jogo.cartao_amarelo++;
 
- printf("40'%s faz um passe para %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[11]);
+ printf("\n27'%s deixa um defesa para trás e passa-a para %s.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[10]);
     sleep(3); 
- printf("%s arranja espaço para um remate e dispara à baliza.\n",jogo.jogadores_equipaA[11]);
+ printf("\n%s empurra a bola para a baliza de curta distância.\n",jogo.jogadores_equipaB[10]);
     sleep(3); 
- printf("%s defende com o pé.\n",jogo.jogadores_equipaB[1]);
+ printf("\nO guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
     sleep(3); 
- printf("42'%s vê %s numa posição avançada e passa-lhe a bola.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[6]);
+ printf("\n39'%s cai com a entrada de %s.\n",jogo.jogadores_equipaA[10],jogo.jogadores_equipaB[9]);
     sleep(3); 
- printf("%s passa por um defesa e remata para a baliza.\n",jogo.jogadores_equipaB[6]);
+ printf("\nCartão Amarelo Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[9]);
     sleep(3); 
- printf("%s atira-se rapidamente e consegue defender com o seu corpo.\n",jogo.jogadores_equipaA[1]);
+     jogo.cartao_amarelo++;
+
+ printf("\n40'%s faz um passe para %s.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[11]);
     sleep(3); 
- printf("45'	Intervalo\n");
+ printf("\n%s arranja espaço para um remate e dispara à baliza.\n",jogo.jogadores_equipaA[11]);
+    sleep(3); 
+ printf("\n%s defende com o pé.\n",jogo.jogadores_equipaB[1]);
+    sleep(3); 
+ printf("\n42'%s vê %s numa posição avançada e passa-lhe a bola.\n",jogo.jogadores_equipaB[7],jogo.jogadores_equipaB[6]);
+    sleep(3); 
+ printf("\n%s passa por um defesa e remata para a baliza.\n",jogo.jogadores_equipaB[6]);
+    sleep(3); 
+ printf("\n%s atira-se rapidamente e consegue defender com o seu corpo.\n",jogo.jogadores_equipaA[1]);
+    sleep(3); 
+ printf("\n45'	Intervalo\n");
     sleep(3); 
  
- printf("54'%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[9]);
+ printf("\n54'%s recebe a bola de longe e faz um passe instantaneamente para %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[9]);
   sleep(3);
- printf("%s empurra a bola para a baliza de curta distância.\n",jogo.jogadores_equipaA[9]);
+ printf("\n%s empurra a bola para a baliza de curta distância.\n",jogo.jogadores_equipaA[9]);
   sleep(3);
- printf("O guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
+ printf("\nO guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
   sleep(3);
- printf("56'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaA[2],jogo.jogadores_equipaA[7]);
+ printf("\n56'	%s faz um cruzamento preciso para %s.\n",jogo.jogadores_equipaA[2],jogo.jogadores_equipaA[7]);
   sleep(3);
- printf("%s remate de longe.\n",jogo.jogadores_equipaA[7]);
+ printf("\n%s remate de longe.\n",jogo.jogadores_equipaA[7]);
   sleep(3);
- printf("%s defende a bola e consegue mantê-la afastada.\n",jogo.jogadores_equipaB[1]);
+ printf("\n%s defende a bola e consegue mantê-la afastada.\n",jogo.jogadores_equipaB[1]);
   sleep(3);
- printf("58'%s  bate a bola para a área.\n",jogo.jogadores_equipaB[11]);
+ printf("\n58'%s  bate a bola para a área.\n",jogo.jogadores_equipaB[11]);
   sleep(3);
- printf("%s  salta alto e redireciona a bola en direção à baliza.\n",jogo.jogadores_equipaB[9]);
+ printf("\n%s  salta alto e redireciona a bola en direção à baliza.\n",jogo.jogadores_equipaB[9]);
   sleep(3);
- printf("O guarda redes sai bem da sua baliza e consegue defender.\n");
+ printf("\nO guarda redes sai bem da sua baliza e consegue defender.\n");
   sleep(3);
- printf("61'%s pensa num remate de longe, mas em vez disso entrega-a a %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[8]);
+ printf("\n61'%s pensa num remate de longe, mas em vez disso entrega-a a %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[8]);
   sleep(3);
- printf("%s  tenta a sua sorte de longe.\n",jogo.jogadores_equipaA[9]);
+ printf("\n%s  tenta a sua sorte de longe.\n",jogo.jogadores_equipaA[9]);
   sleep(3);
- printf(" GOLO!! - A bola vai como um foguete por cima do guarda-redes e entra no fundo da baliza.\n");
+ printf("\nGOLO!! - A bola vai como um foguete por cima do guarda-redes e entra no fundo da baliza.\n");
  sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosSporting++;
        golosJogador.golosJogadorSporting[9]++;
 
- printf("67' %s  insulta o árbitro após uma decisão duvidosa.\n",jogo.jogadores_equipaB[4]);
+ printf("\n67' %s  insulta o árbitro após uma decisão duvidosa.\n",jogo.jogadores_equipaB[4]);
   sleep(3);
- printf("Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[4]);
+ printf("\nCartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[4]);
  sleep(3);
   jogo.cartao_amarelo++;
 
- printf("90'Final do Jogo Final do Jogo\n");
+ printf("\n90'Final do Jogo Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Sporting!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("\n");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[9], golosJogador.golosJogadorSporting[9]);
+
+printf("\n");
+
+menu_torneio3();
 
 }
 
@@ -3910,10 +3680,6 @@ int golosEquipaA = 0;
 int golosEquipaB = 0;
 
 //system("cls");
-system("clear");
-printf("\n");
-printf("Escolheu para jogar Olhanense X Setúbal \n");
-sleep(1);
 printf("\n");
 printf("Vai agora criar a sua equipa\n");
 printf("\n");
@@ -3921,15 +3687,10 @@ printf("\n");
 fp=fopen("olhanense.txt", "w+");
 fp=fopen("olhanense.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Olhanense: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: \n");
-       scanf("%d", &idades.idadeJogadorOlhanense[0]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Olhanense: ");
         scanf("\n%[^\n]s", aux);
         printf("Adicione a sua idade: ");
         scanf("%d", &idades.idadeJogadorOlhanense[n]);
@@ -3943,17 +3704,14 @@ fp=fopen("olhanense.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("setubal.txt", "w+");
         fp2 = fopen("setubal.txt", "a+");
 
-	printf("Adicione o primeiro jogador para a equipa do Setubal: ");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-        scanf("Adicione a idade do primeiro jogador: ");
-        scanf("%d", &idades.idadeJogadorVitoriaSetubal[0]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Setubal: ");
         scanf("\n%[^\n]s", aux);
         printf("Adicione a sua idade: ");
         scanf("%d", &idades.idadeJogadorVitoriaSetubal[n]);
@@ -3976,105 +3734,109 @@ fp=fopen("olhanense.txt", "a+");
        printf("\nO jogo vai começar,  Olhanense X Setúbal !\n");
        sleep(3);
        
-  printf("0' Ponta-pé de saída Ponta-pé de saída");
+  printf("\n0' Ponta-pé de saída Ponta-pé de saída");
     sleep(3);
-printf("2'%s vê o %s a correr nas costas da defesa e faz o passe profundo.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[9]);
+printf("\n2'%s vê o %s a correr nas costas da defesa e faz o passe profundo.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaB[9]);
        sleep(3);
-printf("%s livra-se da defesa e tenta colocar a bola por baixo do guarda-redes.\n",jogo.jogadores_equipaB[9]);
+printf("\n%s livra-se da defesa e tenta colocar a bola por baixo do guarda-redes.\n",jogo.jogadores_equipaB[9]);
        sleep(3);
-printf("GOLO!! - %s fecha bem o ângulo, mas a bola passa por baixo do seu corpo e entra na baliza.\n",jogo.jogadores_equipaA[1]);
+printf("\nGOLO!! - %s fecha bem o ângulo, mas a bola passa por baixo do seu corpo e entra na baliza.\n",jogo.jogadores_equipaA[1]);
        sleep(3);
-printf("Golo anulado por fora de jogo. FORA DE JOGO! - %s foi apanhado fora de jogo pela defesa.\n",jogo.jogadores_equipaB[9]);
+printf("\nGolo anulado por fora de jogo. FORA DE JOGO! - %s foi apanhado fora de jogo pela defesa.\n",jogo.jogadores_equipaB[9]);
        sleep(3);
-printf("12'	%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaA[7]);
+printf("\n12'	%s tem uma entrada tardia sobre %s.\n",jogo.jogadores_equipaB[8],jogo.jogadores_equipaA[7]);
        sleep(3);
-printf("Pontapé-livre para o SC Olhanense a cerca de 25 metros.\n");
+printf("\nPontapé livre para o SC Olhanense a cerca de 25 metros.\n");
        sleep(3);
-printf("Cartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
-       sleep(3);
-         jogo.cartao_amarelo++;
-printf("%s cruza a bola para uma zona perigosa.\n",jogo.jogadores_equipaA[8]);
-       sleep(3);
-printf("%s encontra espaço e faz um cabeceamento poderoso.\n",jogo.jogadores_equipaA[9]);
-       sleep(3);
-printf("A bola passa por cima da barra.\n");
-       sleep(3);
-printf("17'	Um grande cruzamento para %s que cabeceia a bola para %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[10]);
-       sleep(3);
-printf("%s coloca a sua cabeça na bola e ela parece estar a cair.\n",jogo.jogadores_equipaA[10]);
-       sleep(3);
-printf("%s chega-lhe com uma mão e consegue mantê-la afastada.\n",jogo.jogadores_equipaB[1]);
-       sleep(3);
-printf("18'	%s é obrigado a recuar no terreno e faz um passe para %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[4]);
-       sleep(3);
-printf("Grande esforço de %s.\n",jogo.jogadores_equipaA[4]);
-       sleep(3);
-printf("%s agarra a bola com as duas mãos.\n",jogo.jogadores_equipaB[1]);
-       sleep(3);
-printf("40'	%s consegue um metro de espaço e cruza para a pequena área.\n",jogo.jogadores_equipaB[10]);
-       sleep(3);
-printf("%s foge ao desarme e tenta fazer passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaB[6]);
-       sleep(3);
-printf("%s atira-se bem e defende-a com ambas as mãos.\n",jogo.jogadores_equipaA[1]);
-       sleep(3);
-printf("42'	%s consegue um metro de espaço e cruza para a pequena área.\n",jogo.jogadores_equipaB[10]);
-       sleep(3);
-printf("%s remata de dentro da área.\n",jogo.jogadores_equipaA[1]);
-       sleep(3);
-printf("%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaB[6]);
-       sleep(3);
-printf("44'	%s cabeceia a bola para trás através da área, a partir de um pontapé livre..\n",jogo.jogadores_equipaA[10]);
-       sleep(3);
-printf("%s redireciona o cabeceamento em direção à baliza.\n",jogo.jogadores_equipaA[9]);
-       sleep(3);
-printf("O guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
-       sleep(3);
-printf("45'	 Intervalo\n");
-       sleep(3);
-printf("65'	%s derruba %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[10]);
-       sleep(3);
-printf("Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[11]);
+printf("\nCartão Amarelo - O árbitro não tem outra hipótese a não ser advertir o jogador.\n");
        sleep(3);
          jogo.cartao_amarelo++;
-printf("70'	%s recebe a bola no limite da grande área.\n",jogo.jogadores_equipaA[11]);
+printf("\n%s cruza a bola para uma zona perigosa.\n",jogo.jogadores_equipaA[8]);
        sleep(3);
-printf("Ele passa pelo seu marcador e chuta a bola para uma área perigosa.\n");
+printf("\n%s encontra espaço e faz um cabeceamento poderoso.\n",jogo.jogadores_equipaA[9]);
        sleep(3);
-printf("%s direciona o remate à baliza a uma curta distância.\n",jogo.jogadores_equipaA[9]);
+printf("\nA bola passa por cima da barra.\n");
        sleep(3);
-printf("%s defende facilmente.\n",jogo.jogadores_equipaB[1]);
+printf("\n17'	Um grande cruzamento para %s que cabeceia a bola para %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[10]);
        sleep(3);
-printf("74'	%s vê-se em apuros e consegue jogar a bola de volta para %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[5]);
+printf("\n%s coloca a sua cabeça na bola e ela parece estar a cair.\n",jogo.jogadores_equipaA[10]);
        sleep(3);
-printf("%s remate de longe.\n",jogo.jogadores_equipaA[5]);
+printf("\n%s chega-lhe com uma mão e consegue mantê-la afastada.\n",jogo.jogadores_equipaB[1]);
        sleep(3);
-printf("GOLO!! - A bola passa por cima do guarda-redes e entra.\n");
+printf("\n18'	%s é obrigado a recuar no terreno e faz um passe para %s.\n",jogo.jogadores_equipaA[9],jogo.jogadores_equipaA[4]);
+       sleep(3);
+printf("\nGrande esforço de %s.\n",jogo.jogadores_equipaA[4]);
+       sleep(3);
+printf("\n%s agarra a bola com as duas mãos.\n",jogo.jogadores_equipaB[1]);
+       sleep(3);
+printf("\n40'	%s consegue um metro de espaço e cruza para a pequena área.\n",jogo.jogadores_equipaB[10]);
+       sleep(3);
+printf("\n%s foge ao desarme e tenta fazer passar a bola pelo guarda-redes.\n",jogo.jogadores_equipaB[6]);
+       sleep(3);
+printf("\n%s atira-se bem e defende-a com ambas as mãos.\n",jogo.jogadores_equipaA[1]);
+       sleep(3);
+printf("\n42'	%s consegue um metro de espaço e cruza para a pequena área.\n",jogo.jogadores_equipaB[10]);
+       sleep(3);
+printf("\n%s remata de dentro da área.\n",jogo.jogadores_equipaA[1]);
+       sleep(3);
+printf("\n%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaB[6]);
+       sleep(3);
+printf("\n44'	%s cabeceia a bola para trás através da área, a partir de um pontapé livre..\n",jogo.jogadores_equipaA[10]);
+       sleep(3);
+printf("\n%s redireciona o cabeceamento em direção à baliza.\n",jogo.jogadores_equipaA[9]);
+       sleep(3);
+printf("\nO guarda-redes atira-se para o outro lado da baliza e mantém a bola afastada.\n");
+       sleep(3);
+printf("\n45'	 Intervalo\n");
+       sleep(3);
+printf("\n65'	%s derruba %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[10]);
+       sleep(3);
+printf("\nCartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaB[11]);
+       sleep(3);
+         jogo.cartao_amarelo++;
+printf("\n70'	%s recebe a bola no limite da grande área.\n",jogo.jogadores_equipaA[11]);
+       sleep(3);
+printf("\nEle passa pelo seu marcador e chuta a bola para uma área perigosa.\n");
+       sleep(3);
+printf("\n%s direciona o remate à baliza a uma curta distância.\n",jogo.jogadores_equipaA[9]);
+       sleep(3);
+printf("\n%s defende facilmente.\n",jogo.jogadores_equipaB[1]);
+       sleep(3);
+printf("\n74'	%s vê-se em apuros e consegue jogar a bola de volta para %s.\n",jogo.jogadores_equipaA[11],jogo.jogadores_equipaA[5]);
+       sleep(3);
+printf("\n%s remate de longe.\n",jogo.jogadores_equipaA[5]);
+       sleep(3);
+printf("\nGOLO!! - A bola passa por cima do guarda-redes e entra.\n");
        sleep(3);
          golosEquipaA++;
          jogo.numero_golos++;
          golos.golosOlhanense++;
          golosJogador.golosJogadorOlhanense[5]++;
   
-printf("81'	%s derruba %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[7]);
+printf("\n81'	%s derruba %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[7]);
        sleep(3);
-printf("Cartão Vermelho - O árbitro exibe o segundo amarelo ao %s e expulsa-o.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[1]);
+printf("\nCartão Vermelho - O árbitro exibe o segundo amarelo ao %s e expulsa-o.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaA[1]);
        sleep(3);
          jogo.cartao_vermelho++;
-printf("82'	%s recebe a bola de longe e faz um cruzamento para a área.\n",jogo.jogadores_equipaB[8]);
+printf("\n82'	%s recebe a bola de longe e faz um cruzamento para a área.\n",jogo.jogadores_equipaB[8]);
        sleep(3);
-printf("%s tenta um cabeceamento em arco.\n",jogo.jogadores_equipaB[6]);
+printf("\n%s tenta um cabeceamento em arco.\n",jogo.jogadores_equipaB[6]);
        sleep(3);
-printf("O guarda-redes mergulha para trás e consegue afastá-la para longe.\n");
+printf("\nO guarda-redes mergulha para trás e consegue afastá-la para longe.\n");
        sleep(3);
-  printf("90'Final do Jogo\n");
+  printf("\n90'Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Olhanense!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("\n");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[5], golosJogador.golosJogadorOlhanense[5]);
+
+printf("\n");
+
+menu_torneio4();
+
 
 }
 
@@ -4105,9 +3867,6 @@ int golosEquipaA = 0;
 int golosEquipaB = 0;
 
 //system("cls");
-system("clear");
-printf("\n");
-printf("Escolheu para jogar Benfica X Sporting\n");
 sleep(1);
 printf("\n");
 printf("Vai agora criar a sua equipa\n");
@@ -4116,15 +3875,10 @@ printf("\n");
 fp=fopen("benfica.txt", "w+");
 fp=fopen("benfica.txt", "a+");
 
-       printf("Adicione o primeiro jogador para a equipa do Benfica: \n"); 
-       scanf("\n%[^\n]s", jogo.jogadores_equipaA[0]);
-       printf("Adicione a idade do primeiro jogador: ");
-       scanf("%d", &idades.idadeJogadorBenfica[n]);
-
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Benfica: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade");
         scanf("%d", &idades.idadeJogadorBenfica[n]);
@@ -4138,17 +3892,13 @@ fp=fopen("benfica.txt", "a+");
         fprintf(fp, "\n");
         fclose(fp);
 
+	fp2 = fopen("sporting.txt", "w+");
         fp2 = fopen("sporting.txt", "a+");
-
-	printf("Adicione o primeiro jogador para a equipa do Sporting: \n");
-	scanf("\n%[^\n]s", jogo.jogadores_equipaB[0]);
-	printf("Adicione a idade do primeiro jogador: ");
-	scanf("%d", &idades.idadeJogadorSporting[n]);
 
         for (n = 0; n < 11; n++)
         {
 
-        printf("Adicione um novo jogador: ");
+        printf("Adicione um novo jogador para a equipa do Sporting: ");
         scanf("\n%[^\n]s", aux);
 	printf("Adicione a sua idade: ");
 	scanf("%d", &idades.idadeJogadorSporting[n]);
@@ -4174,113 +3924,116 @@ fp=fopen("benfica.txt", "a+");
        sleep(3);
        
        
-  printf("0' Pontapé de saída\n");
+  printf("\n0' Pontapé de saída\n");
     sleep(3);
- printf("1'	%s ganha a bola. Ele leva-a para a frente e faz um passe a rasgar a defesa.\n",jogo.jogadores_equipaB[5]);
+ printf("\n1'	%s ganha a bola. Ele leva-a para a frente e faz um passe a rasgar a defesa.\n",jogo.jogadores_equipaB[5]);
     sleep(3);
- printf("%s remata de primeira.\n",jogo.jogadores_equipaB[10]);
+ printf("\n%s remata de primeira.\n",jogo.jogadores_equipaB[10]);
     sleep(3);
- printf("%s baixa-se e desvia a bola para longe.\n",jogo.jogadores_equipaA[1]);
+ printf("\n%s baixa-se e desvia a bola para longe.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
- printf("3'	%s põe a bola nos pés do %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[10]);
+ printf("\n3'	%s põe a bola nos pés do %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[10]);
     sleep(3);
- printf("%s estoura.\n",jogo.jogadores_equipaA[10]);
+ printf("\n%s estoura.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
- printf("%s demonstra grandes reflexos ao fazer a defesa.\n",jogo.jogadores_equipaB[1]);
+ printf("\n%s demonstra grandes reflexos ao fazer a defesa.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
- printf("41' %s faz um passe demasiado largo.\n",jogo.jogadores_equipaA[10]);
+ printf("\n41' %s faz um passe demasiado largo.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
- printf("%s leva a bola para a área.\n",jogo.jogadores_equipaA[11]);
+ printf("\n%s leva a bola para a área.\n",jogo.jogadores_equipaA[11]);
     sleep(3);
- printf("Ele tenta o canto inferior.\n");
+ printf("\nEle tenta o canto inferior.\n");
     sleep(3);
- printf("GOLO!! - O guarda-redes é apanhado em desequilíbrio e a bola entra.\n");
+ printf("\nGOLO!! - O guarda-redes é apanhado em desequilíbrio e a bola entra.\n");
     sleep(3);
        golosEquipaA++;
        jogo.numero_golos++;
        golos.golosBenfica++;
        golosJogador.golosJogadorBenfica[11]++;
 
-printf("42'	 %s faz um passe na direção de %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[2]);
+printf("\n42'	 %s faz um passe na direção de %s.\n",jogo.jogadores_equipaA[8],jogo.jogadores_equipaA[2]);
     sleep(3);
-printf("%s tenta um remate de longa distância.\n",jogo.jogadores_equipaA[2]);
+printf("\n%s tenta um remate de longa distância.\n",jogo.jogadores_equipaA[2]);
     sleep(3);
-printf("%s conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
+printf("\n%s conseguiu mantê-la afastada de alguma maneira.\n",jogo.jogadores_equipaB[1]);
     sleep(3);
-printf("44'	%s vê a corrida de %s e faz um passe que rasga a defesa.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[10]);
+printf("\n44'	%s vê a corrida de %s e faz um passe que rasga a defesa.\n",jogo.jogadores_equipaA[6],jogo.jogadores_equipaA[10]);
     sleep(3);
-printf("%s tenta passar uma por baixo do guarda-redes.\n",jogo.jogadores_equipaA[10]);
+printf("\n%s tenta passar uma por baixo do guarda-redes.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
-printf("GOLO!! - A bola saltita passando pelo guarda-redes e passa a linha.\n");
+printf("\nGOLO!! - A bola saltita passando pelo guarda-redes e passa a linha.\n");
     sleep(3);
- printf("Golo anulado por fora de jogo. FORA DE JOGO! %s estava à frente do último defesa quando a bola foi jogada.\n",jogo.jogadores_equipaA[10]);
+ printf("\nGolo anulado por fora de jogo. FORA DE JOGO! %s estava à frente do último defesa quando a bola foi jogada.\n",jogo.jogadores_equipaA[10]);
     sleep(3);
- printf("45'	Intervalo\n");
+ printf("\n45'	Intervalo\n");
     sleep(3);
  
- printf("47' %s leva a bola pelo relvado e passa-a a %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaB[2]);
+ printf("\n47' %s leva a bola pelo relvado e passa-a a %s.\n",jogo.jogadores_equipaB[11],jogo.jogadores_equipaB[2]);
     sleep(3);
- printf("%s faz uma grande corrida pelo meio-campo.\n",jogo.jogadores_equipaB[2]);
+ printf("\n%s faz uma grande corrida pelo meio-campo.\n",jogo.jogadores_equipaB[2]);
     sleep(3);
- printf("Ele entra na área e dispara-a para a baliza.\n");
+ printf("\nEle entra na área e dispara-a para a baliza.\n");
     sleep(3);
- printf("%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaA[1]);
+ printf("\n%s atira-se rápido ao lance e atira a bola para longe.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
- printf("54'%s vai a linha final e cruza a bola para o limite da grande área.\n",jogo.jogadores_equipaA[7]);
+ printf("\n54'%s vai a linha final e cruza a bola para o limite da grande área.\n",jogo.jogadores_equipaA[7]);
     sleep(3);
- printf("%s finta um defesa e tenta encontrar o ângulo inferior.\n",jogo.jogadores_equipaA[1]);
+ printf("\n%s finta um defesa e tenta encontrar o ângulo inferior.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
- printf("O guarda redes sai bem da sua baliza e consegue defender.\n");
+ printf("\nO guarda redes sai bem da sua baliza e consegue defender.\n");
     sleep(3);
- printf("65'%s insulta o árbitro após uma decisão duvidosa.\n",jogo.jogadores_equipaA[3]);
+ printf("\n65'%s insulta o árbitro após uma decisão duvidosa.\n",jogo.jogadores_equipaA[3]);
     sleep(3);
- printf("Cartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaA[3]);
-    sleep(3);
-      jogo.cartao_amarelo++;
-      
- printf("67'%s recebe a bola no espaço aberto.\n",jogo.jogadores_equipaA[1]);
-    sleep(3);
- printf("Ele consegue espaço para o cruzamento e envia a bola para a área.\n");
-    sleep(3);
- printf("%s cabeceia para a baliza adversária.\n",jogo.jogadores_equipaB[7]);
-    sleep(3);
- printf("É uma defesa normal para o %s.\n",jogo.jogadores_equipaB[9]);
-    sleep(3);
- printf("71'%s faz um cruzamento para a marca de penálti.\n",jogo.jogadores_equipaB[7]);
-    sleep(3);
- printf("%s cabeceia para a baliza.\n",jogo.jogadores_equipaB[6]);
-    sleep(3);
- printf("%s chega ao outro lado da baliza e defende o remate.\n",jogo.jogadores_equipaA[1]);
-    sleep(3);
- printf("82'%s recebe a bola do guarda-redes e joga-a para a frente.\n",jogo.jogadores_equipaA[1]);
-    sleep(3);
- printf("%s dispara um remate de longa distância.\n",jogo.jogadores_equipaA[6]);
-    sleep(3);
- printf("%s mergulha e faz uma grande defesa.\n",jogo.jogadores_equipaB[5]);
-    sleep(3);
- printf("88'%s cai depois de uma falta de %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaA[11]);
-    sleep(3);
- printf("Pontapé-livre para Sporting do lado direito da grande área.\n");
-    sleep(3);
- printf("C Cartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[11]);
+ printf("\nCartão Amarelo - O árbitro mostra o cartão amarelo ao %s.\n",jogo.jogadores_equipaA[3]);
     sleep(3);
       jogo.cartao_amarelo++;
       
- printf("%s cruza a bola para a marca de penálti.\n",jogo.jogadores_equipaB[8]);
+ printf("\n67'%s recebe a bola no espaço aberto.\n",jogo.jogadores_equipaA[1]);
     sleep(3);
- printf("%s faz um cabeceamento firme para a baliza.\n",jogo.jogadores_equipaB[6]);
+ printf("\nEle consegue espaço para o cruzamento e envia a bola para a área.\n");
     sleep(3);
- printf("O guarda-redes mergulha para trás e consegue afastá-la para longe.\n");
+ printf("\n%s cabeceia para a baliza adversária.\n",jogo.jogadores_equipaB[7]);
+    sleep(3);
+ printf("\nÉ uma defesa normal para o %s.\n",jogo.jogadores_equipaB[9]);
+    sleep(3);
+ printf("\n71'%s faz um cruzamento para a marca de penálti.\n",jogo.jogadores_equipaB[7]);
+    sleep(3);
+ printf("\n%s cabeceia para a baliza.\n",jogo.jogadores_equipaB[6]);
+    sleep(3);
+ printf("\n%s chega ao outro lado da baliza e defende o remate.\n",jogo.jogadores_equipaA[1]);
+    sleep(3);
+ printf("\n82'%s recebe a bola do guarda-redes e joga-a para a frente.\n",jogo.jogadores_equipaA[1]);
+    sleep(3);
+ printf("\n%s dispara um remate de longa distância.\n",jogo.jogadores_equipaA[6]);
+    sleep(3);
+ printf("\n%s mergulha e faz uma grande defesa.\n",jogo.jogadores_equipaB[5]);
+    sleep(3);
+ printf("\n88'%s cai depois de uma falta de %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaA[11]);
+    sleep(3);
+ printf("\nPontapé livre para Sporting do lado direito da grande área.\n");
+    sleep(3);
+ printf("\nCartão Amarelo - %s entra para o bloco de notas do árbitro.\n",jogo.jogadores_equipaA[11]);
+    sleep(3);
+      jogo.cartao_amarelo++;
+      
+ printf("\n%s cruza a bola para a marca de penálti.\n",jogo.jogadores_equipaB[8]);
+    sleep(3);
+ printf("\n%s faz um cabeceamento firme para a baliza.\n",jogo.jogadores_equipaB[6]);
+    sleep(3);
+ printf("\nO guarda-redes mergulha para trás e consegue afastá-la para longe.\n");
  sleep(3);
-  printf("90'Final do Jogo\n");
+  printf("\n90'Final do Jogo\n");
  sleep(3);
    printf("\nAssim acaba esta partida %d-%d para o Benfica!\n", golosEquipaA, golosEquipaB );
            sleep(3);
-printf("n");
 
-printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
+printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[11], golosJogador.golosJogadorBenfica[11]);
+
+printf("\n");
+
+menu_torneio5();
 
 }
 
@@ -4291,10 +4044,10 @@ printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[11], gol
 *
 */
 
-jogar() {
+int jogar() {
 
 //system("cls");
-//system("clear");
+system("clear");
 int op;
 struct jogo;
  
@@ -4333,7 +4086,7 @@ struct jogo;
       }
     if (!strcmp(jogo.equipaA, "Braga") && !strcmp(jogo.equipaB, "Academica"))
       {
-      belenenses_porto();
+      braga_academica();
       }
     if (!strcmp(jogo.equipaA, "Sporting") && !strcmp(jogo.equipaB, "Beira-Mar"))
       {
@@ -4349,7 +4102,7 @@ struct jogo;
       }
 }
 
-jogar_quartos() {
+int jogar_quartos() {
 
 //system("cls");
 system("clear");
@@ -4362,7 +4115,7 @@ struct jogo;
     printf("Porto X Benfica\n");
     printf("Olhanense X Maritimo\n");
     printf("Braga X Sporting\n");
-    printf("Vitoria de Setubal X Vitoria de Guimaraes");
+    printf("Vitoria de Setubal X Vitoria de Guimaraes\n");
     printf("\n");
     printf("Escolha a primeira Equipa:\n");
     scanf("\n%[^\n]s", jogo.equipaA);
@@ -4388,12 +4141,10 @@ struct jogo;
 
 }
 
-int menu_torneio2();
-
-jogar_meias() {
+int jogar_meias() {
 
 //system("cls");
-//system("clear");
+system("clear");
 int op;
 struct jogo;
  
@@ -4401,7 +4152,8 @@ struct jogo;
     printf("\n");
     sleep(1);
     printf("Benfica X Olhanense\n");
-    printf("Sporting X Vitoria de Setubal\n");    printf("\n");
+    printf("Sporting X Vitoria de Setubal\n");    
+    printf("\n");
     printf("Escolha a primeira Equipa:\n");
     scanf("\n%[^\n]s", jogo.equipaA);
     printf("Escolha a segunda Equipa:\n");
@@ -4417,8 +4169,6 @@ struct jogo;
 }
 }
 
-int menu_torneio3();
-
 jogar_3e4() {
 
 //system("cls");
@@ -4431,7 +4181,7 @@ olhanense_setubal();
     
 }
 
-jogar_final() {
+int jogar_final() {
 
 //system("cls");
 system("clear");
@@ -4499,88 +4249,6 @@ sleep(5);
 jogar();
 
 }
-
-
-int arvore_torneio_2() {
-system("cls");
-
-printf("       ** QUARTOS **      \n");
-printf("|------------------------|\n");
-printf("| SL Benfica X FC Porto  |----|\n");
-printf("|------------------------|    |\n");
-printf("                              |\n");
-printf("                              |\n");
-printf("|------------------------|    |\n");
-printf("|  Olhanense X Maritimo  |----|\n");
-printf("|------------------------|    |\n");
-printf("                              |\n");
-printf("                              |\n");
-printf("|------------------------|    |\n");
-printf("|    Braga X Sporting    |----|\n");
-printf("|------------------------|    |\n");
-printf("                              |\n");
-printf("                              |\n");
-printf("|------------------------|    |\n");
-printf("|  Setúbal x Guimarães   |----|\n");
-printf("|------------------------|    |\n");
-
-jogar_quartos();
-
-}
-
-int arvore_torneio_3() {
-system("cls");
-
-printf("     ** MEIA-FINAL **     \n");
-printf("|------------------------|\n");
-printf("| SL Benfica X Olhanense |----|\n");
-printf("|------------------------|    |\n");
-printf("                              |\n");
-printf("                              |\n");
-printf("|------------------------|    |\n");
-printf("|   Sporting X Setúbal   |----|\n");
-printf("|------------------------|    |\n");
-
-
-jogar_meias();
-
-}
-
-
-int arvore_torneio_3e4() {
-
-
-printf("    ** 3º    X    4º **   \n");
-printf("|------------------------|\n");
-printf("|  Olhanense X Setúbal   |\n");
-printf("|------------------------|\n");
-
-
-
-jogar_3e4();
-
-}
-
-
-int arvore_torneio_4() {
-system("cls");
-
-printf("       ** FINAL **        \n");
-printf("|------------------------|\n");
-printf("|   Benfica X Sporting   |\n");
-printf("|------------------------|\n");
-
-
-jogar_final();
-
-}
-
-/**
-*
-*funcao pesquisar_jogador que vai mostrar uma das opções do menu para os jogadores
-*\param op : int
-*
-*/
 
 int pesquisar_jogador () { 
 //system ("cls");
