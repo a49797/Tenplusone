@@ -278,7 +278,7 @@ int main ( void ) {
 
     char name[50];
 
-        /*printf("Bem-Vindo/a ao TenPlusOne\n");
+        printf("Bem-Vindo/a ao TenPlusOne\n");
         printf("Insira o seu nome\n");
         scanf("%[^\n]s", name);
 
@@ -298,7 +298,7 @@ int main ( void ) {
         printf(".\n");
         sleep(1);
         printf(".\n");
-*/
+
 	menu_principal();
 
 return 0;
@@ -314,7 +314,6 @@ return 0;
 
 int menu_principal () {
 system("cls");
-
         
     int opcao;
 do
@@ -333,12 +332,12 @@ do
         switch (opcao)
         {
             case 0:
-                /* printf("Até à próxima jogador\n");
+                 printf("Até à próxima jogador\n");
                  sleep(1);
                  printf("Aguarde enquanto guardamos os dados\n");
                  sleep(2);
                  printf("Aguarde enquanto encerramos\n");
-                 sleep(3);*/
+                 sleep(3);
                  return 0;
             case 1:
                  comecar_torneio();
@@ -375,7 +374,7 @@ sorteio_jogos() {
 
 int i, n, aux;
 int equipas[16];
-/*
+
 //system("cls");
 system("clear");
 
@@ -458,10 +457,17 @@ printf("\n");
     printf("Rio Ave X Vitoria Setubal\n");
     sleep(1);
     printf("Estoril vs Vitoria Guimaraes\n");
-*/
+
 torneio();
 
 }
+
+/**
+*
+*funcao menu_torneio1 que mostra o primeiro menu do torneio
+*\param opcao : int
+*
+*/
 
 int menu_torneio1 () {
 
@@ -493,6 +499,13 @@ do
 
 }
 
+/**
+*
+*funcao menu_torneio2 que mostra o segundo menu do torneio
+*\param opcao : int
+*
+*/
+
 int menu_torneio2 () {
 
     int opcao;
@@ -523,6 +536,13 @@ do
 } while( opcao != 0);
 
 }
+
+/**
+*
+*funcao menu_torneio3 que mostra o terceiro menu do torneio
+*\param opcao : int
+*
+*/
 
 int menu_torneio3 () {
 
@@ -558,6 +578,13 @@ do
 
 }
 
+/**
+*
+*funcao menu_torneio4 que mostra o quarto menu do torneio
+*\param opcao : int
+*
+*/
+
 int menu_torneio4 () {
 
         printf("Concluiu o jogo do terceiro e quarto lugar!\n");
@@ -569,7 +596,12 @@ int menu_torneio4 () {
 
 }
 
-
+/**
+*
+*funcao menu_torneio5 que mostra o ultimo menu do torneio
+*\param opcao : int
+*
+*/
 
 int menu_torneio5 () {
 
@@ -604,7 +636,6 @@ do
 } while( opcao != 0);
 
 }
-
 
 /**
 *
@@ -749,7 +780,7 @@ do
 *
 */
 
-void belenenses_porto() {
+belenenses_porto() {
 
 struct jogo;
 struct idades;
