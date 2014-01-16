@@ -144,7 +144,6 @@ int cartao_amarelo;
 int cartao_vermelho;
 char marcadores_golo[30];
 int resultado_final;
-int penaltys;
 
 } jogo;
 
@@ -191,6 +190,7 @@ int ano;
 *
 */
 
+/*
 struct {
 
 char equipa_mais_golos_marcados [30];
@@ -202,8 +202,8 @@ char jogador_mais_novo [20];
 char melhores_marcadores [20];
 char classificacoes [300];
 
-
 } estatisticas;
+*/
 
 /**
 *
@@ -224,6 +224,7 @@ char nome_jogadores[11][100];
 char sigla[4];
 
 } equipa;
+
 /**
 *
 *struct Golos: golos dos jogadores de cada equipa 
@@ -270,7 +271,7 @@ int golosJogadorBeiraMar[20];
 
 /**
 *
-*funcao Main: Introduz e acessa ao Menu Principal
+*funcao Main: Introduz e tem acesso ao Menu Principal
 *
 */
 
@@ -324,7 +325,6 @@ do
         printf("1 - Começar torneio\n");
         printf("2 - Pesquisar equipa\n");
         printf("3 - Pesquisar Jogador\n");
-        printf("4 - Pesquisar resultados\n");
         printf("0 - Sair\n");
 
         scanf("%d", &opcao);
@@ -348,8 +348,6 @@ do
             case 3:
                  pesquisar_jogador();
                  break;
-            case 4:
-                 //pesquisar_resultados();
             default:
                  printf("Operação não implementada\n");
                  break;
@@ -362,7 +360,7 @@ do
 
 /**
 *
-*funcao sorteio_jogos que vai sortear as equipas
+*funcao sorteio_jogos do tipo int que vai sortear as equipas
 *\param i : int
 *\param n : int
 *\param aux : int
@@ -370,7 +368,7 @@ do
 *
 */
 
-sorteio_jogos() {
+int sorteio_jogos() {
 
 int i, n, aux;
 int equipas[16];
@@ -771,16 +769,22 @@ do
 
 /**
 *
-*funcao belenenses_porto que mostra o jogo do Belenenses vs Porto
+*funcao belenenses_porto do tipo int que mostra o jogo do Belenenses vs Porto
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalPorto : int
+*\param totalBelenenses : int
+*\param maximoPorto : int
+*\param minimoPorto : int
+*\param maximoBelenenses : int
+*\param minimoBelenenses : int
 *
 */
 
-belenenses_porto() {
+int belenenses_porto() {
 
 struct jogo;
 struct idades;
@@ -794,6 +798,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalPorto = 0;
+int totalBelenenses = 0;
+int maximoPorto;
+int minimoPorto;
+int maximoBelenenses;
+int minimoBelenenses;
 
 //system("cls");
 system("clear");
@@ -948,6 +958,77 @@ printf("\n\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foi %s com %d golos\n", jogo.jogadores_equipaB[9], golosJogador.golosJogadorPorto[9]);
 
+
+for(n=0;n<11;n++){
+
+totalPorto = totalPorto + idades.idadeJogadorPorto[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalBelenenses = totalBelenenses + idades.idadeJogadorBelenenses[n];
+
+}
+
+totalPorto = totalPorto/n;
+totalBelenenses = totalBelenenses/n;
+
+for (n = 0; n < 11; n++)
+  maximoPorto = idades.idadeJogadorPorto[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorPorto[n] > maximoPorto)
+    {
+       maximoPorto  = idades.idadeJogadorPorto[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoPorto = idades.idadeJogadorPorto[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorPorto[n] < minimoPorto)
+    {
+       minimoPorto = idades.idadeJogadorPorto[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoBelenenses = idades.idadeJogadorBelenenses[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBelenenses[n] > maximoBelenenses)
+    {
+       maximoBelenenses  = idades.idadeJogadorBelenenses[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoBelenenses = idades.idadeJogadorBelenenses[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBelenenses[n] < minimoBelenenses)
+    {
+       minimoBelenenses  = idades.idadeJogadorBelenenses[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Porto eh %d\n", totalPorto);
+printf("\nA media de idades da equipa do Belenenses eh %d\n", totalBelenenses);
+printf("\nO jogador mais velho do Porto tem %d anos\n", maximoPorto);
+printf("\nO jogador mais novo do Porto tem %d anos\n", minimoPorto);
+printf("\nO jogador mais velho do Belenenses tem %d anos\n", maximoBelenenses);
+printf("\nO jogador mais novo do Belenenses tem %d anos\n", minimoBelenenses);
+
 printf("\n");
 
 menu_torneio1();
@@ -956,16 +1037,22 @@ menu_torneio1();
 
 /**
 *
-*funcao benfica_nacional que mostra o jogo do Benfica vs Nacional
+*funcao benfica_nacional do tipo int que mostra o jogo do Benfica vs Nacional
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalBenfica : int
+*\param totalNacional : int
+*\param maximoBenfica : int
+*\param minimoBenfica : int
+*\param maximoNacional : int
+*\param minimoNacional : int
 *
 */
 
-benfica_nacional() {
+int benfica_nacional() {
 
 struct jogo;
 struct idades;
@@ -979,6 +1066,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalBenfica = 0;
+int totalNacional = 0;
+int maximoBenfica;
+int minimoBenfica;
+int maximoNacional;
+int minimoNacional;
 
 //system("cls");
 system("clear");
@@ -1034,9 +1127,6 @@ fp=fopen("benfica.txt", "a+");
        sleep(1);
 
        printf("\nO jogo vai iniciar dentro de segundos!...\n");
-       sleep(3);
-       
-        printf("\nO jogo vai iniciar dentro de segundos!...\n");
        sleep(3);
 
       
@@ -1214,22 +1304,101 @@ printf("O melhor marcador foi %s com %d golos\n", jogo.jogadores_equipaA[9], gol
 
 printf("\n");
 
+for(n=0;n<11;n++){
+
+totalBenfica = totalBenfica + idades.idadeJogadorBenfica[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalNacional = totalNacional + idades.idadeJogadorNacional[n];
+
+}
+
+totalBenfica = totalBenfica/n;
+totalNacional = totalNacional/n;
+
+for (n = 0; n < 11; n++)
+  maximoBenfica = idades.idadeJogadorBenfica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBenfica[n] > maximoBenfica)
+    {
+       maximoBenfica  = idades.idadeJogadorBenfica[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoBenfica = idades.idadeJogadorBenfica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBenfica[n] < minimoBenfica)
+    {
+       minimoBenfica = idades.idadeJogadorBenfica[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoNacional = idades.idadeJogadorNacional[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorNacional[n] > maximoNacional)
+    {
+       maximoNacional = idades.idadeJogadorNacional[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoNacional = idades.idadeJogadorNacional[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorNacional[n] < minimoNacional)
+    {
+       minimoNacional = idades.idadeJogadorNacional[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Benfica eh %d\n", totalBenfica);
+printf("\nA media de idades da equipa do Nacional eh %d\n", totalNacional);
+printf("\nO jogador mais velho do Benfica tem %d anos\n", maximoBenfica);
+printf("\nO jogador mais novo do Benfica tem %d anos\n", minimoBenfica);
+printf("\nO jogador mais velho do Nacional tem %d anos\n", maximoNacional);
+printf("\nO jogador mais novo do Nacional tem %d anos\n", minimoNacional);
+
+printf("\n");
+
 menu_torneio1();
 
 }
 
 /**
 *
-*funcao arouca_maritimo que mostra o jogo do Arouca vs Maritimo
+*funcao arouca_maritimo do tipo int que mostra o jogo do Arouca vs Maritimo
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalArouca : int
+*\param totalMaritimo : int
+*\param maximoArouca : int
+*\param minimoArouca : int
+*\param maximoMaritimo : int
+*\param minimoMaritimo : int
 *
 */
 
-arouca_maritimo() {
+int arouca_maritimo() {
 
 struct jogo;
 struct idades;
@@ -1243,7 +1412,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
-
+int totalArouca = 0;
+int totalMaritimo = 0;
+int maximoArouca;
+int minimoArouca;
+int maximoMaritimo;
+int minimoMaritimo;
 
 //system("cls");
 system("clear");
@@ -1443,22 +1617,101 @@ printf("Os melhores marcadores foram %s e %s com %d golos\n", jogo.jogadores_equ
 
 printf("\n");
 
+for(n=0;n<11;n++){
+
+totalArouca = totalArouca + idades.idadeJogadorArouca[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalMaritimo = totalMaritimo + idades.idadeJogadorMaritimo[n];
+
+}
+
+totalArouca = totalArouca/n;
+totalMaritimo = totalMaritimo/n;
+
+for (n = 0; n < 11; n++)
+  maximoArouca = idades.idadeJogadorArouca[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorArouca[n] > maximoArouca)
+    {
+       maximoArouca  = idades.idadeJogadorArouca[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoArouca = idades.idadeJogadorArouca[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorArouca[n] < minimoArouca)
+    {
+       minimoArouca = idades.idadeJogadorArouca[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoMaritimo = idades.idadeJogadorMaritimo[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorMaritimo[n] > maximoMaritimo)
+    {
+       maximoMaritimo = idades.idadeJogadorMaritimo[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoMaritimo = idades.idadeJogadorMaritimo[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorMaritimo[n] < minimoMaritimo)
+    {
+       minimoMaritimo = idades.idadeJogadorMaritimo[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Arouca eh %d\n", totalArouca);
+printf("\nA media de idades da equipa do Maritimo eh %d\n", totalMaritimo);
+printf("\nO jogador mais velho do Arouca tem %d anos\n", maximoArouca);
+printf("\nO jogador mais novo do Arouca tem %d anos\n", minimoArouca);
+printf("\nO jogador mais velho do Maritimo tem %d anos\n", maximoMaritimo);
+printf("\nO jogador mais novo do Maritimo tem %d anos\n", minimoMaritimo);
+
+printf("\n");
+
 menu_torneio1();
 
 }
 
 /**
 *
-*funcao olhanense_pacos que mostra o jogo do Olhanense vs Paços de Ferreira
+*funcao olhanense_pacos do tipo int que mostra o jogo do Olhanense vs Pacos
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalOlhanense : int
+*\param totalPacos : int
+*\param maximoOlhanense : int
+*\param minimoOlhanense : int
+*\param maximoPacos : int
+*\param minimoPacos : int
 *
 */
 
-olhanense_pacos() {
+int olhanense_pacos() {
 
 struct jogo;
 struct golos;
@@ -1472,6 +1725,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalOlhanense;
+int totalPacos;
+int maximoOlhanense;
+int minimoOlhanense;
+int maximoPacos;
+int minimoPacos;
 
 //system("cls");
 system("clear");
@@ -1712,22 +1971,100 @@ printf("O melhor marcador foram %s, %s, %s e %s com %d golo\n", jogo.jogadores_e
 
 printf("\n");
 
+for(n=0;n<11;n++){
+
+totalOlhanense = totalOlhanense + idades.idadeJogadorOlhanense[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalPacos = totalPacos + idades.idadeJogadorPacos[n];
+
+}
+
+totalOlhanense = totalOlhanense/n;
+totalPacos = totalPacos/n;
+
+for (n = 0; n < 11; n++)
+  maximoOlhanense = idades.idadeJogadorOlhanense[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorOlhanense[n] > maximoOlhanense)
+    {
+       maximoOlhanense = idades.idadeJogadorOlhanense[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoOlhanense = idades.idadeJogadorOlhanense[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorOlhanense[n] < minimoOlhanense)
+    {
+       minimoOlhanense = idades.idadeJogadorOlhanense[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoPacos = idades.idadeJogadorPacos[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorPacos[n] > maximoPacos)
+    {
+       maximoPacos = idades.idadeJogadorPacos[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoPacos = idades.idadeJogadorPacos[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorPacos[n] < minimoPacos)
+    {
+       minimoPacos = idades.idadeJogadorPacos[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Olhanense eh %d\n", totalOlhanense);
+printf("\nA media de idades da equipa do Pacos eh %d\n", totalPacos);
+printf("\nO jogador mais velho do Olhanense tem %d anos\n", maximoOlhanense);
+printf("\nO jogador mais novo do Olhanense tem %d anos\n", minimoOlhanense);
+printf("\nO jogador mais velho do Pacos tem %d anos\n", maximoPacos);
+printf("\nO jogador mais novo do Pacos tem %d anos\n", minimoPacos);
+
+
 menu_torneio1();
 
 }
 
 /**
 *
-*funcao braga_academica que mostra o jogo do Braga vs Académica
+*funcao braga_academica do tipo int que mostra o jogo do Braga vs Academica
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalBraga: int
+*\param totalAcademica : int
+*\param maximoBraga : int
+*\param minimoBraga : int
+*\param maximoAcademica : int
+*\param minimoAcademica : int
 *
 */
 
-braga_academica() {
+int braga_academica() {
 
 struct jogo;
 struct golos;
@@ -1741,6 +2078,13 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalBraga = 0;
+int totalAcademica = 0;
+int maximoBraga;
+int minimoBraga;
+int maximoAcademica;
+int minimoAcademica;
+
 //system("cls");
 system("clear");
 printf("Escolheu para jogar Braga X Academica\n");
@@ -1804,7 +2148,7 @@ fp=fopen("braga.txt", "a+");
        
     printf("\n0' Pontapé de saída\n");
     sleep(3);
-    printf("\n4' %s desvia-se de uma entrada e faz um passe curto para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[10]);
+    printf("\n4'	%s desvia-se de uma entrada e faz um passe curto para %s.\n",jogo.jogadores_equipaB[6],jogo.jogadores_equipaB[10]);
     sleep(3);
     printf("\n%s remata pela primeira vez.\n",jogo.jogadores_equipaB[10]);
     sleep(3);
@@ -1909,8 +2253,78 @@ fp=fopen("braga.txt", "a+");
            sleep(3);
 
 printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
-printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
-printf("Os melhores marcadores foram %s, %s com %d golo\n", jogo.jogadores_equipaA[10], jogo.jogadores_equipaA[8], golosJogador.golosJogadorBraga[8]);
+printf("\nForam mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
+printf("\nOs melhores marcadores foram %s, %s com %d golo\n", jogo.jogadores_equipaA[10], jogo.jogadores_equipaA[8], golosJogador.golosJogadorBraga[8]);
+
+for(n=0;n<11;n++){
+
+totalBraga = totalBraga + idades.idadeJogadorBraga[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalAcademica = totalAcademica + idades.idadeJogadorAcademica[n];
+
+}
+
+totalBraga = totalBraga/n;
+totalAcademica = totalAcademica/n;
+
+for (n = 0; n < 11; n++)
+  maximoBraga = idades.idadeJogadorBraga[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBraga[n] > maximoBraga)
+    {
+       maximoBraga  = idades.idadeJogadorBraga[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoBraga = idades.idadeJogadorBraga[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBraga[n] < minimoBraga)
+    {
+       minimoBraga = idades.idadeJogadorBraga[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoAcademica = idades.idadeJogadorAcademica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorAcademica[n] > maximoAcademica)
+    {
+       maximoAcademica  = idades.idadeJogadorAcademica[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoAcademica = idades.idadeJogadorAcademica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorAcademica[n] < minimoAcademica)
+    {
+       minimoAcademica  = idades.idadeJogadorAcademica[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Braga eh %d\n", totalBraga);
+printf("\nA media de idades da equipa do Academica eh %d\n", totalAcademica);
+printf("\nO jogador mais velho do Braga tem %d anos\n", maximoBraga);
+printf("\nO jogador mais novo do Braga tem %d anos\n", minimoBraga);
+printf("\nO jogador mais velho do Academica tem %d anos\n", maximoAcademica);
+printf("\nO jogador mais novo do Academica tem %d anos\n", minimoAcademica);
 
 printf("\n");
 
@@ -1920,16 +2334,22 @@ menu_torneio1();
 
 /**
 *
-*funcao sporting_beiramar que mostra o jogo do Sporting vs Beira-Mar
+*funcao sporting_beiramar do tipo int que mostra o jogo do Sporting vs Beira-Mar
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalSporting : int
+*\param totalBeiraMar : int
+*\param maximoSporting : int
+*\param minimoSporting : int
+*\param maximoBeiraMar : int
+*\param minimoBeiraMar : int
 *
 */
 
-sporting_beiramar () {
+int sporting_beiramar () {
                     
 struct jogo;
 struct idades;
@@ -1943,6 +2363,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalSporting = 0;
+int totalBeiraMar = 0;
+int maximoSporting;
+int minimoSporting;
+int maximoBeiraMar;
+int minimoBeiraMar;
 
 //system("cls");
 system("clear");
@@ -2100,7 +2526,77 @@ printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[8], golosJogador.golosJogadorSporting[8]);
 
-printf("\n");
+for(n=0;n<11;n++){
+
+totalSporting = totalSporting + idades.idadeJogadorSporting[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalBeiraMar = totalBeiraMar + idades.idadeJogadorBeiraMar[n];
+
+}
+
+totalSporting = totalSporting/n;
+totalBeiraMar = totalBeiraMar/n;
+
+for (n = 0; n < 11; n++)
+  maximoSporting = idades.idadeJogadorSporting[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorSporting[n] > maximoSporting)
+    {
+       maximoSporting = idades.idadeJogadorSporting[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoSporting = idades.idadeJogadorSporting[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorSporting[n] < minimoSporting)
+    {
+       minimoSporting = idades.idadeJogadorSporting[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoBeiraMar = idades.idadeJogadorBeiraMar[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBeiraMar[n] > maximoBeiraMar)
+    {
+       maximoBeiraMar = idades.idadeJogadorBeiraMar[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoBeiraMar = idades.idadeJogadorBeiraMar[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBeiraMar[n] < minimoBeiraMar)
+    {
+       minimoBeiraMar = idades.idadeJogadorBeiraMar[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Sporting eh %d\n", totalSporting);
+printf("\nA media de idades da equipa do Beira-Mar eh %d\n", totalBeiraMar);
+printf("\nO jogador mais velho do Sporting tem %d anos\n", maximoSporting);
+printf("\nO jogador mais novo do Sporting tem %d anos\n", minimoSporting);
+printf("\nO jogador mais velho do Beira-Mar tem %d anos\n", maximoBeiraMar);
+printf("\nO jogador mais novo do Beira-Mar tem %d anos\n", minimoBeiraMar);
+
 
 menu_torneio1();
 
@@ -2108,16 +2604,22 @@ menu_torneio1();
 
 /**
 *
-*funcao rioAve_Setubal que mostra o jogo do Rio Ave vs Vitória de Setúbal
+*funcao rioAve_Setubal do tipo int que mostra o jogo do Rio Ave vs Setubal
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalRioAve : int
+*\param totalSetubal : int
+*\param maximoRioAve : int
+*\param minimoRioAve : int
+*\param maximoSetubal : int
+*\param minimoSetubal : int
 *
 */
 
-rioAve_setubal () { 
+int rioAve_setubal () { 
                 
 struct jogo;
 struct idades;
@@ -2131,6 +2633,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalRioAve = 0;
+int totalSetubal = 0;
+int maximoRioAve;
+int minimoRioAve;
+int maximoSetubal;
+int minimoSetubal;
 
 //system("cls");
 system("clear");
@@ -2276,22 +2784,100 @@ printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[8], golo
 
 printf("\n");
 
+
+for(n=0;n<11;n++){
+
+totalRioAve = totalRioAve + idades.idadeJogadorRioAve[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalSetubal = totalSetubal + idades.idadeJogadorVitoriaSetubal[n];
+
+}
+
+totalRioAve = totalRioAve/n;
+totalSetubal = totalSetubal/n;
+
+for (n = 0; n < 11; n++)
+  maximoRioAve = idades.idadeJogadorRioAve[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorRioAve[n] > maximoRioAve)
+    {
+       maximoRioAve = idades.idadeJogadorRioAve[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoRioAve = idades.idadeJogadorRioAve[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorRioAve[n] < minimoRioAve)
+    {
+       minimoRioAve = idades.idadeJogadorRioAve[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoSetubal = idades.idadeJogadorVitoriaSetubal[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaSetubal[n] > maximoSetubal)
+    {
+       maximoSetubal = idades.idadeJogadorVitoriaSetubal[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoSetubal = idades.idadeJogadorVitoriaSetubal[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaSetubal[n] < minimoSetubal)
+    {
+       minimoSetubal = idades.idadeJogadorVitoriaSetubal[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Rio Ave eh %d\n", totalRioAve);
+printf("\nA media de idades da equipa do Setubal eh %d\n", totalSetubal);
+printf("\nO jogador mais velho do Rio Ave tem %d anos\n", maximoRioAve);
+printf("\nO jogador mais novo do Rio Ave tem %d anos\n", minimoRioAve);
+printf("\nO jogador mais velho do Setubal tem %d anos\n", maximoSetubal);
+printf("\nO jogador mais novo do Setubal tem %d anos\n", minimoSetubal);
+
 menu_torneio1();
 
 }
 
 /**
 *
-*funcao estoril_guimaraes que mostra o jogo do Estoril vs Vitória de Guimarães
+*funcao estoril_guimaraes do tipo int que mostra o jogo do Estoril vs Vitória Guimarães
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalEstoril : int
+*\param totalGuimaraes : int
+*\param maximoEstoril : int
+*\param minimoEstoril : int
+*\param maximoGuimaraes : int
+*\param minimoGuimaraes : int
 *
 */
 
-estoril_guimaraes() { 
+int estoril_guimaraes() { 
                 
 struct jogo;
 struct idades;
@@ -2305,6 +2891,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalEstoril = 0;
+int totalGuimaraes = 0;
+int maximoEstoril;
+int minimoEstoril;
+int maximoGuimaraes;
+int minimoGuimaraes;
 
 //system("cls");
 system("clear");
@@ -2456,6 +3048,78 @@ printf("Os melhores marcadores foram %s, %s e %s com %d golo\n", jogo.jogadores_
 
 printf("\n");
 
+
+for(n=0;n<11;n++){
+
+totalEstoril = totalEstoril + idades.idadeJogadorEstoril[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalGuimaraes = totalGuimaraes + idades.idadeJogadorVitoriaGuimaraes[n];
+
+}
+
+totalEstoril = totalEstoril/n;
+totalGuimaraes = totalGuimaraes/n;
+
+for (n = 0; n < 11; n++)
+  maximoEstoril = idades.idadeJogadorEstoril[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorEstoril[n] > maximoEstoril)
+    {
+       maximoEstoril = idades.idadeJogadorEstoril[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoEstoril = idades.idadeJogadorEstoril[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorEstoril[n] < minimoEstoril)
+    {
+       minimoEstoril = idades.idadeJogadorEstoril[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoGuimaraes = idades.idadeJogadorVitoriaGuimaraes[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaGuimaraes[n] > maximoGuimaraes)
+    {
+       maximoGuimaraes = idades.idadeJogadorVitoriaGuimaraes[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoGuimaraes = idades.idadeJogadorVitoriaGuimaraes[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaGuimaraes[n] < minimoGuimaraes)
+    {
+       minimoGuimaraes = idades.idadeJogadorVitoriaGuimaraes[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Estoril eh %d\n", totalEstoril);
+printf("\nA media de idades da equipa do Guimarães eh %d\n", totalGuimaraes);
+printf("\nO jogador mais velho do Estoril tem %d anos\n", maximoEstoril);
+printf("\nO jogador mais novo do Estoril tem %d anos\n", minimoEstoril);
+printf("\nO jogador mais velho do Guimarães tem %d anos\n", maximoGuimaraes);
+printf("\nO jogador mais novo do Guimarães tem %d anos\n", minimoGuimaraes);
+
 menu_torneio1();
 
 }
@@ -2463,16 +3127,22 @@ menu_torneio1();
 
 /**
 *
-*funcao porto_benfica que mostra o jogo do Porto vs Benfica
+*funcao porto_benfica do tipo int que mostra o jogo do Porto vs Benfica
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalPorto : int
+*\param totalBenfica : int
+*\param maximoPorto : int
+*\param minimoPorto : int
+*\param maximoBenfica : int
+*\param minimoBenfica : int
 *
 */
 
-porto_benfica () {
+int porto_benfica () {
                     
 struct jogo;
 struct idades;
@@ -2486,6 +3156,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalBenfica;
+int totalPorto;
+int maximoPorto;
+int minimoPorto;
+int maximoBenfica;
+int minimoBenfica;
 
 //system("cls");
 system("clear");
@@ -2704,22 +3380,100 @@ printf("Os melhores marcadores foram %s e %s com %d golos\n", jogo.jogadores_equ
 
 printf("\n");
 
+
+for(n=0;n<11;n++){
+
+totalBenfica = totalBenfica + idades.idadeJogadorBenfica[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalPorto = totalPorto + idades.idadeJogadorPorto[n];
+
+}
+
+totalBenfica = totalBenfica/n;
+totalPorto = totalPorto/n;
+
+for (n = 0; n < 11; n++)
+  maximoBenfica = idades.idadeJogadorBenfica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBenfica[n] > maximoBenfica)
+    {
+       maximoBenfica = idades.idadeJogadorBenfica[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoBenfica = idades.idadeJogadorBenfica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBenfica[n] < minimoBenfica)
+    {
+       minimoBenfica = idades.idadeJogadorBenfica[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoPorto = idades.idadeJogadorPorto[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorPorto[n] > maximoPorto)
+    {
+       maximoPorto = idades.idadeJogadorPorto[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoPorto = idades.idadeJogadorPorto[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorPorto[n] < minimoPorto)
+    {
+       minimoPorto = idades.idadeJogadorPorto[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Benfica eh %d\n", totalBenfica);
+printf("\nA media de idades da equipa do Porto eh %d\n", totalPorto);
+printf("\nO jogador mais velho do Benfica tem %d anos\n", maximoBenfica);
+printf("\nO jogador mais novo do Benfica tem %d anos\n", minimoBenfica);
+printf("\nO jogador mais velho do Porto tem %d anos\n", maximoPorto);
+printf("\nO jogador mais novo do Porto tem %d anos\n", minimoPorto);
+
 menu_torneio2();
 
 }
 
 /**
 *
-*funcao olhanense_maritimo que mostra o jogo do Olhanense vs Maritimo
+*funcao olhanense_maritimo do tipo int que mostra o jogo do Olhanense vs Maritimo
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalOlhanense : int
+*\param totalMaritimo : int
+*\param maximoOlhanense : int
+*\param minimoOlhanense : int
+*\param maximoMaritimo : int
+*\param minimoMaritimo : int
 *
 */
 
-olhanense_maritimo () {
+int olhanense_maritimo () {
                     
 struct jogo;
 struct idades;
@@ -2733,6 +3487,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalOlhanense = 0;
+int totalMaritimo = 0;
+int maximoMaritimo;
+int minimoMaritimo;
+int maximoOlhanense;
+int minimoOlhanense;
 
 //system("cls");
 system("clear");
@@ -2919,6 +3679,78 @@ printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foram %s, %s e %s com %d golo\n", jogo.jogadores_equipaA[8], jogo.jogadores_equipaA[10], jogo.jogadores_equipaA[10], golosJogador.golosJogadorOlhanense[8]);
 
+
+for(n=0;n<11;n++){
+
+totalOlhanense = totalOlhanense + idades.idadeJogadorOlhanense[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalMaritimo = totalMaritimo + idades.idadeJogadorMaritimo[n];
+
+}
+
+totalOlhanense = totalOlhanense/n;
+totalMaritimo = totalMaritimo/n;
+
+for (n = 0; n < 11; n++)
+  maximoOlhanense = idades.idadeJogadorOlhanense[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorOlhanense[n] > maximoOlhanense)
+    {
+       maximoOlhanense = idades.idadeJogadorOlhanense[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoOlhanense = idades.idadeJogadorOlhanense[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorOlhanense[n] < minimoOlhanense)
+    {
+       minimoOlhanense = idades.idadeJogadorOlhanense[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoMaritimo = idades.idadeJogadorMaritimo[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorMaritimo[n] > maximoMaritimo)
+    {
+       maximoMaritimo = idades.idadeJogadorMaritimo[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoMaritimo = idades.idadeJogadorMaritimo[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorMaritimo[n] < minimoMaritimo)
+    {
+       minimoMaritimo = idades.idadeJogadorMaritimo[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Olhanense eh %d\n", totalOlhanense);
+printf("\nA media de idades da equipa do Maritimo eh %d\n", totalMaritimo);
+printf("\nO jogador mais velho do Olhanense tem %d anos\n", maximoOlhanense);
+printf("\nO jogador mais novo do Olhanense tem %d anos\n", minimoOlhanense);
+printf("\nO jogador mais velho do Maritimo tem %d anos\n", maximoMaritimo);
+printf("\nO jogador mais novo do Maritimo tem %d anos\n", minimoMaritimo);
+
 printf("\n");
 
 menu_torneio2();
@@ -2927,16 +3759,22 @@ menu_torneio2();
 
 /**
 *
-*funcao braga_sporting que mostra o jogo do Braga vs Sporting
+*funcao braga_sporting do tipo int que mostra o jogo do Braga vs Sporting
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalBraga : int
+*\param totalSporting : int
+*\param maximoBraga : int
+*\param minimoBraga : int
+*\param maximoSporting : int
+*\param minimoSporting : int
 *
 */
 
-braga_sporting () {
+int braga_sporting () {
                     
 struct jogo;
 struct idades;
@@ -2950,6 +3788,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalSporting = 0;
+int totalBraga = 0;
+int maximoBraga;
+int minimoBraga;
+int maximoSporting;
+int minimoSporting;
 
 //system("cls");
 system("clear");
@@ -3105,6 +3949,80 @@ printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhores marcador foi %s com %d golo\n", jogo.jogadores_equipaA[8], golosJogador.golosJogadorSporting[8]);
 
+
+for(n=0;n<11;n++){
+
+totalBraga = totalBraga + idades.idadeJogadorBraga[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalSporting = totalSporting + idades.idadeJogadorSporting[n];
+
+}
+
+totalBraga = totalBraga/n;
+totalSporting = totalSporting/n;
+
+for (n = 0; n < 11; n++)
+  maximoBraga = idades.idadeJogadorBraga[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBraga[n] > maximoBraga)
+    {
+       maximoBraga = idades.idadeJogadorBraga[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoBraga = idades.idadeJogadorBraga[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBraga[n] < minimoBraga)
+    {
+       minimoBraga = idades.idadeJogadorBraga[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoSporting = idades.idadeJogadorSporting[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorSporting[n] > maximoSporting)
+    {
+       maximoSporting = idades.idadeJogadorSporting[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoSporting = idades.idadeJogadorSporting[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorSporting[n] < minimoSporting)
+    {
+       minimoSporting = idades.idadeJogadorSporting[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Braga eh %d\n", totalBraga);
+printf("\nA media de idades da equipa do Sporting eh %d\n", totalSporting);
+printf("\nO jogador mais velho do Sporting tem %d anos\n", maximoSporting);
+printf("\nO jogador mais novo do Sporting tem %d anos\n", minimoSporting);
+printf("\nO jogador mais velho do Braga tem %d anos\n", maximoBraga);
+printf("\nO jogador mais novo do Braga tem %d anos\n", minimoBraga);
+
+
+
 printf("\n");
 
 menu_torneio2();
@@ -3113,16 +4031,22 @@ menu_torneio2();
 
 /**
 *
-*funcao setubal_guimaraes que mostra o jogo do Vitória de Setúbal vs Vitória de Guimarães
+*funcao setubal_guimaraes do tipo int que mostra o jogo do Vitória de Setubal vs Vitória de Guimarães
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalSetubal : int
+*\param totalGuimaraes : int
+*\param maximoSetubal : int
+*\param minimoSetubal : int
+*\param maximoGuimaraes : int
+*\param minimoGuimaraes : int
 *
 */
 
-setubal_guimaraes () {
+int setubal_guimaraes () {
                     
 struct jogo;
 struct idades;
@@ -3136,6 +4060,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalSetubal = 0;
+int totalGuimaraes = 0;
+int maximoSetubal;
+int minimoSetubal;
+int maximoGuimaraes;
+int minimoGuimaraes;
 
 //system("cls");
 system("clear");
@@ -3314,6 +4244,79 @@ printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("Os melhores marcadores foram %s, %s e %s com %d golo\n", jogo.jogadores_equipaA[8], jogo.jogadores_equipaA[10], jogo.jogadores_equipaA[10], golosJogador.golosJogadorVitoriaSetubal[8]);
 
+
+for(n=0;n<11;n++){
+
+totalSetubal = totalSetubal + idades.idadeJogadorVitoriaSetubal[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalGuimaraes = totalGuimaraes + idades.idadeJogadorVitoriaGuimaraes[n];
+
+}
+
+totalSetubal = totalSetubal/n;
+totalGuimaraes = totalGuimaraes/n;
+
+for (n = 0; n < 11; n++)
+  maximoSetubal = idades.idadeJogadorVitoriaSetubal[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaSetubal [n] > maximoSetubal)
+    {
+       maximoSetubal = idades.idadeJogadorVitoriaSetubal[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoSetubal = idades.idadeJogadorVitoriaSetubal[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaSetubal[n] < minimoSetubal)
+    {
+       minimoSetubal = idades.idadeJogadorVitoriaSetubal[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoGuimaraes = idades.idadeJogadorVitoriaGuimaraes[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaGuimaraes[n] > maximoGuimaraes)
+    {
+       maximoGuimaraes = idades.idadeJogadorVitoriaGuimaraes[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoGuimaraes = idades.idadeJogadorVitoriaGuimaraes[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaGuimaraes[n] < minimoGuimaraes)
+    {
+       minimoGuimaraes = idades.idadeJogadorVitoriaGuimaraes[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Setubal eh %d\n", totalSetubal);
+printf("\nA media de idades da equipa do Guimarães eh %d\n", totalGuimaraes);
+printf("\nO jogador mais velho do Setubal tem %d anos\n", maximoSetubal);
+printf("\nO jogador mais novo do Setubal tem %d anos\n", minimoSetubal);
+printf("\nO jogador mais velho do Guimarães tem %d anos\n", maximoGuimaraes);
+printf("\nO jogador mais novo do Guimarães tem %d anos\n", minimoGuimaraes);
+
+
 printf("\n");
 
 menu_torneio2();
@@ -3322,16 +4325,22 @@ menu_torneio2();
 
 /**
 *
-*funcao benfica_olhanense que mostra o jogo do Benfica vs Olhanense
+*funcao olhanense_benfica do tipo int que mostra o jogo do Olhanense vs Benfica
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalOlhanense : int
+*\param totalBenfica : int
+*\param maximoOlhanense : int
+*\param minimoOlhanense : int
+*\param maximoBenfica : int
+*\param minimoBenfica : int
 *
 */
 
-benfica_olhanense () {
+int benfica_olhanense () {
                     
 struct jogo;
 struct idades;
@@ -3345,6 +4354,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalOlhanense = 0;
+int totalBenfica = 0;
+int maximoBenfica;
+int minimoBenfica;
+int maximoOlhanense;
+int minimoOlhanense;
 
 //system("cls");
 system("clear");
@@ -3494,6 +4509,78 @@ printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[10], golosJogador.golosJogadorBenfica[10]);
 
+
+for(n=0;n<11;n++){
+
+totalOlhanense = totalOlhanense + idades.idadeJogadorOlhanense[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalBenfica = totalBenfica + idades.idadeJogadorBenfica[n];
+
+}
+
+totalOlhanense = totalOlhanense/n;
+totalBenfica = totalBenfica/n;
+
+for (n = 0; n < 11; n++)
+  maximoOlhanense = idades.idadeJogadorOlhanense[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorOlhanense[n] > maximoOlhanense)
+    {
+       maximoOlhanense = idades.idadeJogadorOlhanense[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoOlhanense = idades.idadeJogadorOlhanense[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorOlhanense[n] < minimoOlhanense)
+    {
+       minimoOlhanense = idades.idadeJogadorOlhanense[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoBenfica = idades.idadeJogadorBenfica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBenfica[n] > maximoBenfica)
+    {
+       maximoBenfica = idades.idadeJogadorBenfica[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoBenfica = idades.idadeJogadorBenfica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBenfica[n] < minimoBenfica)
+    {
+       minimoBenfica = idades.idadeJogadorBenfica[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Olhanense eh %d\n", totalOlhanense);
+printf("\nA media de idades da equipa do Pacos eh %d\n", totalBenfica);
+printf("\nO jogador mais velho do Olhanense tem %d anos\n", maximoOlhanense);
+printf("\nO jogador mais novo do Olhanense tem %d anos\n", minimoOlhanense);
+printf("\nO jogador mais velho do Benfica tem %d anos\n", maximoBenfica);
+printf("\nO jogador mais novo do Benfica tem %d anos\n", minimoBenfica);
+
 printf("\n");
 
 menu_torneio3();
@@ -3502,16 +4589,22 @@ menu_torneio3();
 
 /**
 *
-*funcao sporting_setubal que mostra o jogo do Sporting vs Vitória de Setúbal
+*funcao sporting_setubal do tipo int que mostra o jogo do Sporting vs Vitória de Setúbal
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalSporting : int
+*\param totalSetubal : int
+*\param maximoSetubal : int
+*\param minimoSetubal : int
+*\param maximoSporting : int
+*\param minimoSporting : int
 *
 */
 
-sporting_setubal () {
+int sporting_setubal () {
                     
 struct jogo;
 struct golos;
@@ -3525,6 +4618,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalSporting = 0;
+int totalSetubal = 0;
+int maximoSetubal;
+int minimoSetubal;
+int maximoSporting;
+int minimoSporting;
 
 //system("cls");
 system("clear");
@@ -3669,7 +4768,7 @@ fp=fopen("sporting.txt", "a+");
  sleep(3);
   jogo.cartao_amarelo++;
 
- printf("\n90'Final do Jogo Final do Jogo\n");
+ printf("\n90'	Final do Jogo\n");
  sleep(3);
   printf("\nAssim acaba esta partida %d-%d para o Sporting!\n", golosEquipaA, golosEquipaB );
            sleep(3);
@@ -3677,6 +4776,79 @@ fp=fopen("sporting.txt", "a+");
 printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[9], golosJogador.golosJogadorSporting[9]);
+
+
+for(n=0;n<11;n++){
+
+totalSetubal = totalSetubal + idades.idadeJogadorVitoriaSetubal[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalSporting = totalSporting + idades.idadeJogadorSporting[n];
+
+}
+
+totalSporting = totalSporting/n;
+totalSetubal = totalSetubal/n;
+
+for (n = 0; n < 11; n++)
+  maximoSetubal = idades.idadeJogadorVitoriaSetubal[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaSetubal[n] > maximoSetubal)
+    {
+       maximoSetubal = idades.idadeJogadorVitoriaSetubal[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoSetubal = idades.idadeJogadorVitoriaSetubal[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaSetubal[n] < minimoSetubal)
+    {
+       minimoSetubal = idades.idadeJogadorVitoriaSetubal[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoSporting = idades.idadeJogadorSporting[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorSporting[n] > maximoSporting)
+    {
+       maximoSporting = idades.idadeJogadorSporting[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoSporting = idades.idadeJogadorSporting[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorSporting[n] < minimoSporting)
+    {
+       minimoSporting = idades.idadeJogadorSporting[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Setubal eh %d\n", totalSetubal);
+printf("\nA media de idades da equipa do Sporting eh %d\n", totalSporting);
+printf("\nO jogador mais velho do Setubal tem %d anos\n", maximoSetubal);
+printf("\nO jogador mais novo do Setubal tem %d anos\n", minimoSetubal);
+printf("\nO jogador mais velho do Sporting tem %d anos\n", maximoSporting);
+printf("\nO jogador mais novo do Sporting tem %d anos\n", minimoSporting);
+
 
 printf("\n");
 
@@ -3686,16 +4858,22 @@ menu_torneio3();
 
 /**
 *
-*funcao olhanense_setubal que mostra o jogo do Olhanense vs Setubal
+*funcao olhanense_setubal do tipo int que mostra o jogo do Olhanense vs Vitória de Setúbal
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalOlhanense : int
+*\param totalSetubal : int
+*\param maximoOlhanense : int
+*\param minimoOlhanense : int
+*\param maximoSetubal : int
+*\param minimoSetubal : int
 *
 */
 
-olhanense_setubal () {
+int olhanense_setubal () {
                     
 struct jogo;
 struct idades;
@@ -3709,6 +4887,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalOlhanense = 0;
+int totalSetubal = 0;
+int maximoOlhanense;
+int minimoOlhanense;
+int maximoSetubal;
+int minimoSetubal;
 
 //system("cls");
 printf("\n");
@@ -3864,6 +5048,79 @@ printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[5], golosJogador.golosJogadorOlhanense[5]);
 
+
+for(n=0;n<11;n++){
+
+totalOlhanense = totalOlhanense + idades.idadeJogadorOlhanense[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalSetubal = totalSetubal + idades.idadeJogadorVitoriaSetubal[n];
+
+}
+
+totalOlhanense = totalOlhanense/n;
+totalSetubal = totalSetubal/n;
+
+for (n = 0; n < 11; n++)
+  maximoOlhanense = idades.idadeJogadorOlhanense[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorOlhanense[n] > maximoOlhanense)
+    {
+       maximoOlhanense = idades.idadeJogadorOlhanense[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoOlhanense = idades.idadeJogadorOlhanense[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorOlhanense[n] < minimoOlhanense)
+    {
+       minimoOlhanense = idades.idadeJogadorOlhanense[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoSetubal = idades.idadeJogadorVitoriaSetubal[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaSetubal[n] > maximoSetubal)
+    {
+       maximoSetubal = idades.idadeJogadorVitoriaSetubal[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoSetubal = idades.idadeJogadorVitoriaSetubal[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorVitoriaSetubal[n] < minimoSetubal)
+    {
+       minimoSetubal = idades.idadeJogadorVitoriaSetubal[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Olhanense eh %d\n", totalOlhanense);
+printf("\nA media de idades da equipa do Pacos eh %d\n", totalSetubal);
+printf("\nO jogador mais velho do Olhanense tem %d anos\n", maximoOlhanense);
+printf("\nO jogador mais novo do Olhanense tem %d anos\n", minimoOlhanense);
+printf("\nO jogador mais velho do Setubal tem %d anos\n", maximoSetubal);
+printf("\nO jogador mais novo do Setubal tem %d anos\n", minimoSetubal);
+
+
 printf("\n");
 
 menu_torneio4();
@@ -3873,16 +5130,22 @@ menu_torneio4();
 
 /**
 *
-*funcao sporting_benfica que mostra o jogo do Sporting vs Benfica
+*funcao benfica_sporting do tipo int que mostra o jogo do Benfica vs Sporting
 *\param op : int
 *\param n : int
 *\param golosEquipaA : int
 *\param golosEquipaB : int
 *\param aux[200] : char
+*\param totalBenfica : int
+*\param totalSporting : int
+*\param maximoBenfica : int
+*\param minimoBenfica : int
+*\param maximoSporting : int
+*\param minimoSporting : int
 *
 */
 
-sporting_benfica() {
+int sporting_benfica() {
                     
 struct jogo;
 struct idades;
@@ -3896,6 +5159,12 @@ char aux[200];
 int n,op;
 int golosEquipaA = 0;
 int golosEquipaB = 0;
+int totalBenfica = 0;
+int totalSporting = 0;
+int maximoSporting;
+int minimoSporting;
+int maximoBenfica;
+int minimoBenfica;
 
 //system("cls");
 sleep(1);
@@ -4062,6 +5331,79 @@ printf("\nForam mostrados %d cartões amarelos!\n", jogo.cartao_amarelo);
 printf("Foram mostrados %d cartões vermelhos!\n", jogo.cartao_vermelho);
 printf("O melhor marcador foi %s com %d golo\n", jogo.jogadores_equipaA[10], golosJogador.golosJogadorBenfica[10]);
 
+
+for(n=0;n<11;n++){
+
+totalBenfica = totalBenfica + idades.idadeJogadorBenfica[n];
+
+}
+
+for(n=0;n<11;n++){
+
+totalSporting = totalSporting + idades.idadeJogadorSporting[n];
+
+}
+
+totalBenfica = totalBenfica/n;
+totalSporting = totalSporting/n;
+
+for (n = 0; n < 11; n++)
+  maximoBenfica = idades.idadeJogadorBenfica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBenfica[n] > maximoBenfica)
+    {
+       maximoBenfica = idades.idadeJogadorBenfica[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  minimoBenfica = idades.idadeJogadorBenfica[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorBenfica[n] < minimoBenfica)
+    {
+       minimoBenfica = idades.idadeJogadorBenfica[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+  maximoSporting = idades.idadeJogadorSporting[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorSporting[n] > maximoSporting)
+    {
+       maximoSporting = idades.idadeJogadorSporting[n];
+
+    }
+  }
+
+for (n = 0; n < 11; n++)
+
+  minimoSporting = idades.idadeJogadorSporting[0];
+ 
+  for (n = 1; n < 11; n++)
+  {
+    if (idades.idadeJogadorSporting[n] < minimoSporting)
+    {
+       minimoSporting = idades.idadeJogadorSporting[n];
+
+    }
+  }
+
+printf("\nA media de idades da equipa do Benfica eh %d\n", totalBenfica);
+printf("\nA media de idades da equipa do Sporting eh %d\n", totalSporting);
+printf("\nO jogador mais velho do Benfica tem %d anos\n", maximoBenfica);
+printf("\nO jogador mais novo do Benfica tem %d anos\n", minimoBenfica);
+printf("\nO jogador mais velho do Sporting tem %d anos\n", maximoSporting);
+printf("\nO jogador mais novo do Sporting tem %d anos\n", minimoSporting);
+
+
 printf("\n");
 
 menu_torneio5();
@@ -4070,7 +5412,7 @@ menu_torneio5();
 
 /**
 *
-*funcao jogar que realiza os jogos
+*funcao jogar do tipo int que realiza os jogos
 *\param op : int
 *
 */
@@ -4133,6 +5475,14 @@ struct jogo;
       }
 }
 
+/**
+*
+*Funcao jogar_quartos do tipo int que mostra o menu dos quartos de final
+*
+*\param op : int
+*
+*/
+
 int jogar_quartos() {
 
 //system("cls");
@@ -4172,6 +5522,13 @@ struct jogo;
 
 }
 
+/**
+*
+*Funcao jogar_meias do tipo int que mostra o menu das meias finais
+*\param op : int
+*
+*/
+
 int jogar_meias() {
 
 //system("cls");
@@ -4200,7 +5557,13 @@ struct jogo;
 }
 }
 
-jogar_3e4() {
+/**
+*
+*Funcao jogar_3e4 do tipo int que mostra o jogo do terceiro e quarto lugar
+*
+*/
+
+int jogar_3e4() {
 
 //system("cls");
 system("clear");
@@ -4211,6 +5574,12 @@ sleep(3);
 olhanense_setubal();
     
 }
+
+/**
+*
+*Funcao jogar_final do tipo int que mostra o jogo da Final
+*
+*/
 
 int jogar_final() {
 
@@ -4281,6 +5650,13 @@ jogar();
 
 }
 
+/**
+*
+*Funcao pesquisar_jogador do tipo int que mostra o menu de pesquisa de jogadores
+*\param op : int
+*
+*/
+
 int pesquisar_jogador () { 
 //system ("cls");
 system("clear");
@@ -4348,7 +5724,7 @@ system("clear");
 fp=fopen("fichJogadores.txt","r");
 ft=fopen("ct.txt","w");
 fflush(stdin);
-printf("Edit contact\n===============================\n\n\tEnter the name of contact to edit:");
+printf("Editar Jogador\n===============================\n\n\tInsira o nome do jogador que quer editar:");
 scanf("\n%[^\n]s",nome);
 while(fread(&jogador,sizeof(jogador),1,fp)==1)
 {
@@ -4357,17 +5733,17 @@ fwrite(&jogador,sizeof(jogador),1,ft);
 }
 
 fflush(stdin);
-printf("\n\n..::Editing '%s'\n\n",nome);
-printf("..::Name(Use identical):");
+printf("\n\nA editar '%s'\n\n",nome);
+printf("Nome(Use o mesmo): ");
 scanf("\n%[^\n]s", jogador.nome);
 fflush(stdin);
-printf("..::sigla:");
+printf("Sigla:");
 scanf("%s", jogador.sigla);
 fflush(stdin);
-printf("..::n.camisola:");
+printf("Numero Camisola:");
  scanf("%d",&jogador.numero_camisola );
 fflush(stdin);
-printf("..::naturalidade:");
+printf("Naturalidade:");
 scanf("\n%[^\n]s", jogador.naturalidade);
 printf("\n");
  printf("Posicao: ");
